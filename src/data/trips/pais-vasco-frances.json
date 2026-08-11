@@ -231,6 +231,39 @@
           "value": "Punto de prueba para ubicación, distancia y recorridos"
         }
       ]
+    },
+    {
+      "id": "es-mad-aranjuez-jardines",
+      "tripId": "pais-vasco-frances",
+      "name": "Jardines de Aranjuez",
+      "locality": "Aranjuez",
+      "categoryId": "nature",
+      "latitude": 40.041097,
+      "longitude": -3.589661,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jard%C3%ADn_del_Pr%C3%ADncipe%2C_Aranjuez%2C_Madrid%2C_Espa%C3%B1a%2C_2020_08.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Jard%C3%ADn_del_Pr%C3%ADncipe,_Aranjuez,_Madrid,_Espa%C3%B1a,_2020_08.jpg",
+      "imageAttribution": "Benjamín Núñez González · CC BY-SA 4.0",
+      "alt": "Jardín del Príncipe en el Real Sitio de Aranjuez",
+      "description": "Conjunto de jardines históricos del Real Sitio de Aranjuez. El Jardín del Príncipe, de 150 hectáreas, reúne grandes paseos arbolados, fuentes, el Estanque de los Chinescos y el paisaje de la ribera del Tajo.",
+      "tips": [
+        "En agosto los jardines abren a las 08:30; hasta el 15 de agosto cierran a las 21:30 y desde el 16 a las 20:30.",
+        "El Jardín del Príncipe mantiene apertura parcial según el aviso vigente de Patrimonio Nacional; revisa las zonas abiertas antes de ir."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "VisitMadrid indica que se admiten mascotas en los jardines del Príncipe y de la Isla siempre atadas con correa y respetando las normas de limpieza; revisa restricciones puntuales antes de la visita.",
+      "officialSourceUrl": "https://www.patrimonionacional.es/visita/jardines-de-aranjuez",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.041097%2C-3.589661",
+      "additionalInfo": [
+        {
+          "label": "Entrada",
+          "value": "Gratuita en los jardines de la Isla y del Príncipe"
+        },
+        {
+          "label": "Fuente perros",
+          "value": "VisitMadrid · Jardines Reales de Aranjuez"
+        }
+      ]
     }
   ]
 }
