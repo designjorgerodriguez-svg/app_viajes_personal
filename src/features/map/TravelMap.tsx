@@ -193,7 +193,7 @@ function renderPlaceMarker(
   const selected = snapshot.selectedPlaceId === place.id
   element.className = 'waypoint-marker'
   element.dataset.selected = String(selected)
-  element.style.setProperty('--marker-color', 'var(--color-primary-strong)')
+  element.style.setProperty('--marker-color', category.color)
   element.setAttribute(
     'aria-label',
     `Abrir ${place.name}${state?.favorite ? ', favorito' : ''}${state?.visited ? ', visitado' : ''}`,
