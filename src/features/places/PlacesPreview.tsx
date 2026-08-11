@@ -37,8 +37,9 @@ export function PlacesScreen({ filters, places, visibleCount, getPlaceState, onC
       </div>
 
       <div className="active-filter-row" aria-label="Resumen de filtros">
-        <button data-active={filters.categoryIds.length === 0 && !filters.favoritesOnly} onClick={() => onChangeFilters({ ...filters, categoryIds: [], favoritesOnly: false })} type="button">Todos</button>
+        <button data-active={filters.categoryIds.length === 0 && !filters.favoritesOnly && !filters.unvisitedOnly} onClick={() => onChangeFilters({ ...filters, categoryIds: [], favoritesOnly: false, unvisitedOnly: false })} type="button">Todos</button>
         {filters.favoritesOnly ? <button data-active="true" type="button">Favoritos</button> : null}
+        {filters.unvisitedOnly ? <button data-active="true" type="button">Por visitar</button> : null}
         {filters.categoryIds.map((categoryId) => <button data-active="true" key={categoryId} type="button">{categoryById[categoryId]?.label ?? categoryId}</button>)}
       </div>
 

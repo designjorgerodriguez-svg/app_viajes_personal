@@ -66,7 +66,7 @@
   padding: 0;
   color: #fff;
   background: var(--color-primary-strong);
-  border: 0;
+  border: 3px solid var(--color-petrol);
   border-radius: 50%;
   box-shadow: 0 6px 14px rgb(0 91 59 / 32%);
   transform: translateX(-50%);
@@ -1450,8 +1450,8 @@
 
 .waypoint-marker__badges {
   position: absolute;
-  top: 0;
-  right: -1px;
+  top: -2px;
+  right: -3px;
   display: flex;
   z-index: 3;
 }
@@ -1475,8 +1475,8 @@
 }
 
 .waypoint-marker__badge--favorite {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
   color: var(--color-favorite);
   background: transparent;
   border: 0;
@@ -1486,7 +1486,9 @@
 }
 
 .waypoint-marker__badge--visited {
-  background: var(--color-petrol);
+  color: var(--color-primary-strong);
+  background: #fff;
+  border-color: var(--color-primary-strong);
 }
 
 .waypoint-cluster {
@@ -2163,7 +2165,7 @@
 }
 
 .filter-option,
-.favorite-filter {
+.quick-filter {
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr) 18px;
   gap: 8px;
@@ -2178,8 +2180,7 @@
   font-weight: 750;
 }
 
-.filter-option[data-active='true'],
-.favorite-filter[data-active='true'] {
+.filter-option[data-active='true'] {
   color: var(--color-petrol);
   background: var(--color-mint);
   border-color: var(--color-primary-border);
@@ -2194,22 +2195,28 @@
   place-items: center;
 }
 
-.favorite-filter {
-  width: 100%;
-  margin-top: 10px;
-  color: var(--color-petrol);
-  background: var(--color-primary-strong);
-  border-color: var(--color-primary-strong);
-  box-shadow: 0 7px 18px rgb(var(--color-primary-rgb) / 18%);
+.quick-filter-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-.favorite-filter[data-active='true'] {
-  color: var(--color-petrol);
-  background: var(--color-primary-strong);
-  border-color: var(--color-petrol);
+.quick-filter {
+  width: 100%;
+  color: #fff;
+  background: var(--color-filter-accent);
+  border-color: var(--color-filter-accent);
+  box-shadow: 0 7px 18px rgb(0 91 59 / 18%);
+}
+
+.quick-filter[data-active='true'] {
+  color: #fff;
+  background: var(--color-filter-accent);
+  border-color: #fff;
   box-shadow:
-    inset 0 0 0 1px var(--color-petrol),
-    0 7px 18px rgb(var(--color-primary-rgb) / 22%);
+    inset 0 0 0 2px var(--color-primary-strong),
+    0 7px 18px rgb(0 91 59 / 24%);
 }
 
 .dialog-actions {

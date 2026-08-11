@@ -64,7 +64,9 @@ export function MapScreen(props: MapScreenProps) {
   const [detailsCompact, setDetailsCompact] = useState(false)
   const [showRouteOverview, setShowRouteOverview] = useState(false)
   const routeActive = props.routePlaceIds.length > 0
-  const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
+  const activeFilterCount = props.filters.categoryIds.length
+    + Number(props.filters.favoritesOnly)
+    + Number(props.filters.unvisitedOnly)
 
   useEffect(() => {
     setDetailsCompact(false)

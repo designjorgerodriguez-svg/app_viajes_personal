@@ -4,12 +4,14 @@ export interface PlaceFilters {
   query: string
   categoryIds: string[]
   favoritesOnly: boolean
+  unvisitedOnly: boolean
 }
 
 export const EMPTY_FILTERS: PlaceFilters = {
   query: '',
   categoryIds: [],
   favoritesOnly: false,
+  unvisitedOnly: false,
 }
 
 function normalize(value: string) {
@@ -26,6 +28,7 @@ export function filterPlaces(
     const state = states[place.id]
     if (state?.deleted) return false
     if (filters.favoritesOnly && !state?.favorite) return false
+    if (filters.unvisitedOnly && state?.visited) return false
     if (filters.categoryIds.length > 0 && !filters.categoryIds.includes(place.categoryId)) return false
     if (!query) return true
     return normalize(`${place.name} ${place.locality} ${place.description}`).includes(query)
