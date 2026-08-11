@@ -1943,7 +1943,7 @@
 .route-summary--footer {
   flex: 0 0 auto;
   width: 100%;
-  min-height: 58px;
+  min-height: 50px;
   margin-top: 0;
   text-align: left;
   background: var(--color-mint);
@@ -1994,6 +1994,101 @@
   gap: 7px;
   flex: 0 0 auto;
   margin-top: 9px;
+}
+
+.route-stops-details .place-details__header {
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.route-stops-list {
+  min-height: 0;
+  margin: 10px -3px 0 0;
+  padding: 0 5px 2px 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: #c9d7d2 transparent;
+  scrollbar-width: thin;
+}
+
+.route-stop,
+.route-stop-leg {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.route-stop {
+  min-height: 46px;
+}
+
+.route-stop > span:last-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.route-stop strong {
+  overflow: hidden;
+  color: var(--color-ink);
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.route-stop small {
+  overflow: hidden;
+  color: var(--color-ink-muted);
+  font-size: 0.66rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.route-stop__marker {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+  background: var(--color-petrol);
+  border: 3px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 11px rgb(27 63 61 / 20%);
+  font-size: 0.7rem;
+  font-weight: 900;
+  place-items: center;
+}
+
+.route-stop--origin .route-stop__marker {
+  background: var(--color-primary-strong);
+}
+
+.route-stop-leg {
+  min-height: 34px;
+}
+
+.route-stop-leg > span {
+  width: 3px;
+  height: 100%;
+  margin: 0 auto;
+  background: var(--color-primary-strong);
+  border-radius: 99px;
+}
+
+.route-stop-leg p {
+  width: fit-content;
+  padding: 5px 9px;
+  color: var(--color-petrol);
+  background: var(--color-mint);
+  border-radius: 9px;
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+
+.route-stops-details > .route-button--large {
+  flex: 0 0 auto;
+  margin-top: 10px;
 }
 
 .place-source-button {

@@ -14,6 +14,7 @@ import type {
 import { FilterDialog } from '../filters/FilterDialog'
 import type { PlaceFilters } from '../filters/placeFilters'
 import { PlaceDetails } from '../places/PlaceDetails'
+import { RouteStopsDetails } from '../routes/RouteStopsDetails'
 import { TravelMap, type TravelMapHandle, type TravelMapViewState } from './TravelMap'
 
 interface MapScreenProps {
@@ -28,6 +29,7 @@ interface MapScreenProps {
   routeError: string
   routeGoogleMapsUrl: string
   routePlaceIds: string[]
+  routePlaces: TripPlace[]
   routePreview: RouteResult | null
   routeStatus: RouteStatus
   selectedPlace: TripPlace | null
@@ -60,11 +62,13 @@ export function MapScreen(props: MapScreenProps) {
   const routeStartViewRef = useRef<TravelMapViewState | null>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [detailsCompact, setDetailsCompact] = useState(false)
+  const [showRouteOverview, setShowRouteOverview] = useState(false)
   const routeActive = props.routePlaceIds.length > 0
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
 
   useEffect(() => {
     setDetailsCompact(false)
+    setShowRouteOverview(false)
   }, [props.selectedPlace?.id])
 
   const restoreViewBeforeRoute = () => {
@@ -78,12 +82,15 @@ export function MapScreen(props: MapScreenProps) {
   const removeRoute = () => {
     props.onHideRoute()
     setDetailsCompact(false)
+    setShowRouteOverview(false)
+    props.onSelectPlace(null)
     restoreViewBeforeRoute()
   }
 
   const closePlaceDetails = () => {
     if (routeActive) {
       props.onHideRoute()
+      setShowRouteOverview(false)
       restoreViewBeforeRoute()
     }
     props.onSelectPlace(null)
@@ -95,6 +102,7 @@ export function MapScreen(props: MapScreenProps) {
       routeStartViewRef.current = mapRef.current?.getViewState() ?? null
     }
     setDetailsCompact(true)
+    setShowRouteOverview(false)
     props.onRequestRoute(props.selectedPlace)
   }
 
@@ -113,7 +121,10 @@ export function MapScreen(props: MapScreenProps) {
         onBoundsChange={props.onBoundsChange}
         onMapError={props.onMapError}
         onSelectPlace={(placeId) => {
-          if (routeActive && placeId !== props.selectedPlace?.id) setDetailsCompact(false)
+          if (routeActive && placeId !== props.selectedPlace?.id) {
+            setDetailsCompact(false)
+            setShowRouteOverview(false)
+          }
           props.onSelectPlace(placeId)
         }}
       />
@@ -179,7 +190,19 @@ export function MapScreen(props: MapScreenProps) {
       ) : null}
       {props.mapError ? <div className="map-status" data-error="true">{props.mapError}</div> : null}
 
-      {props.selectedPlace ? (
+      {showRouteOverview && props.route && props.routePlaces.length > 1 ? (
+        <RouteStopsDetails
+          googleMapsUrl={props.routeGoogleMapsUrl}
+          route={props.route}
+          routeLoading={props.routeStatus === 'loading'}
+          routePlaces={props.routePlaces}
+          onCollapse={() => {
+            setDetailsCompact(true)
+            setShowRouteOverview(false)
+          }}
+          onRemoveRoute={removeRoute}
+        />
+      ) : props.selectedPlace ? (
         <PlaceDetails
           compact={detailsCompact}
           locationLoading={props.geolocationStatus === 'loading'}
@@ -195,12 +218,19 @@ export function MapScreen(props: MapScreenProps) {
           state={props.getPlaceState(props.selectedPlace.id)}
           onAddToRoute={() => {
             setDetailsCompact(true)
+            setShowRouteOverview(false)
             props.onAddPlaceToRoute(props.selectedPlace!)
           }}
-          onCollapse={() => setDetailsCompact(true)}
+          onCollapse={() => {
+            setDetailsCompact(true)
+            setShowRouteOverview(false)
+          }}
           onClose={closePlaceDetails}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}
-          onExpand={() => setDetailsCompact(false)}
+          onExpand={() => {
+            setDetailsCompact(false)
+            setShowRouteOverview(routeActive && props.routePlaces.length > 1)
+          }}
           onRemoveRoute={removeRoute}
           onRoute={requestRoute}
           onToggleFavorite={() => props.onToggleFavorite(props.selectedPlace!.id)}

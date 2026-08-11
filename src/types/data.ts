@@ -82,6 +82,10 @@ export interface RouteResult {
   coordinates: [number, number][]
   distanceKm: number
   durationMinutes: number
+  legs: Array<{
+    distanceKm: number
+    durationMinutes: number
+  }>
   bounds: MapBoundsValue
   approximate: boolean
 }

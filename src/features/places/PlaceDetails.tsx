@@ -81,16 +81,6 @@ export function PlaceDetails({
   const routeIsApproximate = Boolean(visibleRoute?.approximate)
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
   const routePending = locationLoading || routeLoading
-  const routeDescription = locationLoading && route
-    ? 'La ruta sigue visible; actualizando tu posición…'
-    : route
-      ? routeStopCount > 1
-        ? `${routeStopCount} paradas optimizadas · recorrido visible`
-        : 'Recorrido por carretera visible en el mapa'
-      : routePreview
-        ? `Destino: ${place.name} · pulsa para mostrar la ruta`
-        : `Destino: ${place.name}`
-
   const confirmDelete = () => {
     if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
   }
@@ -229,7 +219,6 @@ export function PlaceDetails({
             <ListPlus size={18} />
             <span>
               <strong>Añadir a la ruta</strong>
-              <small>Recalcular y optimizar {routeStopCount + 1} paradas</small>
             </span>
             <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
           </button>
@@ -251,11 +240,6 @@ export function PlaceDetails({
                     ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
                     : routeLoading ? 'Calculando recorrido por carretera…' : 'Calcular distancia y recorrido'}
               </strong>
-              <small>
-                {locationLoading
-                  ? 'Obteniendo tu ubicación…'
-                  : visibleRoute ? routeDescription : `Destino: ${place.name}`}
-              </small>
             </span>
             <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
           </button>

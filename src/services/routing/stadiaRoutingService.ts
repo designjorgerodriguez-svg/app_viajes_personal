@@ -5,7 +5,13 @@ interface StadiaRouteResponse {
   trip: {
     status: number
     status_message?: string
-    legs: Array<{ shape: string }>
+    legs: Array<{
+      shape: string
+      summary: {
+        time: number
+        length: number
+      }
+    }>
     summary: {
       time: number
       length: number
@@ -81,6 +87,10 @@ function toRouteResult(response: StadiaRouteResponse): RouteResult {
     coordinates,
     distanceKm: summary.length,
     durationMinutes: Math.max(1, Math.round(summary.time / 60)),
+    legs: response.trip.legs.map((leg) => ({
+      distanceKm: leg.summary.length,
+      durationMinutes: Math.max(1, Math.round(leg.summary.time / 60)),
+    })),
     bounds: {
       north: summary.max_lat,
       south: summary.min_lat,

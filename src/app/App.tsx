@@ -287,6 +287,7 @@ function App() {
             routeError={routeError}
             routeGoogleMapsUrl={googleMapsRouteUrl}
             routePlaceIds={routePlaceIds}
+            routePlaces={orderedRoutePlaces}
             routePreview={!hasActiveRoute && routePlaceId === selectedPlaceId ? route : null}
             routeStatus={routeStatus}
             selectedPlace={selectedPlace}
