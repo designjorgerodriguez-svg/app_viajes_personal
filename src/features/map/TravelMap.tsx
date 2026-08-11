@@ -21,6 +21,7 @@ interface TravelMapProps {
   placeStates: PlaceStateMap
   places: TripPlace[]
   route: RouteResult | null
+  routeOverlayCompact: boolean
   selectedPlaceId: string | null
   styleId: MapStyleId
   userLocation: Coordinate | null
@@ -43,6 +44,7 @@ type MapPropsSnapshot = Pick<
   | 'placeStates'
   | 'places'
   | 'route'
+  | 'routeOverlayCompact'
   | 'selectedPlaceId'
   | 'userLocation'
   | 'onBoundsChange'
@@ -123,13 +125,15 @@ function setSourceData(map: MapLibreMap, sourceId: string, data: GeoJSON.Feature
   source?.setData(data)
 }
 
-function fitRouteOnMap(map: MapLibreMap, route: RouteResult) {
+function fitRouteOnMap(map: MapLibreMap, route: RouteResult, compactOverlay: boolean) {
   const bounds = route.bounds
   const wideLayout = window.innerWidth >= 920
   map.fitBounds([[bounds.west, bounds.south], [bounds.east, bounds.north]], {
-    padding: wideLayout
-      ? { top: 100, right: 90, bottom: 100, left: 500 }
-      : { top: 90, right: 65, bottom: Math.min(460, window.innerHeight * 0.58), left: 65 },
+    padding: compactOverlay
+      ? { top: 90, right: 75, bottom: wideLayout ? 110 : 180, left: 75 }
+      : wideLayout
+        ? { top: 100, right: 90, bottom: 100, left: 500 }
+        : { top: 90, right: 65, bottom: Math.min(460, window.innerHeight * 0.58), left: 65 },
     maxZoom: 14,
   })
 }
@@ -342,7 +346,9 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     const syncStyle = () => {
       try {
         addAppSourcesAndLayers(map, snapshotRef.current)
-        if (snapshotRef.current.route) fitRouteOnMap(map, snapshotRef.current.route)
+        if (snapshotRef.current.route) {
+          fitRouteOnMap(map, snapshotRef.current.route, snapshotRef.current.routeOverlayCompact)
+        }
         containerRef.current?.setAttribute('data-ready', 'true')
         updateBounds()
       } catch (error) {
@@ -394,8 +400,8 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     setSourceData(map, 'route', routeToGeoJson(props.route))
     if (map.getLayer('route-outline')) map.moveLayer('route-outline')
     if (map.getLayer('route-line')) map.moveLayer('route-line')
-    if (props.route) fitRouteOnMap(map, props.route)
-  }, [props.route])
+    if (props.route) fitRouteOnMap(map, props.route, props.routeOverlayCompact)
+  }, [props.route, props.routeOverlayCompact])
 
   useEffect(() => {
     const map = mapRef.current

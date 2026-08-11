@@ -1,5 +1,5 @@
 import { Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
 import { calculateRouteEstimate } from '../../services/routing/routeEstimateService'
@@ -52,6 +52,7 @@ const locationMessages: Partial<Record<GeolocationStatus, string>> = {
 export function MapScreen(props: MapScreenProps) {
   const mapRef = useRef<TravelMapHandle>(null)
   const [filterOpen, setFilterOpen] = useState(false)
+  const [detailsCompact, setDetailsCompact] = useState(false)
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
   const routePreview = props.selectedPlace && props.userLocation
     ? calculateRouteEstimate(props.userLocation, {
@@ -59,6 +60,10 @@ export function MapScreen(props: MapScreenProps) {
       longitude: props.selectedPlace.longitude,
     })
     : null
+
+  useEffect(() => {
+    setDetailsCompact(false)
+  }, [props.selectedPlace?.id])
 
   return (
     <section className="map-screen" aria-label="Mapa del viaje">
@@ -68,6 +73,7 @@ export function MapScreen(props: MapScreenProps) {
         places={props.places}
         placeStates={props.placeStates}
         route={props.route}
+        routeOverlayCompact={detailsCompact}
         selectedPlaceId={props.selectedPlace?.id ?? null}
         styleId={props.mapStyle}
         userLocation={props.userLocation}
@@ -140,6 +146,7 @@ export function MapScreen(props: MapScreenProps) {
 
       {props.selectedPlace ? (
         <PlaceDetails
+          compact={detailsCompact}
           locationLoading={props.geolocationStatus === 'loading'}
           place={props.selectedPlace}
           route={props.route}
@@ -147,7 +154,11 @@ export function MapScreen(props: MapScreenProps) {
           state={props.getPlaceState(props.selectedPlace.id)}
           onClose={() => props.onSelectPlace(null)}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}
-          onRoute={() => props.onRequestRoute(props.selectedPlace!)}
+          onExpand={() => setDetailsCompact(false)}
+          onRoute={() => {
+            setDetailsCompact(true)
+            props.onRequestRoute(props.selectedPlace!)
+          }}
           onToggleFavorite={() => props.onToggleFavorite(props.selectedPlace!.id)}
           onToggleVisited={() => props.onToggleVisited(props.selectedPlace!.id)}
         />

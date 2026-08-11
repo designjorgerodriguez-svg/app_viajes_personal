@@ -1,6 +1,7 @@
 import {
   Check,
   ChevronRight,
+  ChevronUp,
   CircleHelp,
   ExternalLink,
   Lightbulb,
@@ -18,6 +19,7 @@ import { categoryById } from '../../data'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
 
 interface PlaceDetailsProps {
+  compact: boolean
   locationLoading: boolean
   place: TripPlace
   state: PlaceUserState
@@ -25,6 +27,7 @@ interface PlaceDetailsProps {
   routePreview: RouteResult | null
   onClose: () => void
   onDelete: () => void
+  onExpand: () => void
   onRoute: () => void
   onToggleFavorite: () => void
   onToggleVisited: () => void
@@ -38,6 +41,7 @@ const dogInfo = {
 }
 
 export function PlaceDetails({
+  compact,
   locationLoading,
   place,
   state,
@@ -45,6 +49,7 @@ export function PlaceDetails({
   routePreview,
   onClose,
   onDelete,
+  onExpand,
   onRoute,
   onToggleFavorite,
   onToggleVisited,
@@ -65,6 +70,28 @@ export function PlaceDetails({
 
   const confirmDelete = () => {
     if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
+  }
+
+  if (compact) {
+    return (
+      <article className="place-details place-details--compact" aria-live="polite">
+        <button className="place-route-peek__main" onClick={onExpand} type="button" aria-label="Mostrar ficha completa">
+          <Route size={18} aria-hidden="true" />
+          <span>
+            <strong>{place.name}</strong>
+            <small>
+              {visibleRoute
+                ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+                : locationLoading ? 'Obteniendo tu ubicación…' : place.locality}
+            </small>
+          </span>
+          <ChevronUp size={17} aria-hidden="true" />
+        </button>
+        <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar recorrido">
+          <X size={18} />
+        </button>
+      </article>
+    )
   }
 
   return (
