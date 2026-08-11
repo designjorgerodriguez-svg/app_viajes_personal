@@ -1,5 +1,6 @@
 import {
   Check,
+  ChevronRight,
   CircleHelp,
   ExternalLink,
   Lightbulb,
@@ -13,7 +14,6 @@ import {
   TriangleAlert,
   X,
 } from 'lucide-react'
-import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categoryById } from '../../data'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
 
@@ -56,12 +56,12 @@ export function PlaceDetails({
   const routeIsApproximate = !route || route.approximate
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
   const routeDescription = locationLoading && route
-    ? 'La línea azul ya está visible; actualizando tu posición…'
+    ? 'La línea verde ya está visible; actualizando tu posición…'
     : route
       ? route.approximate
-        ? 'Estimación directa orientativa'
+        ? `Destino: ${place.name} · línea orientativa visible`
         : 'Recorrido aproximado en coche'
-      : 'Estimación directa; pulsa para dibujar la línea azul'
+      : `Destino: ${place.name} · pulsa para mostrar la línea verde`
 
   const confirmDelete = () => {
     if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
@@ -70,24 +70,14 @@ export function PlaceDetails({
   return (
     <article className="place-details" aria-live="polite">
       <div className="place-details__handle" aria-hidden="true" />
-      {place.imageUrl ? (
-        <figure className="place-details__cover">
-          <img alt={place.alt} decoding="async" src={place.imageUrl} />
-          <figcaption>
-            <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
-              {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
-            </a>
-          </figcaption>
-        </figure>
-      ) : null}
       <header className="place-details__header">
-        <div className="place-details__category-icon" style={{ color: category.color, background: `${category.color}18` }}>
-          <CategoryIcon category={category} size={23} />
-        </div>
-        <div>
-          <span className="category-label" style={{ color: category.color }}>{category.label}</span>
+        <div className="place-details__title">
           <h1>{place.name}</h1>
-          <p>{place.locality}</p>
+          <p>
+            <span className="category-label" style={{ color: category.color }}>{category.label}</span>
+            <span aria-hidden="true"> · </span>
+            {place.locality}
+          </p>
         </div>
         <div className="place-details__header-actions">
           <button
@@ -115,6 +105,16 @@ export function PlaceDetails({
           </button>
         </div>
       </header>
+      {place.imageUrl ? (
+        <figure className="place-details__cover">
+          <img alt={place.alt} decoding="async" src={place.imageUrl} />
+          <figcaption>
+            <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
+              {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
+            </a>
+          </figcaption>
+        </figure>
+      ) : null}
 
       <div className="place-details__scroll">
         {place.description ? <p className="place-description">{place.description}</p> : null}
@@ -139,39 +139,49 @@ export function PlaceDetails({
           </div>
         ) : null}
 
-        <div className="place-links">
-          <a href={place.googleMapsUrl} target="_blank" rel="noreferrer">
-            <Map size={17} /> Abrir navegación <ExternalLink size={14} />
-          </a>
-          {place.officialSourceUrl ? (
-            <a href={place.officialSourceUrl} target="_blank" rel="noreferrer">
-              Fuente oficial <ExternalLink size={14} />
-            </a>
-          ) : null}
-        </div>
-
         <button className="delete-place-button" onClick={confirmDelete} type="button">
           <Trash2 size={16} /> Ocultar lugar
         </button>
       </div>
 
-      <div className="route-summary route-summary--footer" data-drawn={Boolean(route)}>
-        {visibleRoute ? <Route size={19} /> : <LocateFixed size={19} />}
-        <span>
-          <strong>
-            {visibleRoute
-              ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
-              : 'Distancia desde tu ubicación'}
-          </strong>
-          <small>{visibleRoute ? routeDescription : 'Activa tu ubicación para ver kilómetros y minutos'}</small>
-        </span>
+      <div className="place-details__quick-actions">
+        <button
+          className="route-summary route-summary--footer"
+          data-drawn={Boolean(route)}
+          disabled={locationLoading}
+          onClick={onRoute}
+          type="button"
+          aria-label={route ? 'Actualizar línea del recorrido' : 'Mostrar línea del recorrido'}
+        >
+          {visibleRoute ? <Route size={18} /> : <LocateFixed size={18} />}
+          <span>
+            <strong>
+              {visibleRoute
+                ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+                : 'Calcular distancia y recorrido'}
+            </strong>
+            <small>
+              {locationLoading
+                ? 'Obteniendo tu ubicación…'
+                : visibleRoute ? routeDescription : `Destino: ${place.name}`}
+            </small>
+          </span>
+          <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
+        </button>
+        {place.officialSourceUrl ? (
+          <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
+            <ExternalLink size={16} />
+            <span>Fuente</span>
+          </a>
+        ) : null}
       </div>
-      <button className="route-button route-button--large" disabled={locationLoading} onClick={onRoute} type="button">
-        <Route size={19} />
-        {locationLoading
-          ? route ? 'Actualizando ubicación…' : 'Obteniendo ubicación…'
-          : route ? 'Actualizar línea desde mi ubicación' : 'Dibujar línea desde mi ubicación'}
-      </button>
+      {place.googleMapsUrl ? (
+        <a className="route-button route-button--large" href={place.googleMapsUrl} target="_blank" rel="noreferrer">
+          <Map size={19} />
+          Abrir en Google Maps
+          <ExternalLink size={15} />
+        </a>
+      ) : null}
     </article>
   )
 }

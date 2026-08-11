@@ -1,4 +1,4 @@
-import { Layers3, LocateFixed, Maximize2, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
+import { Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
 import { useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
@@ -101,7 +101,7 @@ export function MapScreen(props: MapScreenProps) {
           type="button"
           aria-label={props.mapStyle === 'outdoors' ? 'Ver mapa por satélite' : 'Ver mapa de exteriores'}
         >
-          <Layers3 size={20} />
+          <Layers3 size={18} />
         </button>
         <button
           className="icon-button icon-button--surface"
@@ -111,16 +111,15 @@ export function MapScreen(props: MapScreenProps) {
           type="button"
           aria-label="Centrar en mi ubicación"
         >
-          <LocateFixed size={20} />
+          <LocateFixed size={18} />
         </button>
-        <span className="map-control-stack__separator" aria-hidden="true" />
         <button
           className="icon-button icon-button--surface"
           onClick={() => mapRef.current?.zoomIn()}
           type="button"
           aria-label="Acercar mapa"
         >
-          <Plus size={20} />
+          <Plus size={18} />
         </button>
         <button
           className="icon-button icon-button--surface"
@@ -128,16 +127,7 @@ export function MapScreen(props: MapScreenProps) {
           type="button"
           aria-label="Alejar mapa"
         >
-          <Minus size={20} />
-        </button>
-        <span className="map-control-stack__separator" aria-hidden="true" />
-        <button
-          className="icon-button icon-button--surface"
-          onClick={() => mapRef.current?.toggleFullscreen()}
-          type="button"
-          aria-label="Ver mapa a pantalla completa"
-        >
-          <Maximize2 size={19} />
+          <Minus size={18} />
         </button>
       </div>
 

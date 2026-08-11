@@ -32,7 +32,6 @@ interface TravelMapProps {
 export interface TravelMapHandle {
   zoomIn: () => void
   zoomOut: () => void
-  toggleFullscreen: () => void
 }
 
 interface PlaceClusterProperties {
@@ -95,7 +94,7 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'route-line',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#1589A6', 'line-width': 5 },
+    paint: { 'line-color': '#079A61', 'line-width': 6 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
 
@@ -122,6 +121,17 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
 function setSourceData(map: MapLibreMap, sourceId: string, data: GeoJSON.FeatureCollection) {
   const source = map.getSource(sourceId) as GeoJSONSource | undefined
   source?.setData(data)
+}
+
+function fitRouteOnMap(map: MapLibreMap, route: RouteResult) {
+  const bounds = route.bounds
+  const wideLayout = window.innerWidth >= 920
+  map.fitBounds([[bounds.west, bounds.south], [bounds.east, bounds.north]], {
+    padding: wideLayout
+      ? { top: 100, right: 90, bottom: 100, left: 500 }
+      : { top: 90, right: 65, bottom: Math.min(460, window.innerHeight * 0.58), left: 65 },
+    maxZoom: 14,
+  })
 }
 
 function createClusterIndex(places: TripPlace[]) {
@@ -204,13 +214,6 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
   useImperativeHandle(ref, () => ({
     zoomIn: () => mapRef.current?.zoomIn(),
     zoomOut: () => mapRef.current?.zoomOut(),
-    toggleFullscreen: () => {
-      if (document.fullscreenElement) {
-        void document.exitFullscreen()
-      } else {
-        void containerRef.current?.parentElement?.requestFullscreen()
-      }
-    },
   }), [])
 
   useEffect(() => {
@@ -339,6 +342,7 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     const syncStyle = () => {
       try {
         addAppSourcesAndLayers(map, snapshotRef.current)
+        if (snapshotRef.current.route) fitRouteOnMap(map, snapshotRef.current.route)
         containerRef.current?.setAttribute('data-ready', 'true')
         updateBounds()
       } catch (error) {
@@ -354,15 +358,11 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
       updateBounds()
       syncMarkers()
     }
-    const handleFullscreenChange = () => window.setTimeout(() => map.resize(), 0)
-
     map.on('style.load', syncStyle)
     map.on('error', handleMapError)
     map.on('moveend', handleMoveEnd)
-    document.addEventListener('fullscreenchange', handleFullscreenChange)
 
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange)
       markers.forEach(({ marker }) => marker.remove())
       markers.clear()
       map.remove()
@@ -392,13 +392,9 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     const map = mapRef.current
     if (!map?.getSource('route')) return
     setSourceData(map, 'route', routeToGeoJson(props.route))
-    if (props.route) {
-      const bounds = props.route.bounds
-      map.fitBounds([[bounds.west, bounds.south], [bounds.east, bounds.north]], {
-        padding: { top: 120, right: 70, bottom: 280, left: 70 },
-        maxZoom: 14,
-      })
-    }
+    if (map.getLayer('route-outline')) map.moveLayer('route-outline')
+    if (map.getLayer('route-line')) map.moveLayer('route-line')
+    if (props.route) fitRouteOnMap(map, props.route)
   }, [props.route])
 
   useEffect(() => {
