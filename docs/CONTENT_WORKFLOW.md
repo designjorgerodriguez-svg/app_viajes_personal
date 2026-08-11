@@ -54,6 +54,7 @@ Plantilla segura:
   "longitude": 0,
   "imageUrl": "",
   "imageSourceUrl": "",
+  "imageAttribution": "",
   "alt": "",
   "description": "",
   "tips": [],
@@ -103,7 +104,8 @@ Nunca volver a crear el lugar con un ID nuevo para recuperarlo.
 - Usar una imagen que permita su uso directo y conservar la página fuente en `imageSourceUrl`.
 - No usar la URL de una página web como `imageUrl`; debe apuntar al recurso de imagen.
 - Escribir un `alt` descriptivo y breve.
-- Si no hay una imagen apropiada, dejar los tres campos de imagen vacíos.
+- Guardar autoría y licencia en `imageAttribution`.
+- Si no hay una imagen apropiada, dejar los cuatro campos de imagen vacíos.
 
 ## Comprobación final
 

@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises'
+import { access, readFile, readdir } from 'node:fs/promises'
 import { join } from 'node:path'
 
 const dataRoot = join(process.cwd(), 'src', 'data')
@@ -33,6 +33,22 @@ for (const file of files) {
     }
     if (!['allowed', 'conditional', 'not-allowed', 'unknown'].includes(place.dogAccess)) {
       errors.push(`${place.id}: estado de perros no válido`)
+    }
+    const imageFields = [place.imageUrl, place.imageSourceUrl, place.imageAttribution, place.alt]
+    const completedImageFields = imageFields.filter((value) => typeof value === 'string' && value.trim()).length
+    if (completedImageFields !== 0 && completedImageFields !== imageFields.length) {
+      errors.push(`${place.id}: la imagen requiere URL local, fuente, atribución y texto alternativo`)
+    }
+    if (completedImageFields === imageFields.length) {
+      if (!place.imageUrl.startsWith('/')) errors.push(`${place.id}: imageUrl debe ser una ruta local pública`)
+      if (!place.imageSourceUrl.startsWith('https://')) errors.push(`${place.id}: imageSourceUrl debe usar HTTPS`)
+      if (place.imageUrl.startsWith('/')) {
+        try {
+          await access(join(process.cwd(), 'public', place.imageUrl.slice(1)))
+        } catch {
+          errors.push(`${place.id}: no existe el archivo ${place.imageUrl}`)
+        }
+      }
     }
   }
 }

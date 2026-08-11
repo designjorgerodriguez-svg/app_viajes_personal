@@ -74,6 +74,7 @@ Cada viaje contiene su ID y sus lugares.
       "longitude": -1.566,
       "imageUrl": "",
       "imageSourceUrl": "",
+      "imageAttribution": "",
       "alt": "",
       "description": "",
       "tips": [],
@@ -97,7 +98,7 @@ Los valores del ejemplo muestran el formato, no constituyen todavía datos verif
 - `name`: nombre oficial o común verificado.
 - `categoryId`: ID existente en `categories.json`.
 - `latitude`, `longitude`: números; nunca texto. Deben provenir de una fuente fiable.
-- `imageUrl`, `imageSourceUrl`, `alt`: pueden ser cadenas vacías. Si existe imagen, los tres deben completarse.
+- `imageUrl`, `imageSourceUrl`, `imageAttribution`, `alt`: pueden ser cadenas vacías. Si existe imagen, los cuatro deben completarse. `imageAttribution` conserva autoría y licencia en formato breve.
 - `description`: resumen factual breve; puede estar vacío.
 - `tips`: lista de consejos verificados. Usar `[]` si no hay consejos.
 - `price`: `null` si es gratuito, desconocido o no procede. Para pago usar `{"label":"...","amount":0,"currency":"EUR"}`; `amount` puede omitirse si solo existe un texto oficial.

@@ -30,6 +30,7 @@ export interface TripPlace {
   longitude: number
   imageUrl: string
   imageSourceUrl: string
+  imageAttribution: string
   alt: string
   description: string
   tips: string[]
