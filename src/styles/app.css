@@ -80,9 +80,16 @@
   height: 26px;
   color: #fff;
   background: var(--color-primary-strong);
-  border: 3px solid var(--color-petrol);
+  border: 0;
   border-radius: 22px 22px 0 0;
   box-shadow: 0 -5px 16px rgb(20 80 60 / 20%);
+}
+
+@media (max-width: 919px) {
+  .bottom-nav {
+    right: 18px;
+    left: 18px;
+  }
 }
 
 @media (hover: hover) {
