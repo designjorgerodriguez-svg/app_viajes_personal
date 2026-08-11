@@ -9,7 +9,7 @@ import { PlacesScreen } from '../features/places/PlacesPreview'
 import { TripsScreen } from '../features/trips/TripsPreview'
 import { useGeolocation } from '../hooks/useGeolocation'
 import { usePlaceStates } from '../hooks/usePlaceStates'
-import { calculateDrivingRoute } from '../services/routing/stadiaRoutingService'
+import { calculateRouteEstimate } from '../services/routing/routeEstimateService'
 import type { MapStyleId } from '../services/maps/stadiaMapService'
 import type { MapBoundsValue, RouteResult, TripPlace } from '../types/data'
 import type { NavigationSection } from '../types/navigation'
@@ -25,8 +25,6 @@ function App() {
   const [isOnline, setIsOnline] = useState(() => navigator.onLine)
   const [route, setRoute] = useState<RouteResult | null>(null)
   const [routePlaceId, setRoutePlaceId] = useState<string | null>(null)
-  const [routeError, setRouteError] = useState('')
-  const [routeLoading, setRouteLoading] = useState(false)
   const [pendingRouteId, setPendingRouteId] = useState<string | null>(null)
   const geolocation = useGeolocation()
   const placeStates = usePlaceStates()
@@ -66,46 +64,36 @@ function App() {
     }
   }, [filteredPlaces, selectedPlaceId])
 
-  const calculateRoute = useCallback(async (place: TripPlace) => {
+  const drawRouteEstimate = useCallback((place: TripPlace) => {
     if (!geolocation.coordinate) return
-    setRouteLoading(true)
-    setRouteError('')
-    try {
-      const result = await calculateDrivingRoute(geolocation.coordinate, {
-        latitude: place.latitude,
-        longitude: place.longitude,
-      })
-      setRoute(result)
-      setRoutePlaceId(place.id)
-    } catch {
-      setRouteError('No se pudo calcular la ruta. Comprueba la conexión e inténtalo de nuevo.')
-    } finally {
-      setRouteLoading(false)
-      setPendingRouteId(null)
+    const destination = {
+      latitude: place.latitude,
+      longitude: place.longitude,
     }
+    setRoute(calculateRouteEstimate(geolocation.coordinate, destination))
+    setRoutePlaceId(place.id)
+    setPendingRouteId(null)
   }, [geolocation.coordinate])
 
   useEffect(() => {
     if (!geolocation.coordinate || !pendingRouteId) return
     const place = activePlaces.find((item) => item.id === pendingRouteId)
-    if (place) void calculateRoute(place)
-  }, [activePlaces, calculateRoute, geolocation.coordinate, pendingRouteId])
+    if (place) drawRouteEstimate(place)
+  }, [activePlaces, drawRouteEstimate, geolocation.coordinate, pendingRouteId])
 
   const requestRoute = (place: TripPlace) => {
     if (!geolocation.coordinate) {
       setPendingRouteId(place.id)
-      setRouteError('')
       geolocation.requestLocation()
       return
     }
-    void calculateRoute(place)
+    drawRouteEstimate(place)
   }
 
   const openPlace = (placeId: string) => {
     if (routePlaceId !== placeId) {
       setRoute(null)
       setRoutePlaceId(null)
-      setRouteError('')
     }
     setSelectedPlaceId(placeId)
     setActiveSection('map')
@@ -145,8 +133,6 @@ function App() {
             places={filteredPlaces}
             placeStates={placeStates.states}
             route={routePlaceId === selectedPlaceId ? route : null}
-            routeError={routeError}
-            routeLoading={routeLoading}
             selectedPlace={selectedPlace}
             userLocation={geolocation.coordinate}
             onBoundsChange={setMapBounds}

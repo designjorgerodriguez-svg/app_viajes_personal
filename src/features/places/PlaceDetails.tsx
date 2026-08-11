@@ -3,6 +3,7 @@ import {
   CircleHelp,
   ExternalLink,
   Lightbulb,
+  LocateFixed,
   Map,
   PawPrint,
   Route,
@@ -17,11 +18,11 @@ import { categoryById } from '../../data'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
 
 interface PlaceDetailsProps {
+  locationLoading: boolean
   place: TripPlace
   state: PlaceUserState
   route: RouteResult | null
-  routeError: string
-  routeLoading: boolean
+  routePreview: RouteResult | null
   onClose: () => void
   onDelete: () => void
   onRoute: () => void
@@ -37,11 +38,11 @@ const dogInfo = {
 }
 
 export function PlaceDetails({
+  locationLoading,
   place,
   state,
   route,
-  routeError,
-  routeLoading,
+  routePreview,
   onClose,
   onDelete,
   onRoute,
@@ -51,6 +52,16 @@ export function PlaceDetails({
   const category = categoryById[place.categoryId]
   const dog = dogInfo[place.dogAccess]
   const DogIcon = dog.icon
+  const visibleRoute = route ?? routePreview
+  const routeIsApproximate = !route || route.approximate
+  const distancePrefix = routeIsApproximate ? '≈ ' : ''
+  const routeDescription = locationLoading && route
+    ? 'La línea azul ya está visible; actualizando tu posición…'
+    : route
+      ? route.approximate
+        ? 'Estimación directa orientativa'
+        : 'Recorrido aproximado en coche'
+      : 'Estimación directa; pulsa para dibujar la línea azul'
 
   const confirmDelete = () => {
     if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
@@ -128,15 +139,6 @@ export function PlaceDetails({
           </div>
         ) : null}
 
-        {route ? (
-          <div className="route-summary">
-            <Route size={19} />
-            <span><strong>{route.distanceKm.toFixed(1)} km</strong><small>Unos {route.durationMinutes} min en coche</small></span>
-            <button onClick={onRoute} type="button" disabled={routeLoading}>Actualizar</button>
-          </div>
-        ) : null}
-        {routeError ? <p className="inline-error">{routeError}</p> : null}
-
         <div className="place-links">
           <a href={place.googleMapsUrl} target="_blank" rel="noreferrer">
             <Map size={17} /> Abrir navegación <ExternalLink size={14} />
@@ -153,9 +155,22 @@ export function PlaceDetails({
         </button>
       </div>
 
-      <button className="route-button route-button--large" disabled={routeLoading} onClick={onRoute} type="button">
+      <div className="route-summary route-summary--footer" data-drawn={Boolean(route)}>
+        {visibleRoute ? <Route size={19} /> : <LocateFixed size={19} />}
+        <span>
+          <strong>
+            {visibleRoute
+              ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+              : 'Distancia desde tu ubicación'}
+          </strong>
+          <small>{visibleRoute ? routeDescription : 'Activa tu ubicación para ver kilómetros y minutos'}</small>
+        </span>
+      </div>
+      <button className="route-button route-button--large" disabled={locationLoading} onClick={onRoute} type="button">
         <Route size={19} />
-        {routeLoading ? 'Calculando ruta…' : route ? 'Recalcular desde mi ubicación' : 'Ruta desde mi ubicación'}
+        {locationLoading
+          ? route ? 'Actualizando ubicación…' : 'Obteniendo ubicación…'
+          : route ? 'Actualizar línea desde mi ubicación' : 'Dibujar línea desde mi ubicación'}
       </button>
     </article>
   )

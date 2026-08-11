@@ -83,4 +83,5 @@ export interface RouteResult {
   distanceKm: number
   durationMinutes: number
   bounds: MapBoundsValue
+  approximate: boolean
 }

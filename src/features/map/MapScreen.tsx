@@ -2,6 +2,7 @@ import { Layers3, LocateFixed, Maximize2, Minus, Plus, Search, SlidersHorizontal
 import { useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
+import { calculateRouteEstimate } from '../../services/routing/routeEstimateService'
 import type {
   Coordinate,
   MapBoundsValue,
@@ -24,8 +25,6 @@ interface MapScreenProps {
   places: TripPlace[]
   placeStates: PlaceStateMap
   route: RouteResult | null
-  routeError: string
-  routeLoading: boolean
   selectedPlace: TripPlace | null
   userLocation: Coordinate | null
   getPlaceState: (placeId: string) => PlaceUserState
@@ -54,6 +53,12 @@ export function MapScreen(props: MapScreenProps) {
   const mapRef = useRef<TravelMapHandle>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
+  const routePreview = props.selectedPlace && props.userLocation
+    ? calculateRouteEstimate(props.userLocation, {
+      latitude: props.selectedPlace.latitude,
+      longitude: props.selectedPlace.longitude,
+    })
+    : null
 
   return (
     <section className="map-screen" aria-label="Mapa del viaje">
@@ -145,10 +150,10 @@ export function MapScreen(props: MapScreenProps) {
 
       {props.selectedPlace ? (
         <PlaceDetails
+          locationLoading={props.geolocationStatus === 'loading'}
           place={props.selectedPlace}
           route={props.route}
-          routeError={props.routeError}
-          routeLoading={props.routeLoading}
+          routePreview={routePreview}
           state={props.getPlaceState(props.selectedPlace.id)}
           onClose={() => props.onSelectPlace(null)}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}

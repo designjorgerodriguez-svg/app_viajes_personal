@@ -63,5 +63,6 @@ export async function calculateDrivingRoute(
       east: summary.max_lon,
       west: summary.min_lon,
     },
+    approximate: false,
   }
 }

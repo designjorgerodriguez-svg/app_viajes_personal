@@ -62,7 +62,11 @@ function routeToGeoJson(route: RouteResult | null): GeoJSON.FeatureCollection {
   if (!route) return EMPTY_COLLECTION
   return {
     type: 'FeatureCollection',
-    features: [{ type: 'Feature', geometry: { type: 'LineString', coordinates: route.coordinates }, properties: {} }],
+    features: [{
+      type: 'Feature',
+      geometry: { type: 'LineString', coordinates: route.coordinates },
+      properties: { approximate: route.approximate },
+    }],
   }
 }
 
@@ -91,7 +95,7 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'route-line',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#0BAA77', 'line-width': 5 },
+    paint: { 'line-color': '#1589A6', 'line-width': 5 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
 

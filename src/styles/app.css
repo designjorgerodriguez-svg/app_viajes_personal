@@ -1651,6 +1651,21 @@
   flex: 1;
 }
 
+.route-summary--footer {
+  flex: 0 0 auto;
+  margin-top: 9px;
+  background: var(--color-blue-soft);
+  border: 1px solid #c9e8ee;
+}
+
+.route-summary--footer > svg {
+  color: var(--color-blue);
+}
+
+.route-summary--footer[data-drawn='true'] {
+  box-shadow: inset 3px 0 0 var(--color-blue);
+}
+
 .route-summary button {
   min-height: 32px;
   padding: 0 8px;
