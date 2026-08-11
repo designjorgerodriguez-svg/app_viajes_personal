@@ -1600,8 +1600,11 @@
   border-color: var(--color-primary-strong);
 }
 
-.map-control-stack__location {
+.map-control-stack .map-control-stack__location {
   margin-bottom: 7px;
+  color: #fff;
+  background: var(--color-primary-strong);
+  border-color: var(--color-primary-strong);
 }
 
 @media (hover: hover) {

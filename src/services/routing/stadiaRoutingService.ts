@@ -20,22 +20,33 @@ interface StadiaRouteResponse {
 export async function calculateDrivingRoute(
   origin: Coordinate,
   destination: Coordinate,
+  signal?: AbortSignal,
 ): Promise<RouteResult> {
-  const request = await fetch('https://api.stadiamaps.com/route/v1', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      locations: [
-        { lat: origin.latitude, lon: origin.longitude, type: 'break' },
-        { lat: destination.latitude, lon: destination.longitude, type: 'break' },
-      ],
-      costing: 'auto',
-      units: 'km',
-      language: 'es-ES',
-    }),
-  })
+  let request: Response
+  try {
+    request = await fetch('https://api.stadiamaps.com/route/v1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal,
+      body: JSON.stringify({
+        locations: [
+          { lat: origin.latitude, lon: origin.longitude, type: 'break' },
+          { lat: destination.latitude, lon: destination.longitude, type: 'break' },
+        ],
+        costing: 'auto',
+        units: 'km',
+        language: 'es-ES',
+      }),
+    })
+  } catch (error) {
+    if (signal?.aborted) throw error
+    throw new Error('No se ha podido conectar con el servicio de rutas.')
+  }
 
   if (!request.ok) {
+    if (request.status === 401 || request.status === 403) {
+      throw new Error('Stadia Maps no ha autorizado las rutas en este dominio.')
+    }
     throw new Error(`El servicio de rutas ha respondido con ${request.status}.`)
   }
 
@@ -51,6 +62,10 @@ export async function calculateDrivingRoute(
 
     return legIndex === 0 ? legCoordinates : legCoordinates.slice(1)
   })
+
+  if (coordinates.length < 2) {
+    throw new Error('El servicio de rutas no ha devuelto un recorrido válido.')
+  }
 
   const summary = response.trip.summary
   return {

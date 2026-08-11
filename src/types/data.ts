@@ -85,3 +85,5 @@ export interface RouteResult {
   bounds: MapBoundsValue
   approximate: boolean
 }
+
+export type RouteStatus = 'idle' | 'loading' | 'success' | 'error'

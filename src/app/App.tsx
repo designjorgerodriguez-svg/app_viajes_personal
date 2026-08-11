@@ -9,9 +9,9 @@ import { PlacesScreen } from '../features/places/PlacesPreview'
 import { TripsScreen } from '../features/trips/TripsPreview'
 import { useGeolocation } from '../hooks/useGeolocation'
 import { usePlaceStates } from '../hooks/usePlaceStates'
-import { calculateRouteEstimate } from '../services/routing/routeEstimateService'
 import type { MapStyleId } from '../services/maps/stadiaMapService'
-import type { MapBoundsValue, RouteResult, TripPlace } from '../types/data'
+import { calculateDrivingRoute } from '../services/routing/stadiaRoutingService'
+import type { MapBoundsValue, RouteResult, RouteStatus, TripPlace } from '../types/data'
 import type { NavigationSection } from '../types/navigation'
 
 function App() {
@@ -25,7 +25,11 @@ function App() {
   const [isOnline, setIsOnline] = useState(() => navigator.onLine)
   const [route, setRoute] = useState<RouteResult | null>(null)
   const [routePlaceId, setRoutePlaceId] = useState<string | null>(null)
+  const [visibleRoutePlaceId, setVisibleRoutePlaceId] = useState<string | null>(null)
   const [pendingRouteId, setPendingRouteId] = useState<string | null>(null)
+  const [routeStatus, setRouteStatus] = useState<RouteStatus>('idle')
+  const [routeError, setRouteError] = useState('')
+  const [routeRefreshKey, setRouteRefreshKey] = useState(0)
   const geolocation = useGeolocation()
   const placeStates = usePlaceStates()
 
@@ -61,25 +65,55 @@ function App() {
       setSelectedPlaceId(null)
       setRoute(null)
       setRoutePlaceId(null)
+      setVisibleRoutePlaceId(null)
+      setPendingRouteId(null)
     }
   }, [filteredPlaces, selectedPlaceId])
 
-  const drawRouteEstimate = useCallback((place: TripPlace) => {
-    if (!geolocation.coordinate) return
-    const destination = {
-      latitude: place.latitude,
-      longitude: place.longitude,
+  useEffect(() => {
+    if (!selectedPlace || !geolocation.coordinate) {
+      setRoute(null)
+      setRoutePlaceId(null)
+      setRouteStatus('idle')
+      setRouteError('')
+      return
     }
-    setRoute(calculateRouteEstimate(geolocation.coordinate, destination))
-    setRoutePlaceId(place.id)
-    setPendingRouteId(null)
-  }, [geolocation.coordinate])
+
+    const controller = new AbortController()
+    const placeId = selectedPlace.id
+    const origin = geolocation.coordinate
+    const destination = {
+      latitude: selectedPlace.latitude,
+      longitude: selectedPlace.longitude,
+    }
+
+    setRoute(null)
+    setRoutePlaceId(null)
+    setRouteStatus('loading')
+    setRouteError('')
+
+    void calculateDrivingRoute(origin, destination, controller.signal)
+      .then((result) => {
+        setRoute(result)
+        setRoutePlaceId(placeId)
+        setRouteStatus('success')
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        setRoute(null)
+        setRoutePlaceId(null)
+        setRouteStatus('error')
+        setRouteError(error instanceof Error ? error.message : 'No se ha podido calcular el recorrido por carretera.')
+      })
+
+    return () => controller.abort()
+  }, [geolocation.coordinate, routeRefreshKey, selectedPlace])
 
   useEffect(() => {
-    if (!geolocation.coordinate || !pendingRouteId) return
-    const place = activePlaces.find((item) => item.id === pendingRouteId)
-    if (place) drawRouteEstimate(place)
-  }, [activePlaces, drawRouteEstimate, geolocation.coordinate, pendingRouteId])
+    if (!route || !routePlaceId || pendingRouteId !== routePlaceId) return
+    setVisibleRoutePlaceId(routePlaceId)
+    setPendingRouteId(null)
+  }, [pendingRouteId, route, routePlaceId])
 
   const requestRoute = (place: TripPlace) => {
     if (!geolocation.coordinate) {
@@ -87,13 +121,38 @@ function App() {
       geolocation.requestLocation()
       return
     }
-    drawRouteEstimate(place)
+
+    if (route && routePlaceId === place.id) {
+      setVisibleRoutePlaceId(place.id)
+      setPendingRouteId(null)
+      return
+    }
+
+    setPendingRouteId(place.id)
+    if (routeStatus === 'error') setRouteRefreshKey((value) => value + 1)
+  }
+
+  const selectMapPlace = useCallback((placeId: string | null) => {
+    if (placeId !== selectedPlaceId) setVisibleRoutePlaceId(null)
+    if (!placeId) setPendingRouteId(null)
+    setSelectedPlaceId(placeId)
+  }, [selectedPlaceId])
+
+  const clearRoute = () => {
+    setRoute(null)
+    setRoutePlaceId(null)
+    setVisibleRoutePlaceId(null)
+    setPendingRouteId(null)
+    setRouteStatus('idle')
+    setRouteError('')
   }
 
   const openPlace = (placeId: string) => {
     if (routePlaceId !== placeId) {
-      setRoute(null)
-      setRoutePlaceId(null)
+      clearRoute()
+    } else {
+      setVisibleRoutePlaceId(null)
+      setPendingRouteId(null)
     }
     setSelectedPlaceId(placeId)
     setActiveSection('map')
@@ -102,16 +161,14 @@ function App() {
   const selectTrip = (tripId: string) => {
     setActiveTripId(tripId)
     setSelectedPlaceId(null)
-    setRoute(null)
-    setRoutePlaceId(null)
+    clearRoute()
     setFilters(EMPTY_FILTERS)
   }
 
   const deletePlace = (placeId: string) => {
     placeStates.softDelete(placeId)
     setSelectedPlaceId(null)
-    setRoute(null)
-    setRoutePlaceId(null)
+    clearRoute()
   }
 
   const placeCountByTrip = Object.fromEntries(
@@ -132,7 +189,10 @@ function App() {
             mapStyle={mapStyle}
             places={filteredPlaces}
             placeStates={placeStates.states}
-            route={routePlaceId === selectedPlaceId ? route : null}
+            route={routePlaceId === selectedPlaceId && visibleRoutePlaceId === selectedPlaceId ? route : null}
+            routeError={routeError}
+            routePreview={routePlaceId === selectedPlaceId ? route : null}
+            routeStatus={routeStatus}
             selectedPlace={selectedPlace}
             userLocation={geolocation.coordinate}
             onBoundsChange={setMapBounds}
@@ -142,7 +202,7 @@ function App() {
             onMapError={setMapError}
             onRequestLocation={geolocation.requestLocation}
             onRequestRoute={requestRoute}
-            onSelectPlace={setSelectedPlaceId}
+            onSelectPlace={selectMapPlace}
             onToggleFavorite={placeStates.toggleFavorite}
             onToggleVisited={placeStates.toggleVisited}
           />

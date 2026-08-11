@@ -2,13 +2,13 @@ import { Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lu
 import { useEffect, useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
-import { calculateRouteEstimate } from '../../services/routing/routeEstimateService'
 import type {
   Coordinate,
   MapBoundsValue,
   PlaceStateMap,
   PlaceUserState,
   RouteResult,
+  RouteStatus,
   TripPlace,
 } from '../../types/data'
 import { FilterDialog } from '../filters/FilterDialog'
@@ -25,6 +25,9 @@ interface MapScreenProps {
   places: TripPlace[]
   placeStates: PlaceStateMap
   route: RouteResult | null
+  routeError: string
+  routePreview: RouteResult | null
+  routeStatus: RouteStatus
   selectedPlace: TripPlace | null
   userLocation: Coordinate | null
   getPlaceState: (placeId: string) => PlaceUserState
@@ -53,12 +56,6 @@ export function MapScreen(props: MapScreenProps) {
   const [filterOpen, setFilterOpen] = useState(false)
   const [detailsCompact, setDetailsCompact] = useState(false)
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
-  const routePreview = props.selectedPlace && props.userLocation
-    ? calculateRouteEstimate(props.userLocation, {
-      latitude: props.selectedPlace.latitude,
-      longitude: props.selectedPlace.longitude,
-    })
-    : null
 
   useEffect(() => {
     setDetailsCompact(false)
@@ -112,7 +109,6 @@ export function MapScreen(props: MapScreenProps) {
       <div className="map-control-stack" aria-label="Controles del mapa">
         <button
           className="icon-button icon-button--surface map-control-stack__location"
-          data-active={props.geolocationStatus === 'success' || Boolean(props.userLocation)}
           disabled={props.geolocationStatus === 'loading'}
           onClick={props.onRequestLocation}
           type="button"
@@ -159,7 +155,9 @@ export function MapScreen(props: MapScreenProps) {
           locationLoading={props.geolocationStatus === 'loading'}
           place={props.selectedPlace}
           route={props.route}
-          routePreview={routePreview}
+          routeError={props.routeError}
+          routeLoading={props.routeStatus === 'loading'}
+          routePreview={props.routePreview}
           state={props.getPlaceState(props.selectedPlace.id)}
           onClose={closePlaceDetails}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}

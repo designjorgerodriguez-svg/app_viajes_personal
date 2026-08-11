@@ -24,6 +24,8 @@ interface PlaceDetailsProps {
   place: TripPlace
   state: PlaceUserState
   route: RouteResult | null
+  routeError: string
+  routeLoading: boolean
   routePreview: RouteResult | null
   onClose: () => void
   onDelete: () => void
@@ -46,6 +48,8 @@ export function PlaceDetails({
   place,
   state,
   route,
+  routeError,
+  routeLoading,
   routePreview,
   onClose,
   onDelete,
@@ -58,15 +62,16 @@ export function PlaceDetails({
   const dog = dogInfo[place.dogAccess]
   const DogIcon = dog.icon
   const visibleRoute = route ?? routePreview
-  const routeIsApproximate = !route || route.approximate
+  const routeIsApproximate = Boolean(visibleRoute?.approximate)
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
+  const routePending = locationLoading || routeLoading
   const routeDescription = locationLoading && route
-    ? 'La línea verde ya está visible; actualizando tu posición…'
+    ? 'La ruta sigue visible; actualizando tu posición…'
     : route
-      ? route.approximate
-        ? `Destino: ${place.name} · línea orientativa visible`
-        : 'Recorrido aproximado en coche'
-      : `Destino: ${place.name} · pulsa para mostrar la línea verde`
+      ? 'Recorrido por carretera visible en el mapa'
+      : routePreview
+        ? `Destino: ${place.name} · pulsa para mostrar la ruta`
+        : `Destino: ${place.name}`
 
   const confirmDelete = () => {
     if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
@@ -82,7 +87,9 @@ export function PlaceDetails({
             <small>
               {visibleRoute
                 ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
-                : locationLoading ? 'Obteniendo tu ubicación…' : place.locality}
+                : routePending
+                  ? locationLoading ? 'Obteniendo tu ubicación…' : 'Calculando por carretera…'
+                  : routeError || place.locality}
             </small>
           </span>
           <ChevronUp size={17} aria-hidden="true" />
@@ -172,17 +179,17 @@ export function PlaceDetails({
         <button
           className="route-summary route-summary--footer"
           data-drawn={Boolean(route)}
-          disabled={locationLoading}
+          disabled={routePending}
           onClick={onRoute}
           type="button"
-          aria-label={route ? 'Actualizar línea del recorrido' : 'Mostrar línea del recorrido'}
+          aria-label={route ? 'Actualizar ruta por carretera' : 'Mostrar ruta por carretera'}
         >
           {visibleRoute ? <Route size={18} /> : <LocateFixed size={18} />}
           <span>
             <strong>
               {visibleRoute
                 ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
-                : 'Calcular distancia y recorrido'}
+                : routeLoading ? 'Calculando recorrido por carretera…' : 'Calcular distancia y recorrido'}
             </strong>
             <small>
               {locationLoading
@@ -199,6 +206,7 @@ export function PlaceDetails({
           </a>
         ) : null}
       </div>
+      {routeError ? <p className="inline-error" role="alert">{routeError}</p> : null}
       {place.googleMapsUrl ? (
         <a className="route-button route-button--large" href={place.googleMapsUrl} target="_blank" rel="noreferrer">
           <Map size={19} />
