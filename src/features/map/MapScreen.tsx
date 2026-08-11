@@ -103,7 +103,7 @@ export function MapScreen(props: MapScreenProps) {
       <div className="map-control-stack" aria-label="Controles del mapa">
         <button
           className="icon-button icon-button--surface map-control-stack__location"
-          data-active={props.geolocationStatus === 'success'}
+          data-active={props.geolocationStatus === 'success' || Boolean(props.userLocation)}
           disabled={props.geolocationStatus === 'loading'}
           onClick={props.onRequestLocation}
           type="button"

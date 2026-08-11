@@ -1,7 +1,7 @@
 import * as maplibregl from 'maplibre-gl'
 import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { Check, Star } from 'lucide-react'
+import { Check, Navigation, Star } from 'lucide-react'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import Supercluster from 'supercluster'
@@ -89,14 +89,14 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'route-outline',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#ffffff', 'line-width': 9, 'line-opacity': 0.9 },
+    paint: { 'line-color': '#ffffff', 'line-width': 12, 'line-opacity': 0.96 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
   map.addLayer({
     id: 'route-line',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#079A61', 'line-width': 6 },
+    paint: { 'line-color': '#079A61', 'line-width': 7, 'line-opacity': 1 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
 
@@ -105,18 +105,7 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'user-location-halo',
     type: 'circle',
     source: 'user-location',
-    paint: { 'circle-color': '#168CA0', 'circle-radius': 18, 'circle-opacity': 0.2 },
-  })
-  map.addLayer({
-    id: 'user-location-dot',
-    type: 'circle',
-    source: 'user-location',
-    paint: {
-      'circle-color': '#168CA0',
-      'circle-radius': 7,
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 3,
-    },
+    paint: { 'circle-color': '#1589A6', 'circle-radius': 23, 'circle-opacity': 0.16 },
   })
 }
 
@@ -125,16 +114,44 @@ function setSourceData(map: MapLibreMap, sourceId: string, data: GeoJSON.Feature
   source?.setData(data)
 }
 
+function drawRouteOverlay(
+  map: MapLibreMap,
+  route: RouteResult | null,
+  outline: SVGPathElement | null,
+  line: SVGPathElement | null,
+) {
+  if (!outline || !line) return
+  if (!route || route.coordinates.length < 2) {
+    outline.setAttribute('d', '')
+    line.setAttribute('d', '')
+    return
+  }
+
+  const path = route.coordinates.map(([longitude, latitude], index) => {
+    const point = map.project([longitude, latitude])
+    return `${index === 0 ? 'M' : 'L'} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`
+  }).join(' ')
+  outline.setAttribute('d', path)
+  line.setAttribute('d', path)
+}
+
 function fitRouteOnMap(map: MapLibreMap, route: RouteResult, compactOverlay: boolean) {
   const bounds = route.bounds
   const wideLayout = window.innerWidth >= 920
+  const maxZoom = route.distanceKm < 0.05
+    ? 19
+    : route.distanceKm < 0.5
+      ? 18
+      : route.distanceKm < 2
+        ? 17
+        : 14
   map.fitBounds([[bounds.west, bounds.south], [bounds.east, bounds.north]], {
     padding: compactOverlay
       ? { top: 90, right: 75, bottom: wideLayout ? 110 : 180, left: 75 }
       : wideLayout
         ? { top: 100, right: 90, bottom: 100, left: 500 }
         : { top: 90, right: 65, bottom: Math.min(460, window.innerHeight * 0.58), left: 65 },
-    maxZoom: 14,
+    maxZoom,
   })
 }
 
@@ -206,10 +223,26 @@ function createClusterMarker(count: number) {
   return element
 }
 
+function createUserLocationMarker() {
+  const element = document.createElement('div')
+  element.className = 'user-location-marker'
+  element.setAttribute('role', 'img')
+  element.setAttribute('aria-label', 'Tu ubicación actual')
+
+  const icon = document.createElement('span')
+  icon.className = 'user-location-marker__icon'
+  icon.innerHTML = staticIcon(<Navigation size={15} fill="currentColor" strokeWidth={2.4} />)
+  element.append(icon)
+  return element
+}
+
 export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function TravelMap(props, ref) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const routeLineRef = useRef<SVGPathElement>(null)
+  const routeOutlineRef = useRef<SVGPathElement>(null)
   const mapRef = useRef<MapLibreMap | null>(null)
   const markersRef = useRef<Map<string, MarkerValue>>(new Map())
+  const userLocationMarkerRef = useRef<maplibregl.Marker | null>(null)
   const clusterIndexRef = useRef(createClusterIndex(props.places))
   const appliedStyleIdRef = useRef(props.styleId)
   const snapshotRef = useRef<MapPropsSnapshot>(props)
@@ -249,6 +282,15 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
         east: bounds.getEast(),
         west: bounds.getWest(),
       })
+    }
+
+    const syncRouteOverlay = () => {
+      drawRouteOverlay(
+        map,
+        snapshotRef.current.route,
+        routeOutlineRef.current,
+        routeLineRef.current,
+      )
     }
 
     const syncMarkers = () => {
@@ -346,6 +388,7 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     const syncStyle = () => {
       try {
         addAppSourcesAndLayers(map, snapshotRef.current)
+        syncRouteOverlay()
         if (snapshotRef.current.route) {
           fitRouteOnMap(map, snapshotRef.current.route, snapshotRef.current.routeOverlayCompact)
         }
@@ -366,11 +409,17 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
     }
     map.on('style.load', syncStyle)
     map.on('error', handleMapError)
+    map.on('move', syncRouteOverlay)
     map.on('moveend', handleMoveEnd)
+    map.on('resize', syncRouteOverlay)
 
     return () => {
       markers.forEach(({ marker }) => marker.remove())
       markers.clear()
+      userLocationMarkerRef.current?.remove()
+      userLocationMarkerRef.current = null
+      map.off('move', syncRouteOverlay)
+      map.off('resize', syncRouteOverlay)
       map.remove()
       mapRef.current = null
     }
@@ -396,25 +445,56 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
 
   useEffect(() => {
     const map = mapRef.current
-    if (!map?.getSource('route')) return
-    setSourceData(map, 'route', routeToGeoJson(props.route))
-    if (map.getLayer('route-outline')) map.moveLayer('route-outline')
-    if (map.getLayer('route-line')) map.moveLayer('route-line')
-    if (props.route) fitRouteOnMap(map, props.route, props.routeOverlayCompact)
+    if (!map) return
+    drawRouteOverlay(map, props.route, routeOutlineRef.current, routeLineRef.current)
+    if (map.getSource('route')) {
+      setSourceData(map, 'route', routeToGeoJson(props.route))
+      if (map.getLayer('route-outline')) map.moveLayer('route-outline')
+      if (map.getLayer('route-line')) map.moveLayer('route-line')
+    }
+    if (props.route) {
+      fitRouteOnMap(map, props.route, props.routeOverlayCompact)
+      map.triggerRepaint()
+    }
   }, [props.route, props.routeOverlayCompact])
 
   useEffect(() => {
     const map = mapRef.current
-    if (!map?.getSource('user-location')) return
-    setSourceData(map, 'user-location', userLocationToGeoJson(props.userLocation))
-    if (props.userLocation && !props.route) {
-      map.easeTo({ center: [props.userLocation.longitude, props.userLocation.latitude], zoom: 13 })
+    if (!map) return
+    if (map.getSource('user-location')) {
+      setSourceData(map, 'user-location', userLocationToGeoJson(props.userLocation))
     }
-  }, [props.route, props.userLocation])
+
+    if (!props.userLocation) {
+      userLocationMarkerRef.current?.remove()
+      userLocationMarkerRef.current = null
+      return
+    }
+
+    const coordinates: [number, number] = [props.userLocation.longitude, props.userLocation.latitude]
+    if (!userLocationMarkerRef.current) {
+      userLocationMarkerRef.current = new maplibregl.Marker({
+        element: createUserLocationMarker(),
+        anchor: 'center',
+      }).setLngLat(coordinates).addTo(map)
+    } else {
+      userLocationMarkerRef.current.setLngLat(coordinates)
+    }
+
+    map.easeTo({ center: coordinates, zoom: Math.max(map.getZoom(), 14) })
+  }, [props.userLocation])
 
   useEffect(() => {
     if (props.active) window.setTimeout(() => mapRef.current?.resize(), 0)
   }, [props.active])
 
-  return <div className="travel-map" ref={containerRef} aria-label="Mapa interactivo del viaje" />
+  return (
+    <div className="travel-map-frame">
+      <div className="travel-map" ref={containerRef} aria-label="Mapa interactivo del viaje" />
+      <svg className="route-map-overlay" aria-hidden="true">
+        <path className="route-map-overlay__outline" ref={routeOutlineRef} />
+        <path className="route-map-overlay__line" ref={routeLineRef} />
+      </svg>
+    </div>
+  )
 })
