@@ -239,6 +239,12 @@ export function PlaceDetails({
             <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
           </button>
         )}
+        {place.officialSourceUrl ? (
+          <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
+            <ExternalLink size={16} />
+            <span>Fuente</span>
+          </a>
+        ) : null}
       </div>
       {routeError ? <p className="inline-error" role="alert">{routeError}</p> : null}
       {routeGoogleMapsUrl || place.googleMapsUrl ? (
