@@ -1,4 +1,981 @@
 {
   "id": "pais-vasco-frances",
-  "places": []
+  "places": [
+    {
+      "id": "fr-pvf-hendaye-chateau-abbadia",
+      "tripId": "pais-vasco-frances",
+      "name": "Castillo de Abbadia",
+      "locality": "Hendaye",
+      "categoryId": "monument",
+      "latitude": 43.3774636,
+      "longitude": -1.7493127,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Abbadia%20gaztelua%20aurretik.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Abbadia%20gaztelua%20aurretik.jpg",
+      "imageAttribution": "Ekaitz Santazilia · CC BY 4.0",
+      "alt": "Fachada del castillo de Abbadia en Hendaye",
+      "description": "Castillo-observatorio neogótico construido para Antoine d’Abbadie, con interiores del siglo XIX y un emplazamiento elevado sobre la costa atlántica.",
+      "tips": [
+        "Reserva con antelación en temporada alta; en verano suele haber visitas en varios idiomas."
+      ],
+      "price": {
+        "label": "Visita de pago",
+        "amount": 11.5,
+        "currency": "EUR"
+      },
+      "dogAccess": "unknown",
+      "dogNotes": "No he encontrado una regla oficial suficientemente clara para el acceso con perro al interior.",
+      "officialSourceUrl": "https://www.chateau-abbadia.fr/es/prepara-tu-visita/visitas-de-abbadia",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3774636%2C-1.7493127",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 2 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Arquitectura · interiores · parque · vistas del Atlántico"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-saint-jean-luz-port",
+      "tripId": "pais-vasco-frances",
+      "name": "Puerto de Saint-Jean-de-Luz",
+      "locality": "Saint-Jean-de-Luz",
+      "categoryId": "village",
+      "latitude": 43.386836,
+      "longitude": -1.664119,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Port%20de%20Saint-Jean-de-Luz.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Port%20de%20Saint-Jean-de-Luz.jpg",
+      "imageAttribution": "Thomon · CC BY-SA 4.0",
+      "alt": "Puerto pesquero de Saint-Jean-de-Luz",
+      "description": "Puerto pesquero y casco histórico junto a una bahía protegida, con paseo agradable entre el puerto, la Rue Gambetta y el frente marítimo.",
+      "tips": [
+        "Recórrelo a pie y combínalo con el casco histórico y la Grande Plage."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En espacios públicos exteriores el paseo es compatible con perro; revisa las normas específicas de playas e interiores.",
+      "officialSourceUrl": "https://www.saint-jean-de-luz.com/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.386836%2C-1.664119",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 2 h 30"
+        },
+        {
+          "label": "Qué ver",
+          "value": "Puerto · casco histórico · iglesia · bahía"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-bayonne-cathedrale",
+      "tripId": "pais-vasco-frances",
+      "name": "Catedral de Bayona",
+      "locality": "Bayonne",
+      "categoryId": "monument",
+      "latitude": 43.4906629,
+      "longitude": -1.4776981,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cathedral%20of%20Saint%20Mary%20of%20Bayonne.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Cathedral%20of%20Saint%20Mary%20of%20Bayonne.jpg",
+      "imageAttribution": "FiorellaGonzalezGalecio · CC BY-SA 4.0",
+      "alt": "Catedral de Sainte-Marie de Bayona",
+      "description": "Catedral gótica de Sainte-Marie, uno de los principales monumentos de Bayona y parte de los Caminos de Santiago de Compostela en Francia.",
+      "tips": [
+        "Combínala con Les Halles, el casco histórico y la ribera del Nive."
+      ],
+      "price": null,
+      "dogAccess": "not-allowed",
+      "dogNotes": "Para el interior religioso, cuenta con que el perro no podrá entrar salvo indicación expresa del recinto.",
+      "officialSourceUrl": "https://www.visitbayonne.com/es/preparar-su-estancia/actividades-de-ocio/actividades/bayonne/PCUAQU064FS00004-cathedrale-sainte-marie/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.4906629%2C-1.4776981",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h"
+        },
+        {
+          "label": "Con Bayona",
+          "value": "2–3 h"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-espelette",
+      "tripId": "pais-vasco-frances",
+      "name": "Espelette / Ezpeleta",
+      "locality": "Espelette",
+      "categoryId": "village",
+      "latitude": 43.3411775,
+      "longitude": -1.4493722,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pueblo labortano conocido por el Piment d’Espelette y por sus casas tradicionales de fachadas blancas con entramados rojos.",
+      "tips": [
+        "Buena parada para probar cocina local y comprar productos de pimiento de Espelette."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es una visita sencilla con perro; los interiores dependen de cada establecimiento.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3411775%2C-1.4493722",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 1 h 30"
+        },
+        {
+          "label": "Interés",
+          "value": "Arquitectura vasca · pimiento · tiendas · gastronomía"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sare-train-rhune",
+      "tripId": "pais-vasco-frances",
+      "name": "Le Train de La Rhune / Larrun",
+      "locality": "Sare",
+      "categoryId": "hiking",
+      "latitude": 43.3251141,
+      "longitude": -1.6008848,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Tren cremallera histórico que asciende desde el Col de Saint-Ignace hasta la cima de La Rhune, con amplias vistas sobre la costa y los Pirineos.",
+      "tips": [
+        "Consulta la meteorología o la webcam antes de subir: con niebla se pierde buena parte de las vistas.",
+        "Reserva con antelación en temporada alta."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "La información oficial admite perros en el tren bajo condiciones; deben viajar controlados y conviene revisar la tarifa y normas vigentes antes de comprar.",
+      "officialSourceUrl": "https://www.rhune.com/es/faq-3/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3251141%2C-1.6008848",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "Aprox. 2 h 30"
+        },
+        {
+          "label": "Cima",
+          "value": "La Rhune · 905 m"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-saint-jean-pied-port-citadelle",
+      "tripId": "pais-vasco-frances",
+      "name": "Ciudadela de Saint-Jean-Pied-de-Port",
+      "locality": "Saint-Jean-Pied-de-Port",
+      "categoryId": "monument",
+      "latitude": 43.1621726,
+      "longitude": -1.23351,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Citadelle%20de%20Saint-Jean-Pied-de-Port%20-%20communs.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Citadelle%20de%20Saint-Jean-Pied-de-Port%20-%20communs.jpg",
+      "imageAttribution": "Marianne Casamance · CC BY-SA 4.0",
+      "alt": "Edificios de la ciudadela de Saint-Jean-Pied-de-Port",
+      "description": "Ciudadela situada sobre la colina de Mendiguren, dominando el casco histórico y la ruta jacobea de Saint-Jean-Pied-de-Port.",
+      "tips": [
+        "Sube hasta la ciudadela aunque no hagas visita guiada: las vistas sobre el pueblo justifican el paseo."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Los exteriores son compatibles con paseo con perro; para recintos o visitas guiadas, comprueba la norma concreta.",
+      "officialSourceUrl": "https://www.st-jean-pied-de-port.fr/tourisme/visiter-saint-jean-pied-de-port/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1621726%2C-1.23351",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 2 h"
+        },
+        {
+          "label": "Qué ver",
+          "value": "Ciudadela · Porte Saint-Jacques · murallas · casco histórico"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-larrau-holzarte",
+      "tripId": "pais-vasco-frances",
+      "name": "Pasarela de Holzarte",
+      "locality": "Larrau",
+      "categoryId": "hiking",
+      "latitude": 43.0045,
+      "longitude": -0.92294,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Passerelle%20d%27Holzart%C3%A9.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Passerelle%20d%27Holzart%C3%A9.JPG",
+      "imageAttribution": "Cruccone · CC BY 3.0",
+      "alt": "Pasarela de Holzarte sobre las gargantas",
+      "description": "Pasarela colgante sobre las gargantas de Olhadubi, suspendida a gran altura y accesible mediante una ruta de senderismo desde Logibar.",
+      "tips": [
+        "Lleva buen calzado: el acceso es una ruta de montaña y puede resultar resbaladiza.",
+        "En verano comprueba si hay lanzadera desde Tardets hacia la zona de salida."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Perros admitidos con correa; es zona pastoral, así que hay que mantener distancia con el ganado.",
+      "officialSourceUrl": "https://www.tourisme64.com/es/ya-esta-en-el-sitio/actividades/larrau/PNAAQU064FS00005-passerelle-dholzarte/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.0045%2C-0.92294",
+      "additionalInfo": [
+        {
+          "label": "Ruta corta",
+          "value": "Aprox. 2 h ida/vuelta hasta la pasarela"
+        },
+        {
+          "label": "Entorno",
+          "value": "Gargantas · bosque · senderismo"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-ascain",
+      "tripId": "pais-vasco-frances",
+      "name": "Ascain / Azkaine",
+      "locality": "Ascain",
+      "categoryId": "village",
+      "latitude": 43.34446,
+      "longitude": -1.62069,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pueblo labortano a los pies de La Rhune, organizado en torno al frontón y junto al río Nivelle.",
+      "tips": [
+        "Úsalo como parada corta o como punto de entrada a rutas y excursiones en torno a La Rhune."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es una visita sencilla con perro; los interiores dependen de cada establecimiento.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.34446%2C-1.62069",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h 15"
+        },
+        {
+          "label": "Interés",
+          "value": "Frontón · casas vascas · puente · entorno rural"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sare",
+      "tripId": "pais-vasco-frances",
+      "name": "Sare / Sara",
+      "locality": "Sare",
+      "categoryId": "village",
+      "latitude": 43.31361,
+      "longitude": -1.58083,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pueblo vasco de Xareta, con plaza, casas tradicionales y un paisaje muy ligado a La Rhune y a la frontera.",
+      "tips": [
+        "Combina especialmente bien con la excursión de La Rhune."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En espacios públicos exteriores es una visita sencilla con perro; interiores según establecimiento.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.31361%2C-1.58083",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 1 h 30"
+        },
+        {
+          "label": "Interés",
+          "value": "Plaza · iglesia · casas vascas · paisaje"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-ainhoa",
+      "tripId": "pais-vasco-frances",
+      "name": "Ainhoa",
+      "locality": "Ainhoa",
+      "categoryId": "village",
+      "latitude": 43.3065,
+      "longitude": -1.49859,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg",
+      "imageAttribution": "Spiggot · CC BY-SA 3.0",
+      "alt": "Plaza y frontón de Ainhoa",
+      "description": "Pequeña villa vasca conocida por su calle principal de casas tradicionales de los siglos XVII y XVIII.",
+      "tips": [
+        "Es una parada corta y muy fotogénica; recórrela a pie sin necesidad de dedicarle medio día."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es compatible con perro; respeta cualquier restricción señalizada en iglesia o cementerio.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3065%2C-1.49859",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h 15"
+        },
+        {
+          "label": "Interés",
+          "value": "Calle principal · iglesia · cementerio · arquitectura vasca"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-osses",
+      "tripId": "pais-vasco-frances",
+      "name": "Ossès / Ortzaize",
+      "locality": "Ossès",
+      "categoryId": "village",
+      "latitude": 43.2417,
+      "longitude": -1.2847,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pueblo de Baja Navarra rodeado de paisaje rural y conocido por su concentración de talleres artesanos.",
+      "tips": [
+        "Tiene más sentido como parada ligada a los talleres de artesanía que como visita aislada."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es compatible con perro; los talleres tienen sus propias normas.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.2417%2C-1.2847",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "30 – 60 min más talleres"
+        },
+        {
+          "label": "Interés",
+          "value": "Arquitectura rural · artesanía"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-baigorri",
+      "tripId": "pais-vasco-frances",
+      "name": "Saint-Étienne-de-Baïgorry / Baigorri",
+      "locality": "Saint-Étienne-de-Baïgorry",
+      "categoryId": "village",
+      "latitude": 43.17877,
+      "longitude": -1.34048,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pont%20de%20l%27%C3%A9glise%20de%20Saint-%C3%89tienne-de-Ba%C3%AFgorry.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Pont%20de%20l%27%C3%A9glise%20de%20Saint-%C3%89tienne-de-Ba%C3%AFgorry.jpg",
+      "imageAttribution": "Martin Prunières · CC BY-SA 4.0",
+      "alt": "Puente e iglesia de Saint-Étienne-de-Baïgorry",
+      "description": "Pueblo del valle de Baigorri, junto a la Nive des Aldudes y rodeado por viñedos y relieve de montaña.",
+      "tips": [
+        "Combínalo con la bodega de Irouléguy y con un paseo por el entorno del río."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es una visita sencilla con perro; interiores según establecimiento.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.17877%2C-1.34048",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 1 h 30"
+        },
+        {
+          "label": "Interés",
+          "value": "Puente · río · iglesia · viñedos"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-banca",
+      "tripId": "pais-vasco-frances",
+      "name": "Banca",
+      "locality": "Banca",
+      "categoryId": "village",
+      "latitude": 43.12583,
+      "longitude": -1.37194,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pequeña localidad del valle de Aldudes con pasado minero y un entorno montañoso muy marcado.",
+      "tips": [
+        "Tómala como una parada paisajística y gastronómica dentro del valle más que como una visita monumental."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En exteriores es una visita sencilla con perro; interiores según establecimiento.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.12583%2C-1.37194",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Valle · patrimonio minero · paisaje"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-aldudes",
+      "tripId": "pais-vasco-frances",
+      "name": "Les Aldudes / Aldude",
+      "locality": "Les Aldudes",
+      "categoryId": "village",
+      "latitude": 43.09836,
+      "longitude": -1.4276,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Les%20Aldudes.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Les%20Aldudes.jpg",
+      "imageAttribution": "Jojo V · CC BY-SA 4.0",
+      "alt": "Paisaje del valle de Les Aldudes",
+      "description": "Pueblo y valle de montaña estrechamente vinculados al cerdo vasco Kintoa, la ganadería y la gastronomía local.",
+      "tips": [
+        "Mantén al perro controlado y con correa cerca del ganado.",
+        "Reserva tiempo para el paisaje y para las visitas gastronómicas del valle."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En espacios públicos se puede pasear con perro, con especial precaución cerca de ganado.",
+      "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.09836%2C-1.4276",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 3 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Paisaje · Kintoa · senderos · gastronomía"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-osses-poterie-goicoechea",
+      "tripId": "pais-vasco-frances",
+      "name": "Poterie Goicoechea",
+      "locality": "Ossès",
+      "categoryId": "monument",
+      "latitude": 43.2330195,
+      "longitude": -1.2976431,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Galería-tienda y espacio didáctico dedicado a la cerámica vasca contemporánea y a sus técnicas artesanales.",
+      "tips": [
+        "Es una parada corta y fácil si te interesa diseño, artesanía o cerámica."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una política fiable y actual sobre acceso con perro.",
+      "officialSourceUrl": "https://www.cirkwi.com/es/point-interet/886271-poteries-goicoechea",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.2330195%2C-1.2976431",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "20 – 45 min"
+        },
+        {
+          "label": "Interés",
+          "value": "Cerámica · galería · proceso artesanal"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-irouleguy-cave",
+      "tripId": "pais-vasco-frances",
+      "name": "La Cave d’Irouléguy",
+      "locality": "Saint-Étienne-de-Baïgorry",
+      "categoryId": "monument",
+      "latitude": 43.18559,
+      "longitude": -1.334077,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vignes%20d%27Iroul%C3%A8guy.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Vignes%20d%27Iroul%C3%A8guy.jpg",
+      "imageAttribution": "dynamosquito · CC BY-SA 2.0",
+      "alt": "Viñedos de la denominación Irouléguy",
+      "description": "Bodega cooperativa dedicada a los vinos AOC Irouléguy, con tienda, degustación y visitas sobre el viñedo local.",
+      "tips": [
+        "Si no quieres hacer la visita completa, la tienda y la degustación permiten una parada más corta.",
+        "Para visita guiada, reserva antes."
+      ],
+      "price": {
+        "label": "Visita guiada",
+        "amount": 15,
+        "currency": "EUR"
+      },
+      "dogAccess": "allowed",
+      "dogNotes": "La información turística consultada indica que se admiten animales; avisa al reservar una visita guiada.",
+      "officialSourceUrl": "https://cave-irouleguy.com/fr/page/55-visites-et-decouverte?id_cms_category=6",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.18559%2C-1.334077",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "30 min libre · aprox. 1 h guiada"
+        },
+        {
+          "label": "Interés",
+          "value": "Bodega · cata · vinos AOC Irouléguy"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-aldudes-pierre-oteiza",
+      "tripId": "pais-vasco-frances",
+      "name": "Pierre Oteiza · Les Aldudes",
+      "locality": "Les Aldudes",
+      "categoryId": "monument",
+      "latitude": 43.0894271,
+      "longitude": -1.4244139,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Les%20Aldudes.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Les%20Aldudes.jpg",
+      "imageAttribution": "Jojo V · CC BY-SA 4.0",
+      "alt": "Paisaje de Les Aldudes, entorno de la finca de Pierre Oteiza",
+      "description": "Finca, tienda y espacio de degustación dedicado al cerdo vasco Kintoa, con senderos pedagógicos en el entorno de montaña.",
+      "tips": [
+        "Si haces el sendero largo, lleva calzado cerrado y calcula varias horas.",
+        "Al haber animales y ganado, comprueba allí la norma específica para perros."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he encontrado una confirmación oficial suficientemente clara para el acceso con perro al sendero y zonas con animales.",
+      "officialSourceUrl": "https://www.pierreoteiza.com/faqs/espace-degustation-/activites-visites-aldudes.html",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.0894271%2C-1.4244139",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 3 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Kintoa · secadero · tienda · degustación · senderos"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-labenne-plage-centrale",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage Centrale de Labenne",
+      "locality": "Labenne",
+      "categoryId": "beach",
+      "latitude": 43.5994671,
+      "longitude": -1.4724452,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Labenne-plage%2001.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Labenne-plage%2001.JPG",
+      "imageAttribution": "Traumrune · CC BY-SA 3.0",
+      "alt": "Playa de Labenne-Océan",
+      "description": "Playa atlántica amplia, con dunas y acceso directo desde Labenne-Océan.",
+      "tips": [
+        "En verano, con perro, aléjate del sector de baño vigilado y sigue la señalización local."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Los perros se toleran fuera de la zona de vigilancia; en temporada de baño hay que respetar los sectores señalizados.",
+      "officialSourceUrl": "https://www.tourismelandes.com/decouvrir-la-destination/atmospheres-landaises/partir-en-vacances-avec-son-chien-dans-les-landes/les-chiens-autorises-sur-les-plages-landaises/les-plages-qui-tolerent-les-chiens/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5994671%2C-1.4724452",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Arena · dunas · Atlántico"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-ondres-plage",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage d’Ondres",
+      "locality": "Ondres",
+      "categoryId": "beach",
+      "latitude": 43.5791659,
+      "longitude": -1.4962548,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20d%27Ondres.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20d%27Ondres.JPG",
+      "imageAttribution": "Benoît Prieur · CC0",
+      "alt": "Playa de Ondres junto al Atlántico",
+      "description": "Playa oceánica rodeada de dunas y bosque, con un ambiente más natural que las playas urbanas.",
+      "tips": [
+        "En verano, usa el acceso norte con perro y mantente fuera de la zona reglamentada."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En verano se admite con correa fuera de la zona reglamentada; la información turística indica el acceso norte para ir con perro.",
+      "officialSourceUrl": "https://www.tourismelandes.com/decouvrir-la-destination/atmospheres-landaises/partir-en-vacances-avec-son-chien-dans-les-landes/les-chiens-autorises-sur-les-plages-landaises/les-plages-qui-tolerent-les-chiens/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5791659%2C-1.4962548",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Playa · dunas · bosque"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-messanges-plage-sud",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage Sud de Messanges",
+      "locality": "Messanges",
+      "categoryId": "beach",
+      "latitude": 43.7999923,
+      "longitude": -1.4086102,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Gran playa de arena al sur de Messanges, con dunas, surf y un entorno poco urbanizado.",
+      "tips": [
+        "Es una de las opciones sencillas para playa con perro por tener una norma más clara que otros arenales."
+      ],
+      "price": null,
+      "dogAccess": "allowed",
+      "dogNotes": "La ficha turística indica perros autorizados con correa.",
+      "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-sud-loiaqu04001uad7c/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.7999923%2C-1.4086102",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Playa larga · surf · dunas"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-lette-blanche",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage de la Lette Blanche",
+      "locality": "Vielle-Saint-Girons",
+      "categoryId": "beach",
+      "latitude": 43.90116,
+      "longitude": -1.37863,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Coucher%20de%20soleil%20plage%20de%20la%20Lette-Blanche.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Coucher%20de%20soleil%20plage%20de%20la%20Lette-Blanche.jpg",
+      "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
+      "alt": "Atardecer en la playa de la Lette-Blanche",
+      "description": "Playa atlántica muy natural, escondida tras bosque y dunas y con gran sensación de amplitud.",
+      "tips": [
+        "No atravieses la vegetación dunar fuera de los accesos habilitados."
+      ],
+      "price": null,
+      "dogAccess": "allowed",
+      "dogNotes": "La ficha oficial de Turismo de las Landas indica animales admitidos.",
+      "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-de-la-lette-blanche-loiaqu04001sqmle/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.90116%2C-1.37863",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Bosque · dunas · playa salvaje"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-biscarrosse-vivier",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage du Vivier · Biscarrosse",
+      "locality": "Biscarrosse",
+      "categoryId": "beach",
+      "latitude": 44.4583359,
+      "longitude": -1.2543617,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20Biscarrosse.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20Biscarrosse.JPG",
+      "imageAttribution": "KoS · dominio público",
+      "alt": "Playa atlántica de Biscarrosse",
+      "description": "Playa del extremo norte de Biscarrosse-Plage, con bosque y dunas detrás del arenal.",
+      "tips": [
+        "En verano camina hacia el norte desde el acceso principal hasta salir claramente de la zona vigilada."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En verano los perros se admiten fuera de las zonas reglamentadas; revisa horarios y señalización vigente.",
+      "officialSourceUrl": "https://www.tourismelandes.com/decouvrir-la-destination/atmospheres-landaises/partir-en-vacances-avec-son-chien-dans-les-landes/les-chiens-autorises-sur-les-plages-landaises/les-plages-qui-tolerent-les-chiens/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=44.4583359%2C-1.2543617",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Playa · bosque · dunas"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-biscarrosse-sud",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage Sud · Biscarrosse",
+      "locality": "Biscarrosse",
+      "categoryId": "beach",
+      "latitude": 44.4425923,
+      "longitude": -1.256915,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20Biscarrosse.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20Biscarrosse.JPG",
+      "imageAttribution": "KoS · dominio público",
+      "alt": "Playa atlántica de Biscarrosse",
+      "description": "Playa del extremo sur de Biscarrosse-Plage, con dunas y amplios sectores fuera de la zona vigilada.",
+      "tips": [
+        "En verano camina hacia el sur desde el puesto de vigilancia para llegar al sector apto."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En verano se admite fuera de la zona reglamentada; comprueba la señalización del día.",
+      "officialSourceUrl": "https://www.cirkwi.com/es/point-interet/1630580-plage-sud",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=44.4425923%2C-1.256915",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Playa amplia · surf · dunas"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-leon-lac-plage",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage du Lac de Léon",
+      "locality": "Léon",
+      "categoryId": "swimming",
+      "latitude": 43.886756,
+      "longitude": -1.319433,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lac%20de%20L%C3%A9on%20Landes%20France.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Lac%20de%20L%C3%A9on%20Landes%20France.jpg",
+      "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
+      "alt": "Panorámica del lago de Léon",
+      "description": "Playa de agua dulce en la orilla sur del lago de Léon, rodeada de bosque y del espacio natural del lago.",
+      "tips": [
+        "Buena alternativa al Atlántico para un baño más tranquilo; respeta los accesos y zonas protegidas."
+      ],
+      "price": null,
+      "dogAccess": "allowed",
+      "dogNotes": "La ficha oficial de Turismo de las Landas indica animales admitidos.",
+      "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-du-lac-de-leon-loiaqu04001jukxh/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.886756%2C-1.319433",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Agua dulce · arena · bosque · picnic"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-vielle-lac-plage",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage du Lac à Vielle",
+      "locality": "Vielle-Saint-Girons",
+      "categoryId": "swimming",
+      "latitude": 43.9015605,
+      "longitude": -1.3110476,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lac%20de%20L%C3%A9on%20Landes%20France.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Lac%20de%20L%C3%A9on%20Landes%20France.jpg",
+      "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
+      "alt": "Panorámica del lago de Léon",
+      "description": "Pequeña playa lacustre al norte del lago de Léon, más recogida y protegida del viento.",
+      "tips": [
+        "Si buscas un baño más tranquilo y menos concurrido que la playa principal de Léon, esta puede encajar mejor."
+      ],
+      "price": null,
+      "dogAccess": "allowed",
+      "dogNotes": "La información turística oficial marca animales admitidos.",
+      "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-du-lac-a-vielle-loiaqu04001sqmld/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.9015605%2C-1.3110476",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Agua tranquila · zona verde · picnic"
+        }
+      ]
+    },
+    {
+      "id": "fr-landes-labouheyre-peyre",
+      "tripId": "pais-vasco-frances",
+      "name": "Plage de Peyre · Labouheyre",
+      "locality": "Labouheyre",
+      "categoryId": "swimming",
+      "latitude": 44.2039026,
+      "longitude": -0.9101191,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Labouheyre%20lac%20Peyre%203.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Labouheyre%20lac%20Peyre%203.jpg",
+      "imageAttribution": "Jibi44 · CC BY-SA 4.0",
+      "alt": "Lago del parque de Peyre en Labouheyre",
+      "description": "Zona de baño de agua dulce en el parque de Peyre, rodeada de vegetación y con playa de arena.",
+      "tips": [
+        "Es un desvío hacia el interior; compensa especialmente en días de calor o si quieres descansar del Atlántico."
+      ],
+      "price": null,
+      "dogAccess": "allowed",
+      "dogNotes": "La ficha oficial de Turismo de las Landas indica animales admitidos.",
+      "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-de-peyre-loiaqu040fs000ef/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=44.2039026%2C-0.9101191",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Agua dulce · arena · picnic · zona verde"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-arrossa-nive-bano",
+      "tripId": "pais-vasco-frances",
+      "name": "Baño natural en la Nive · Saint-Martin-d’Arrossa",
+      "locality": "Saint-Martin-d’Arrossa",
+      "categoryId": "swimming",
+      "latitude": 43.2381,
+      "longitude": -1.3011,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Zona natural junto al río Nive, muy bien situada dentro de la ruta interior entre Bidarray, Ossès y Saint-Jean-Pied-de-Port.",
+      "tips": [
+        "Es un baño natural no vigilado: comprueba caudal y estado del agua antes de entrar.",
+        "Evítalo después de lluvias fuertes."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "El paseo junto al río admite perros con correa, pero no he localizado una norma oficial que confirme expresamente el baño del perro en este punto.",
+      "officialSourceUrl": "https://www.saintmartindarrossa.fr/tourisme/randonnees-et-balades/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.2381%2C-1.3011",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–3 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Río de montaña · pozas · acceso libre"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sames-lac",
+      "tripId": "pais-vasco-frances",
+      "name": "Lac de Sames · zona de baño",
+      "locality": "Sames",
+      "categoryId": "swimming",
+      "latitude": 43.5283,
+      "longitude": -1.17063,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Lago interior con playa de arena y actividades acuáticas, situado al este de Bayona.",
+      "tips": [
+        "Puede encajar como alternativa de agua dulce cerca de Bayona, aunque supone desviarse de la ruta principal."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "La ficha oficial admite mascotas en el recinto, pero no deja claro si pueden entrar en la zona de baño o en el agua.",
+      "officialSourceUrl": "https://www.tourisme64.com/activites/sames/LOIAQU064FS0003N-water-park-de-sames/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5283%2C-1.17063",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Lago · playa de arena · picnic · actividades acuáticas"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-baigorri-nive-bano",
+      "tripId": "pais-vasco-frances",
+      "name": "Río Nive · Saint-Étienne-de-Baïgorry",
+      "locality": "Saint-Étienne-de-Baïgorry",
+      "categoryId": "swimming",
+      "latitude": 43.1837795,
+      "longitude": -1.3358098,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Saint-%C3%89tienne-de-Ba%C3%AFgorry%20-%20Nive%20des%20Aldudes.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Saint-%C3%89tienne-de-Ba%C3%AFgorry%20-%20Nive%20des%20Aldudes.jpg",
+      "imageAttribution": "Tangopaso · CC BY-SA 4.0",
+      "alt": "Río Nive des Aldudes a su paso por Saint-Étienne-de-Baïgorry",
+      "description": "Tramo de la Nive des Aldudes en un entorno verde y sombreado, muy cerca de Baigorri y de la zona de Irouléguy.",
+      "tips": [
+        "No es una playa oficial ni un baño vigilado: evita entrar con corriente fuerte o después de lluvias.",
+        "Respeta accesos, propiedades y señalización local."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Hay referencias de perros con correa en el entorno, pero no he localizado una autorización municipal específica para el baño canino.",
+      "officialSourceUrl": "https://www.cirkwi.com/es/point-interet/2096969-camping-municipal-irouleguy",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1837795%2C-1.3358098",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1–2 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Río de montaña · sombra · parada rápida"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-uhaitza-saison",
+      "tripId": "pais-vasco-frances",
+      "name": "Bassins naturels du Saison · Uhaitza",
+      "locality": "Gotein-Libarrenx / Mauléon",
+      "categoryId": "swimming",
+      "latitude": 43.208,
+      "longitude": -0.897286,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Zona de baño natural en el río Saison asociada al Camping Uhaitza, con pequeñas piscinas naturales y acceso directo al río.",
+      "tips": [
+        "Consulta en recepción si se permite el acceso solo para baño sin estar alojado.",
+        "Comprueba allí la norma específica para perros dentro del agua."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "El camping admite perros, pero la norma sobre su entrada al agua no está especificada por separado.",
+      "officialSourceUrl": "https://www.camping-uhaitza.com/presentation-camping-mauleon/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.208%2C-0.897286",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "2–4 h"
+        },
+        {
+          "label": "Entorno",
+          "value": "Río · piscinas naturales · sombra"
+        }
+      ]
+    }
+  ]
 }
