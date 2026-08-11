@@ -132,18 +132,17 @@ export function PlaceDetails({
           </button>
         </div>
       </header>
-      {place.imageUrl ? (
-        <figure className="place-details__cover">
-          <img alt={place.alt} decoding="async" src={place.imageUrl} />
-          <figcaption>
-            <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
-              {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
-            </a>
-          </figcaption>
-        </figure>
-      ) : null}
-
       <div className="place-details__scroll">
+        {place.imageUrl ? (
+          <figure className="place-details__cover">
+            <img alt={place.alt} decoding="async" src={place.imageUrl} />
+            <figcaption>
+              <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
+                {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
+              </a>
+            </figcaption>
+          </figure>
+        ) : null}
         {place.description ? <p className="place-description">{place.description}</p> : null}
 
         <div className="detail-facts">

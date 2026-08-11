@@ -1468,9 +1468,9 @@
   min-width: 42px;
   height: 42px;
   min-height: 42px;
-  color: #fff;
-  background: var(--color-primary-strong);
-  border: 1px solid rgb(255 255 255 / 78%);
+  color: var(--color-petrol);
+  background: rgb(255 255 255 / 96%);
+  border: 1px solid rgb(223 232 228 / 92%);
   border-radius: 13px;
   box-shadow: var(--shadow-float);
   backdrop-filter: none;
@@ -1478,7 +1478,12 @@
 
 .map-control-stack [data-active='true'] {
   color: #fff;
-  background: var(--color-primary);
+  background: var(--color-primary-strong);
+  border-color: var(--color-primary-strong);
+}
+
+.map-control-stack__location {
+  margin-bottom: 7px;
 }
 
 @media (hover: hover) {
@@ -1607,8 +1612,8 @@
 
 .place-details__cover {
   position: relative;
-  flex: 0 0 132px;
-  margin: 10px 0 0;
+  height: 132px;
+  margin: 0 0 10px;
   overflow: hidden;
   background: var(--color-surface-muted);
   border-radius: 19px;

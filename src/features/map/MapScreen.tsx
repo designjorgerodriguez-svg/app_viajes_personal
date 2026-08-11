@@ -102,15 +102,7 @@ export function MapScreen(props: MapScreenProps) {
 
       <div className="map-control-stack" aria-label="Controles del mapa">
         <button
-          className="icon-button icon-button--surface"
-          onClick={() => props.onChangeMapStyle(props.mapStyle === 'outdoors' ? 'satellite' : 'outdoors')}
-          type="button"
-          aria-label={props.mapStyle === 'outdoors' ? 'Ver mapa por satélite' : 'Ver mapa de exteriores'}
-        >
-          <Layers3 size={18} />
-        </button>
-        <button
-          className="icon-button icon-button--surface"
+          className="icon-button icon-button--surface map-control-stack__location"
           data-active={props.geolocationStatus === 'success'}
           disabled={props.geolocationStatus === 'loading'}
           onClick={props.onRequestLocation}
@@ -118,6 +110,14 @@ export function MapScreen(props: MapScreenProps) {
           aria-label="Centrar en mi ubicación"
         >
           <LocateFixed size={18} />
+        </button>
+        <button
+          className="icon-button icon-button--surface"
+          onClick={() => props.onChangeMapStyle(props.mapStyle === 'outdoors' ? 'satellite' : 'outdoors')}
+          type="button"
+          aria-label={props.mapStyle === 'outdoors' ? 'Ver mapa por satélite' : 'Ver mapa de exteriores'}
+        >
+          <Layers3 size={18} />
         </button>
         <button
           className="icon-button icon-button--surface"

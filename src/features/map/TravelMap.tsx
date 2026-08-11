@@ -144,7 +144,7 @@ function createClusterIndex(places: TripPlace[]) {
     geometry: { type: 'Point', coordinates: [place.longitude, place.latitude] },
     properties: { placeId: place.id },
   }))
-  return new Supercluster<PlaceClusterProperties>({ radius: 62, maxZoom: 15, minPoints: 2 }).load(points)
+  return new Supercluster<PlaceClusterProperties>({ radius: 44, maxZoom: 8, minPoints: 2 }).load(points)
 }
 
 function staticIcon(icon: React.ReactNode) {
