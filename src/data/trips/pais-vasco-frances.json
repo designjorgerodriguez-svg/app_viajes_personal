@@ -7,8 +7,8 @@
       "name": "Castillo de Abbadia",
       "locality": "Hendaye",
       "categoryId": "monument",
-      "latitude": 43.3774636,
-      "longitude": -1.7493127,
+      "latitude": 43.3775,
+      "longitude": -1.7492,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Abbadia%20gaztelua%20aurretik.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Abbadia%20gaztelua%20aurretik.jpg",
       "imageAttribution": "Ekaitz Santazilia · CC BY 4.0",
@@ -25,7 +25,7 @@
       "dogAccess": "unknown",
       "dogNotes": "No he encontrado una regla oficial suficientemente clara para el acceso con perro al interior.",
       "officialSourceUrl": "https://www.chateau-abbadia.fr/es/prepara-tu-visita/visitas-de-abbadia",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3774636%2C-1.7493127",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3775%2C-1.7492",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -43,8 +43,8 @@
       "name": "Puerto de Saint-Jean-de-Luz",
       "locality": "Saint-Jean-de-Luz",
       "categoryId": "village",
-      "latitude": 43.386836,
-      "longitude": -1.664119,
+      "latitude": 43.3869,
+      "longitude": -1.66494,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Port%20de%20Saint-Jean-de-Luz.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Port%20de%20Saint-Jean-de-Luz.jpg",
       "imageAttribution": "Thomon · CC BY-SA 4.0",
@@ -57,7 +57,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En espacios públicos exteriores el paseo es compatible con perro; revisa las normas específicas de playas e interiores.",
       "officialSourceUrl": "https://www.saint-jean-de-luz.com/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.386836%2C-1.664119",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3869%2C-1.66494",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -107,12 +107,12 @@
       "name": "Espelette / Ezpeleta",
       "locality": "Espelette",
       "categoryId": "village",
-      "latitude": 43.3411775,
-      "longitude": -1.4493722,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.34058,
+      "longitude": -1.44847,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Espelette%20Village.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Espelette_Village.jpg",
+      "imageAttribution": "Wikimedia Commons · CC BY-SA 3.0 / CC BY 2.5",
+      "alt": "Casas tradicionales y calle del pueblo de Espelette",
       "description": "Pueblo labortano conocido por el Piment d’Espelette y por sus casas tradicionales de fachadas blancas con entramados rojos.",
       "tips": [
         "Buena parada para probar cocina local y comprar productos de pimiento de Espelette."
@@ -121,7 +121,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En exteriores es una visita sencilla con perro; los interiores dependen de cada establecimiento.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3411775%2C-1.4493722",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.34058%2C-1.44847",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -139,12 +139,12 @@
       "name": "Le Train de La Rhune / Larrun",
       "locality": "Sare",
       "categoryId": "hiking",
-      "latitude": 43.3251141,
-      "longitude": -1.6008848,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.325038,
+      "longitude": -1.6006769,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Chemin%20de%20fer%20de%20la%20Rhune%20Le%20second%20train.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Chemin_de_fer_de_la_Rhune_Le_second_train.jpg",
+      "imageAttribution": "Marianne Casamance · CC BY-SA 4.0",
+      "alt": "Tren cremallera de La Rhune ascendiendo por la montaña",
       "description": "Tren cremallera histórico que asciende desde el Col de Saint-Ignace hasta la cima de La Rhune, con amplias vistas sobre la costa y los Pirineos.",
       "tips": [
         "Consulta la meteorología o la webcam antes de subir: con niebla se pierde buena parte de las vistas.",
@@ -154,7 +154,7 @@
       "dogAccess": "conditional",
       "dogNotes": "La información oficial admite perros en el tren bajo condiciones; deben viajar controlados y conviene revisar la tarifa y normas vigentes antes de comprar.",
       "officialSourceUrl": "https://www.rhune.com/es/faq-3/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3251141%2C-1.6008848",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.325038%2C-1.6006769",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -172,8 +172,8 @@
       "name": "Ciudadela de Saint-Jean-Pied-de-Port",
       "locality": "Saint-Jean-Pied-de-Port",
       "categoryId": "monument",
-      "latitude": 43.1621726,
-      "longitude": -1.23351,
+      "latitude": 43.1620471,
+      "longitude": -1.2332689,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Citadelle%20de%20Saint-Jean-Pied-de-Port%20-%20communs.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Citadelle%20de%20Saint-Jean-Pied-de-Port%20-%20communs.jpg",
       "imageAttribution": "Marianne Casamance · CC BY-SA 4.0",
@@ -186,7 +186,7 @@
       "dogAccess": "conditional",
       "dogNotes": "Los exteriores son compatibles con paseo con perro; para recintos o visitas guiadas, comprueba la norma concreta.",
       "officialSourceUrl": "https://www.st-jean-pied-de-port.fr/tourisme/visiter-saint-jean-pied-de-port/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1621726%2C-1.23351",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1620471%2C-1.2332689",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -204,8 +204,8 @@
       "name": "Pasarela de Holzarte",
       "locality": "Larrau",
       "categoryId": "hiking",
-      "latitude": 43.0045,
-      "longitude": -0.92294,
+      "latitude": 43.0045391,
+      "longitude": -0.9229399,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Passerelle%20d%27Holzart%C3%A9.JPG?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Passerelle%20d%27Holzart%C3%A9.JPG",
       "imageAttribution": "Cruccone · CC BY 3.0",
@@ -219,7 +219,7 @@
       "dogAccess": "conditional",
       "dogNotes": "Perros admitidos con correa; es zona pastoral, así que hay que mantener distancia con el ganado.",
       "officialSourceUrl": "https://www.tourisme64.com/es/ya-esta-en-el-sitio/actividades/larrau/PNAAQU064FS00005-passerelle-dholzarte/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.0045%2C-0.92294",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.0045391%2C-0.9229399",
       "additionalInfo": [
         {
           "label": "Ruta corta",
@@ -237,12 +237,12 @@
       "name": "Ascain / Azkaine",
       "locality": "Ascain",
       "categoryId": "village",
-      "latitude": 43.34446,
-      "longitude": -1.62069,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.3444441,
+      "longitude": -1.6230974,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ascain%20depuis%20la%20Rhune.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ascain_depuis_la_Rhune.jpg",
+      "imageAttribution": "Eusebius · CC BY 3.0",
+      "alt": "Vista panorámica de Ascain desde La Rhune",
       "description": "Pueblo labortano a los pies de La Rhune, organizado en torno al frontón y junto al río Nivelle.",
       "tips": [
         "Úsalo como parada corta o como punto de entrada a rutas y excursiones en torno a La Rhune."
@@ -251,7 +251,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En exteriores es una visita sencilla con perro; los interiores dependen de cada establecimiento.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.34446%2C-1.62069",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3444441%2C-1.6230974",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -269,12 +269,12 @@
       "name": "Sare / Sara",
       "locality": "Sare",
       "categoryId": "village",
-      "latitude": 43.31361,
-      "longitude": -1.58083,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.3127041,
+      "longitude": -1.5801644,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sare%20Village.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sare_Village.jpg",
+      "imageAttribution": "Harrieta171 · CC BY-SA 3.0",
+      "alt": "Vista del pueblo vasco de Sare rodeado de paisaje verde",
       "description": "Pueblo vasco de Xareta, con plaza, casas tradicionales y un paisaje muy ligado a La Rhune y a la frontera.",
       "tips": [
         "Combina especialmente bien con la excursión de La Rhune."
@@ -283,7 +283,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En espacios públicos exteriores es una visita sencilla con perro; interiores según establecimiento.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.31361%2C-1.58083",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3127041%2C-1.5801644",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -301,8 +301,8 @@
       "name": "Ainhoa",
       "locality": "Ainhoa",
       "categoryId": "village",
-      "latitude": 43.3065,
-      "longitude": -1.49859,
+      "latitude": 43.306764,
+      "longitude": -1.498918,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg",
       "imageAttribution": "Spiggot · CC BY-SA 3.0",
@@ -315,7 +315,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En exteriores es compatible con perro; respeta cualquier restricción señalizada en iglesia o cementerio.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3065%2C-1.49859",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.306764%2C-1.498918",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -333,12 +333,12 @@
       "name": "Ossès / Ortzaize",
       "locality": "Ossès",
       "categoryId": "village",
-      "latitude": 43.2417,
-      "longitude": -1.2847,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.241629,
+      "longitude": -1.284165,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Oss%C3%A8s%20Maison%20%281%29.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Oss%C3%A8s_Maison_%281%29.jpg",
+      "imageAttribution": "Harrieta171 · CC BY-SA 3.0 / CC BY 2.5",
+      "alt": "Casa tradicional vasca en Ossès",
       "description": "Pueblo de Baja Navarra rodeado de paisaje rural y conocido por su concentración de talleres artesanos.",
       "tips": [
         "Tiene más sentido como parada ligada a los talleres de artesanía que como visita aislada."
@@ -347,7 +347,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En exteriores es compatible con perro; los talleres tienen sus propias normas.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.2417%2C-1.2847",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.241629%2C-1.284165",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -365,8 +365,8 @@
       "name": "Saint-Étienne-de-Baïgorry / Baigorri",
       "locality": "Saint-Étienne-de-Baïgorry",
       "categoryId": "village",
-      "latitude": 43.17877,
-      "longitude": -1.34048,
+      "latitude": 43.1786217,
+      "longitude": -1.3404606,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pont%20de%20l%27%C3%A9glise%20de%20Saint-%C3%89tienne-de-Ba%C3%AFgorry.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Pont%20de%20l%27%C3%A9glise%20de%20Saint-%C3%89tienne-de-Ba%C3%AFgorry.jpg",
       "imageAttribution": "Martin Prunières · CC BY-SA 4.0",
@@ -379,7 +379,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En exteriores es una visita sencilla con perro; interiores según establecimiento.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.17877%2C-1.34048",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1786217%2C-1.3404606",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -399,10 +399,10 @@
       "categoryId": "village",
       "latitude": 43.12583,
       "longitude": -1.37194,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Banca%20Village.JPG?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Banca_Village.JPG",
+      "imageAttribution": "Harrieta171 · CC BY-SA 3.0",
+      "alt": "Vista de Banca y su iglesia en el valle de Aldudes",
       "description": "Pequeña localidad del valle de Aldudes con pasado minero y un entorno montañoso muy marcado.",
       "tips": [
         "Tómala como una parada paisajística y gastronómica dentro del valle más que como una visita monumental."
@@ -429,8 +429,8 @@
       "name": "Les Aldudes / Aldude",
       "locality": "Les Aldudes",
       "categoryId": "village",
-      "latitude": 43.09836,
-      "longitude": -1.4276,
+      "latitude": 43.098527,
+      "longitude": -1.42771,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Les%20Aldudes.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Les%20Aldudes.jpg",
       "imageAttribution": "Jojo V · CC BY-SA 4.0",
@@ -444,7 +444,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En espacios públicos se puede pasear con perro, con especial precaución cerca de ganado.",
       "officialSourceUrl": "https://furgobidaiak.eus/ruta-por-el-pais-vasco-frances-iparralde-en-furgoneta/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.09836%2C-1.4276",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.098527%2C-1.42771",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -464,10 +464,10 @@
       "categoryId": "monument",
       "latitude": 43.2330195,
       "longitude": -1.2976431,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "imageUrl": "https://petitfute.twic.pics/medias/professionnel/1544527/premium/originale/5ea04ca06cfc1-goicoechea-potier-ceramiste.png?pf=v2&twic=v1%2Fcover%3D1200x675%2Fmax%3D1400",
+      "imageSourceUrl": "https://www.petitfute.com/v3092-osses-64780/c1085-maison-deco-jardin/c1066-artisanat-d-art/1544527-goicoechea.html",
+      "imageAttribution": "Poterie Goicoechea · imagen del establecimiento",
+      "alt": "Grandes piezas de cerámica de Poterie Goicoechea",
       "description": "Galería-tienda y espacio didáctico dedicado a la cerámica vasca contemporánea y a sus técnicas artesanales.",
       "tips": [
         "Es una parada corta y fácil si te interesa diseño, artesanía o cerámica."
@@ -494,8 +494,8 @@
       "name": "La Cave d’Irouléguy",
       "locality": "Saint-Étienne-de-Baïgorry",
       "categoryId": "monument",
-      "latitude": 43.18559,
-      "longitude": -1.334077,
+      "latitude": 43.1837582,
+      "longitude": -1.3341034,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vignes%20d%27Iroul%C3%A8guy.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Vignes%20d%27Iroul%C3%A8guy.jpg",
       "imageAttribution": "dynamosquito · CC BY-SA 2.0",
@@ -513,7 +513,7 @@
       "dogAccess": "allowed",
       "dogNotes": "La información turística consultada indica que se admiten animales; avisa al reservar una visita guiada.",
       "officialSourceUrl": "https://cave-irouleguy.com/fr/page/55-visites-et-decouverte?id_cms_category=6",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.18559%2C-1.334077",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1837582%2C-1.3341034",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -531,8 +531,8 @@
       "name": "Pierre Oteiza · Les Aldudes",
       "locality": "Les Aldudes",
       "categoryId": "monument",
-      "latitude": 43.0894271,
-      "longitude": -1.4244139,
+      "latitude": 43.089396,
+      "longitude": -1.424489,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Les%20Aldudes.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Les%20Aldudes.jpg",
       "imageAttribution": "Jojo V · CC BY-SA 4.0",
@@ -546,7 +546,7 @@
       "dogAccess": "unknown",
       "dogNotes": "No he encontrado una confirmación oficial suficientemente clara para el acceso con perro al sendero y zonas con animales.",
       "officialSourceUrl": "https://www.pierreoteiza.com/faqs/espace-degustation-/activites-visites-aldudes.html",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.0894271%2C-1.4244139",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.089396%2C-1.424489",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -596,8 +596,8 @@
       "name": "Plage d’Ondres",
       "locality": "Ondres",
       "categoryId": "beach",
-      "latitude": 43.5791659,
-      "longitude": -1.4962548,
+      "latitude": 43.577416,
+      "longitude": -1.48817,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20d%27Ondres.JPG?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20d%27Ondres.JPG",
       "imageAttribution": "Benoît Prieur · CC0",
@@ -610,7 +610,7 @@
       "dogAccess": "conditional",
       "dogNotes": "En verano se admite con correa fuera de la zona reglamentada; la información turística indica el acceso norte para ir con perro.",
       "officialSourceUrl": "https://www.tourismelandes.com/decouvrir-la-destination/atmospheres-landaises/partir-en-vacances-avec-son-chien-dans-les-landes/les-chiens-autorises-sur-les-plages-landaises/les-plages-qui-tolerent-les-chiens/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5791659%2C-1.4962548",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.577416%2C-1.48817",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -630,10 +630,10 @@
       "categoryId": "beach",
       "latitude": 43.7999923,
       "longitude": -1.4086102,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Messanges%20111.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Messanges_111.jpg",
+      "imageAttribution": "Didier belin · CC BY-SA 3.0",
+      "alt": "Playa de arena y dunas en Messanges",
       "description": "Gran playa de arena al sur de Messanges, con dunas, surf y un entorno poco urbanizado.",
       "tips": [
         "Es una de las opciones sencillas para playa con perro por tener una norma más clara que otros arenales."
@@ -660,8 +660,8 @@
       "name": "Plage de la Lette Blanche",
       "locality": "Vielle-Saint-Girons",
       "categoryId": "beach",
-      "latitude": 43.90116,
-      "longitude": -1.37863,
+      "latitude": 43.9027935,
+      "longitude": -1.3772605,
       "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Coucher%20de%20soleil%20plage%20de%20la%20Lette-Blanche.jpg?width=1200",
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Coucher%20de%20soleil%20plage%20de%20la%20Lette-Blanche.jpg",
       "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
@@ -674,7 +674,7 @@
       "dogAccess": "allowed",
       "dogNotes": "La ficha oficial de Turismo de las Landas indica animales admitidos.",
       "officialSourceUrl": "https://www.tourismelandes.com/loisir/plage-de-la-lette-blanche-loiaqu04001sqmle/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.90116%2C-1.37863",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.9027935%2C-1.3772605",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -854,10 +854,10 @@
       "categoryId": "swimming",
       "latitude": 43.2381,
       "longitude": -1.3011,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Paysage%20de%20la%20Nive%20avec%20Ur%20Bizia%20rafting.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Paysage_de_la_Nive_avec_Ur_Bizia_rafting.jpg",
+      "imageAttribution": "Rafting64 · CC BY-SA 3.0",
+      "alt": "Río Nive entre montañas y vegetación del País Vasco",
       "description": "Zona natural junto al río Nive, muy bien situada dentro de la ruta interior entre Bidarray, Ossès y Saint-Jean-Pied-de-Port.",
       "tips": [
         "Es un baño natural no vigilado: comprueba caudal y estado del agua antes de entrar.",
@@ -885,12 +885,12 @@
       "name": "Lac de Sames · zona de baño",
       "locality": "Sames",
       "categoryId": "swimming",
-      "latitude": 43.5283,
-      "longitude": -1.17063,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.5302877,
+      "longitude": -1.170147,
+      "imageUrl": "https://domaine-du-lac-de-sames.fr/images/sur-site/water-park-du-domaine-du-lac-de-sames-structure-gonflable.jpg",
+      "imageSourceUrl": "https://domaine-du-lac-de-sames.fr/activites.html",
+      "imageAttribution": "Domaine du Lac de Sames · imagen oficial",
+      "alt": "Lago de Sames con playa y zona de actividades acuáticas",
       "description": "Lago interior con playa de arena y actividades acuáticas, situado al este de Bayona.",
       "tips": [
         "Puede encajar como alternativa de agua dulce cerca de Bayona, aunque supone desviarse de la ruta principal."
@@ -899,7 +899,7 @@
       "dogAccess": "conditional",
       "dogNotes": "La ficha oficial admite mascotas en el recinto, pero no deja claro si pueden entrar en la zona de baño o en el agua.",
       "officialSourceUrl": "https://www.tourisme64.com/activites/sames/LOIAQU064FS0003N-water-park-de-sames/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5283%2C-1.17063",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.5302877%2C-1.170147",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
@@ -950,12 +950,12 @@
       "name": "Bassins naturels du Saison · Uhaitza",
       "locality": "Gotein-Libarrenx / Mauléon",
       "categoryId": "swimming",
-      "latitude": 43.208,
-      "longitude": -0.897286,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
+      "latitude": 43.2079364,
+      "longitude": -0.8972893,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Maul%C3%A9on-Licharre%20-%20Gave%20-%202.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Maul%C3%A9on-Licharre_-_Gave_-_2.jpg",
+      "imageAttribution": "Peter Potrowl · CC BY-SA 4.0",
+      "alt": "Río Saison en el entorno de Mauléon-Licharre",
       "description": "Zona de baño natural en el río Saison asociada al Camping Uhaitza, con pequeñas piscinas naturales y acceso directo al río.",
       "tips": [
         "Consulta en recepción si se permite el acceso solo para baño sin estar alojado.",
@@ -965,7 +965,7 @@
       "dogAccess": "conditional",
       "dogNotes": "El camping admite perros, pero la norma sobre su entrada al agua no está especificada por separado.",
       "officialSourceUrl": "https://www.camping-uhaitza.com/presentation-camping-mauleon/",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.208%2C-0.897286",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.2079364%2C-0.8972893",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
