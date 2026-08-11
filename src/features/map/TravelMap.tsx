@@ -104,14 +104,14 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'route-outline',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#ffffff', 'line-width': 12, 'line-opacity': 0.96 },
+    paint: { 'line-color': '#ffffff', 'line-width': 15, 'line-opacity': 0.96 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
   map.addLayer({
     id: 'route-line',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': brandGreen, 'line-width': 7, 'line-opacity': 1 },
+    paint: { 'line-color': brandGreen, 'line-width': 9, 'line-opacity': 1 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
 

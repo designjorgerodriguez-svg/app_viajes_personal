@@ -1372,13 +1372,23 @@
 
 .route-map-overlay__outline {
   stroke: #fff;
-  stroke-width: 12px;
+  stroke-width: 15px;
   opacity: 0.96;
 }
 
 .route-map-overlay__line {
   stroke: var(--color-primary-strong);
-  stroke-width: 7px;
+  stroke-width: 9px;
+}
+
+@media (max-width: 919px), (max-width: 1180px) and (pointer: coarse) {
+  .route-map-overlay__outline {
+    stroke-width: 16px;
+  }
+
+  .route-map-overlay__line {
+    stroke-width: 10px;
+  }
 }
 
 .waypoint-marker {

@@ -6,7 +6,16 @@ html {
   min-width: 320px;
   min-height: 100%;
   background: var(--color-canvas);
+  font-size: 16px;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 919px), (max-width: 1180px) and (pointer: coarse) {
+  html {
+    font-size: clamp(19px, 5vw, 20px);
+  }
 }
 
 body {

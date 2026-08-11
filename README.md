@@ -35,6 +35,19 @@ pnpm build
 
 Consulta [docs/SETUP.md](docs/SETUP.md) para la puesta en marcha y [docs/CONTENT_WORKFLOW.md](docs/CONTENT_WORKFLOW.md) antes de modificar viajes o lugares.
 
+## Actualizar lugares desde ChatGPT en el móvil
+
+Abre Codex desde ChatGPT y selecciona el repositorio `designjorgerodriguez-svg/app_viajes_personal`, rama `main`. Puedes iniciar cada cambio con este texto:
+
+```text
+Trabaja en el repositorio designjorgerodriguez-svg/app_viajes_personal, rama main.
+Lee primero AGENTS.md, docs/DATA_MODEL.md y docs/CONTENT_WORKFLOW.md.
+Después realiza este cambio: [describe aquí los lugares que quieres añadir, actualizar o retirar permanentemente del catálogo].
+No inventes datos; verifica las fuentes, conserva los ID existentes, valida los JSON y publica el cambio en GitHub.
+```
+
+Los viajes se localizan desde `src/data/trips/index.json` y sus lugares están en `src/data/trips/*.json`. Las categorías disponibles están en `src/data/categories.json`.
+
 ## Arquitectura
 
 ```text
