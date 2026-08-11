@@ -190,8 +190,7 @@ function renderPlaceMarker(
   const icon = document.createElement('span')
   icon.className = 'waypoint-marker__icon'
   icon.innerHTML = staticIcon(<CategoryIcon category={category} size={17} strokeWidth={2.35} />)
-  pin.append(icon)
-  element.append(pin)
+  element.append(pin, icon)
 
   if (state?.favorite || state?.visited) {
     const badges = document.createElement('span')
