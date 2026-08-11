@@ -48,6 +48,8 @@ No inventes datos; verifica las fuentes, conserva los ID existentes, valida los 
 
 Los viajes se localizan desde `src/data/trips/index.json` y sus lugares están en `src/data/trips/*.json`. Las categorías disponibles están en `src/data/categories.json`.
 
+El repositorio y la web publicada son dos estados distintos. Subir un cambio a `main` no actualiza automáticamente `brujula-viajes-personal.designjorgerodriguez.chatgpt.site`: después hay que publicar una nueva versión mediante OpenAI Sites. La aplicación no utiliza GitHub Pages actualmente.
+
 ## Arquitectura
 
 ```text
@@ -70,7 +72,7 @@ El contenido vive en JSON versionado. Stadia está aislado mediante adaptadores;
 
 ## Privacidad y credenciales
 
-- GitHub Pages sirve una web pública: no debe considerarse un control de acceso.
+- OpenAI Sites sirve una web pública: no debe considerarse un control de acceso.
 - Ningún secreto debe guardarse en el repositorio ni en archivos JSON.
 - Las credenciales visibles en el navegador solo pueden ser claves públicas restringidas por dominio.
 - Supabase no se activará sin revisar antes autenticación y políticas RLS.

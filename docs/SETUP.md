@@ -46,9 +46,11 @@ Todo valor con prefijo `VITE_` es visible para quien abra la web. La clave públ
 
 Se añadirá después de completar los estados locales. Antes de crear tablas o políticas se explicará el riesgo de permitir escrituras sin autenticación. No se aplicarán políticas públicas permisivas sin confirmación expresa.
 
-## GitHub Pages
+## Publicación actual
 
-Se configurará cuando la aplicación local sea estable. El despliegue necesitará un `base` adecuado al nombre del repositorio y una acción de GitHub. GitHub Pages publica archivos accesibles por URL y no debe tratarse como una barrera de privacidad.
+La aplicación se publica con OpenAI Sites en `brujula-viajes-personal.designjorgerodriguez.chatgpt.site`. GitHub conserva el contenido fuente, pero un cambio en `main` no actualiza por sí solo la versión de Sites. La aplicación no utiliza GitHub Pages actualmente.
+
+Si en el futuro se migra a un alojamiento conectado directamente a GitHub, habrá que configurar su acción de despliegue, ajustar `base` si el sitio vive en una subruta y autorizar el nuevo dominio en Stadia Maps.
 
 ## Probar la PWA
 
