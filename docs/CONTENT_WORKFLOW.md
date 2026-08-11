@@ -6,6 +6,8 @@ Este documento es la guía principal para Codex y otros agentes. Antes de editar
 
 No inventar información. Si coordenadas, precio, normas sobre perros, URLs o cualquier otro dato no se pueden verificar, dejar el campo vacío, usar `null`, `[]` o `dogAccess: "unknown"` según corresponda.
 
+El archivo final es una excepción para `tips`: cada lugar debe incluir al menos un consejo de visita verificado. Si todavía no se ha localizado, mantener el lugar pendiente y no validarlo como terminado.
+
 ## Añadir un nuevo viaje
 
 1. Crear `src/data/trips/<id-del-viaje>.json` con `id` y `places`.
@@ -39,8 +41,9 @@ No cambiar el `id` de una categoría ya utilizada. Para cambiar el texto visible
 3. Crear un ID permanente, descriptivo y único.
 4. Copiar un lugar existente como plantilla y sustituir todos sus valores.
 5. Mantener todos los campos del esquema aunque estén vacíos.
-6. Añadir el objeto a `places` sin reordenar innecesariamente el resto del archivo.
-7. Comprobar coordenadas, categoría, URLs y unicidad del ID.
+6. Añadir al menos un consejo de visita verificado en `tips`.
+7. Añadir el objeto a `places` sin reordenar innecesariamente el resto del archivo.
+8. Comprobar coordenadas, categoría, URLs y unicidad del ID.
 
 Plantilla segura:
 
@@ -115,5 +118,6 @@ Nunca volver a crear el lugar con un ID nuevo para recuperarlo.
 - `categoryId` existente.
 - Coordenadas verificadas y dentro de rango.
 - Campos desconocidos vacíos, `null`, `[]` o `unknown`.
+- Al menos un consejo de visita verificado por lugar.
 - Ninguna clave privada ni dato sensible.
 - La aplicación compila.

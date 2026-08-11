@@ -60,6 +60,7 @@ export function PlaceDetails({
   const visibleRoute = route ?? routePreview
   const routeIsApproximate = !route || route.approximate
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
+  const adviceHasWarningTone = Boolean(place.price) || place.dogAccess !== 'allowed'
   const routeDescription = locationLoading && route
     ? 'La línea verde ya está visible; actualizando tu posición…'
     : route
@@ -158,12 +159,10 @@ export function PlaceDetails({
           ) : null}
         </div>
 
-        {place.tips.length > 0 ? (
-          <div className="tips-box">
-            <Lightbulb size={18} />
-            <div><strong>Conviene saber</strong>{place.tips.map((tip) => <p key={tip}>{tip}</p>)}</div>
-          </div>
-        ) : null}
+        <div className="tips-box" data-warning={adviceHasWarningTone}>
+          <Lightbulb size={18} />
+          <div><strong>Consejo para la visita</strong>{place.tips.map((tip) => <p key={tip}>{tip}</p>)}</div>
+        </div>
 
         <button className="delete-place-button" onClick={confirmDelete} type="button">
           <Trash2 size={16} /> Ocultar lugar

@@ -42,7 +42,6 @@ interface MapScreenProps {
 
 const locationMessages: Partial<Record<GeolocationStatus, string>> = {
   loading: 'Buscando tu ubicación…',
-  success: 'Ubicación activa',
   denied: 'Permiso de ubicación denegado',
   unavailable: 'Ubicación no disponible',
   timeout: 'No se pudo obtener tu ubicación a tiempo',

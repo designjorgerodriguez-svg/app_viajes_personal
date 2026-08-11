@@ -1,4 +1,4 @@
-import { Check, PawPrint, Star } from 'lucide-react'
+import { Check, Lightbulb, PawPrint, Star } from 'lucide-react'
 import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categoryById } from '../../data'
 import type { PlaceUserState, TripPlace } from '../../types/data'
@@ -19,6 +19,7 @@ const dogLabels = {
 
 export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardProps) {
   const category = categoryById[place.categoryId]
+  const adviceHasWarningTone = Boolean(place.price) || place.dogAccess !== 'allowed'
   return (
     <article className="place-card">
       <button
@@ -51,6 +52,13 @@ export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardP
       >
         <Star size={19} fill={state.favorite ? 'currentColor' : 'none'} />
       </button>
+      <div className="place-card__advice" data-warning={adviceHasWarningTone}>
+        <Lightbulb size={15} aria-hidden="true" />
+        <span>
+          <strong>Consejo</strong>
+          {place.tips.map((tip) => <small key={tip}>{tip}</small>)}
+        </span>
+      </div>
     </article>
   )
 }

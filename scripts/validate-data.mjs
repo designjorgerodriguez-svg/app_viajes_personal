@@ -34,6 +34,9 @@ for (const file of files) {
     if (!['allowed', 'conditional', 'not-allowed', 'unknown'].includes(place.dogAccess)) {
       errors.push(`${place.id}: estado de perros no válido`)
     }
+    if (!Array.isArray(place.tips) || place.tips.length === 0 || place.tips.some((tip) => typeof tip !== 'string' || !tip.trim())) {
+      errors.push(`${place.id}: debe incluir al menos un consejo de visita`)
+    }
     const imageFields = [place.imageUrl, place.imageSourceUrl, place.imageAttribution, place.alt]
     const completedImageFields = imageFields.filter((value) => typeof value === 'string' && value.trim()).length
     if (completedImageFields !== 0 && completedImageFields !== imageFields.length) {

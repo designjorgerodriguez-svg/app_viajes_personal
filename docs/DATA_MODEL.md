@@ -77,7 +77,7 @@ Cada viaje contiene su ID y sus lugares.
       "imageAttribution": "",
       "alt": "",
       "description": "",
-      "tips": [],
+      "tips": ["Consejo de visita verificado"],
       "price": null,
       "dogAccess": "unknown",
       "dogNotes": "",
@@ -100,7 +100,7 @@ Los valores del ejemplo muestran el formato, no constituyen todavía datos verif
 - `latitude`, `longitude`: números; nunca texto. Deben provenir de una fuente fiable.
 - `imageUrl`, `imageSourceUrl`, `imageAttribution`, `alt`: pueden ser cadenas vacías. Si existe imagen, los cuatro deben completarse. `imageAttribution` conserva autoría y licencia en formato breve.
 - `description`: resumen factual breve; puede estar vacío.
-- `tips`: lista de consejos verificados. Usar `[]` si no hay consejos.
+- `tips`: lista con al menos un consejo de visita verificado. Todas las fichas deben mostrar esta sección.
 - `price`: `null` si es gratuito, desconocido o no procede. Para pago usar `{"label":"...","amount":0,"currency":"EUR"}`; `amount` puede omitirse si solo existe un texto oficial.
 - `dogAccess`: `allowed`, `conditional`, `not-allowed` o `unknown`.
 - `dogNotes`: condiciones o explicación; cadena vacía si no existen.
