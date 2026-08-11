@@ -264,6 +264,43 @@
           "value": "VisitMadrid · Jardines Reales de Aranjuez"
         }
       ]
+    },
+    {
+      "id": "es-mad-rascafria-penalara",
+      "tripId": "pais-vasco-frances",
+      "name": "Pico de Peñalara",
+      "locality": "Rascafría",
+      "categoryId": "hiking",
+      "latitude": 40.850014,
+      "longitude": -3.956008,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cima_de_Pe%C3%B1alara._Parque_nacional_de_la_Sierra_de_Guadarrama._Espa%C3%B1a%2C_Spain.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Cima_de_Pe%C3%B1alara._Parque_nacional_de_la_Sierra_de_Guadarrama._Espa%C3%B1a%2C_Spain.jpg",
+      "imageAttribution": "Carlos Teixidor Cadenas · CC BY 4.0",
+      "alt": "Cima de Peñalara con el vértice geodésico y paisaje de alta montaña",
+      "description": "Peñalara es la cumbre más alta de la Sierra de Guadarrama y de la Comunidad de Madrid, con 2.428 metros de altitud. Se encuentra dentro del Parque Nacional de la Sierra de Guadarrama y su entorno conserva destacados relieves y lagunas de origen glaciar.",
+      "tips": [
+        "La ruta circular de referencia desde Puerto de Los Cotos ronda los 14 km y unos 650 m de desnivel; revisa la meteorología y lleva material adecuado para montaña.",
+        "El macizo tiene un cupo máximo diario de 945 visitantes y el aparcamiento de Los Cotos está limitado a 250 vehículos; en fines de semana conviene comprobar disponibilidad antes de desplazarse."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Las mascotas pueden acceder, pero deben ir siempre atadas. No deben entrar en lagunas, charcas, riachuelos ni otros cursos de agua del macizo, por su especial sensibilidad ecológica.",
+      "officialSourceUrl": "https://www.parquenacionalsierraguadarrama.es/cv-penalara",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.850014%2C-3.956008",
+      "additionalInfo": [
+        {
+          "label": "Altitud",
+          "value": "2.428 m"
+        },
+        {
+          "label": "Acceso habitual",
+          "value": "Puerto de Los Cotos"
+        },
+        {
+          "label": "Ruta de referencia",
+          "value": "Circular de unos 14 km · unos 650 m de desnivel"
+        }
+      ]
     }
   ]
 }
