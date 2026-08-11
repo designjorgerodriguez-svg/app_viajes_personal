@@ -1,4 +1,4 @@
-import { ChevronUp, House, Map, MapPinned, Settings, Star, X } from 'lucide-react'
+import { ChevronUp, Map, MapPinned, Settings, Star, X } from 'lucide-react'
 import type { NavigationSection } from '../../types/navigation'
 
 interface BottomNavigationProps {
@@ -13,7 +13,7 @@ const items: Array<{
   label: string
   icon: typeof Map
 }> = [
-  { id: 'map', label: 'Mapa', icon: House },
+  { id: 'map', label: 'Mapa', icon: Map },
   { id: 'places', label: 'Lugares', icon: MapPinned },
   { id: 'favorites', label: 'Favoritos', icon: Star },
   { id: 'settings', label: 'Configuración', icon: Settings },
