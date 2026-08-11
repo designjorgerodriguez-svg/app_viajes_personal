@@ -80,7 +80,7 @@
   height: 26px;
   color: #fff;
   background: var(--color-primary-strong);
-  border: 0;
+  border: 3px solid var(--color-petrol);
   border-radius: 22px 22px 0 0;
   box-shadow: 0 -5px 16px rgb(20 80 60 / 20%);
 }
@@ -1494,12 +1494,12 @@
 .waypoint-marker__badge--visited {
   width: 19px;
   height: 19px;
-  color: var(--color-primary-strong);
-  background: #fff;
+  color: #fff;
+  background: var(--color-green);
   border: 2px solid #fff;
   border-radius: 7px;
   box-shadow:
-    0 0 0 1px rgb(var(--color-primary-rgb) / 70%),
+    0 0 0 1px var(--color-green),
     0 3px 7px rgb(22 35 34 / 24%);
 }
 
