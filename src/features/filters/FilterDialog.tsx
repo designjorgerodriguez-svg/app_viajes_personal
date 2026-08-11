@@ -1,4 +1,4 @@
-import { Check, Heart, RotateCcw, X } from 'lucide-react'
+import { Check, RotateCcw, Star, X } from 'lucide-react'
 import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categories } from '../../data'
 import type { PlaceFilters } from './placeFilters'
@@ -63,9 +63,10 @@ export function FilterDialog({ filters, onChange, onClose }: FilterDialogProps) 
           className="favorite-filter"
           data-active={filters.favoritesOnly}
           onClick={() => onChange({ ...filters, favoritesOnly: !filters.favoritesOnly })}
+          aria-pressed={filters.favoritesOnly}
           type="button"
         >
-          <Heart size={18} fill={filters.favoritesOnly ? 'currentColor' : 'none'} />
+          <Star size={18} fill={filters.favoritesOnly ? 'currentColor' : 'none'} />
           Solo favoritos
           {filters.favoritesOnly ? <Check size={17} /> : null}
         </button>
