@@ -64,6 +64,16 @@ export function MapScreen(props: MapScreenProps) {
     setDetailsCompact(false)
   }, [props.selectedPlace?.id])
 
+  const closePlaceDetails = () => {
+    if (detailsCompact && props.selectedPlace) {
+      mapRef.current?.focusCoordinate({
+        latitude: props.selectedPlace.latitude,
+        longitude: props.selectedPlace.longitude,
+      })
+    }
+    props.onSelectPlace(null)
+  }
+
   return (
     <section className="map-screen" aria-label="Mapa del viaje">
       <TravelMap
@@ -151,7 +161,7 @@ export function MapScreen(props: MapScreenProps) {
           route={props.route}
           routePreview={routePreview}
           state={props.getPlaceState(props.selectedPlace.id)}
-          onClose={() => props.onSelectPlace(null)}
+          onClose={closePlaceDetails}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}
           onExpand={() => setDetailsCompact(false)}
           onRoute={() => {

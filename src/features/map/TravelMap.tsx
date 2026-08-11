@@ -31,6 +31,7 @@ interface TravelMapProps {
 }
 
 export interface TravelMapHandle {
+  focusCoordinate: (coordinate: Coordinate) => void
   zoomIn: () => void
   zoomOut: () => void
 }
@@ -248,6 +249,10 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
   snapshotRef.current = props
 
   useImperativeHandle(ref, () => ({
+    focusCoordinate: (coordinate) => mapRef.current?.easeTo({
+      center: [coordinate.longitude, coordinate.latitude],
+      zoom: Math.max(mapRef.current.getZoom(), 15),
+    }),
     zoomIn: () => mapRef.current?.zoomIn(),
     zoomOut: () => mapRef.current?.zoomOut(),
   }), [])
