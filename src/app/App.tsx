@@ -6,7 +6,7 @@ import { FavoritesScreen } from '../features/favorites/FavoritesPreview'
 import { EMPTY_FILTERS, filterPlaces, placeIsInBounds, type PlaceFilters } from '../features/filters/placeFilters'
 import { MapScreen } from '../features/map/MapScreen'
 import { PlacesScreen } from '../features/places/PlacesPreview'
-import { TripsScreen } from '../features/trips/TripsPreview'
+import { SettingsScreen } from '../features/settings/SettingsScreen'
 import { useGeolocation } from '../hooks/useGeolocation'
 import { usePlaceStates } from '../hooks/usePlaceStates'
 import { createGoogleMapsDirectionsUrl } from '../services/maps/googleMapsDirectionsService'
@@ -325,8 +325,8 @@ function App() {
             onToggleFavorite={placeStates.toggleFavorite}
           />
         </div>
-        <div className="app-view" data-active={activeSection === 'trips'}>
-          <TripsScreen
+        <div className="app-view" data-active={activeSection === 'settings'}>
+          <SettingsScreen
             placeCountByTrip={placeCountByTrip}
             trips={trips}
             onOpenTrip={(tripId) => { selectTrip(tripId); setActiveSection('map') }}

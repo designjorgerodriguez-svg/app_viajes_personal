@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, Heart, Map, MapPinned, Route } from 'lucide-react'
+import { ChevronUp, House, Map, MapPinned, Settings, Star, X } from 'lucide-react'
 import type { NavigationSection } from '../../types/navigation'
 
 interface BottomNavigationProps {
@@ -13,10 +13,10 @@ const items: Array<{
   label: string
   icon: typeof Map
 }> = [
-  { id: 'map', label: 'Mapa', icon: Map },
+  { id: 'map', label: 'Mapa', icon: House },
   { id: 'places', label: 'Lugares', icon: MapPinned },
-  { id: 'favorites', label: 'Favoritos', icon: Heart },
-  { id: 'trips', label: 'Viajes', icon: Route },
+  { id: 'favorites', label: 'Favoritos', icon: Star },
+  { id: 'settings', label: 'Configuración', icon: Settings },
 ]
 
 export function BottomNavigation({
@@ -27,7 +27,6 @@ export function BottomNavigation({
 }: BottomNavigationProps) {
   const navigate = (section: NavigationSection) => {
     onNavigate(section)
-    if (window.matchMedia('(max-width: 919px)').matches) onCollapsedChange(true)
   }
 
   return (
@@ -40,7 +39,7 @@ export function BottomNavigation({
         aria-expanded={!collapsed}
         aria-label={collapsed ? 'Mostrar menú principal' : 'Ocultar menú principal'}
       >
-        {collapsed ? <ChevronUp size={18} strokeWidth={2.5} /> : <ChevronDown size={16} strokeWidth={2.4} />}
+        {collapsed ? <ChevronUp size={17} strokeWidth={2.6} /> : <X size={22} strokeWidth={2.5} />}
       </button>
       <div className="bottom-nav__items" id="main-navigation-items" aria-hidden={collapsed || undefined}>
         <div className="brand-mark" aria-hidden="true">
@@ -61,9 +60,12 @@ export function BottomNavigation({
               aria-label={label}
             >
               <span className="nav-icon">
-                <Icon size={21} strokeWidth={isActive ? 2.4 : 1.9} />
+                <Icon
+                  fill={id === 'favorites' && isActive ? 'currentColor' : 'none'}
+                  size={21}
+                  strokeWidth={isActive ? 2.4 : 1.9}
+                />
               </span>
-              <span>{label}</span>
             </button>
           )
         })}

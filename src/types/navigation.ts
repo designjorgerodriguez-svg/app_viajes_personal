@@ -1,1 +1,1 @@
-export type NavigationSection = 'map' | 'places' | 'favorites' | 'trips'
+export type NavigationSection = 'map' | 'places' | 'favorites' | 'settings'
