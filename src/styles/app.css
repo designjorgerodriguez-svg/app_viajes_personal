@@ -881,6 +881,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 45%;
 }
 
 .place-card__category {
@@ -1800,7 +1801,7 @@
 
 .place-details__cover {
   position: relative;
-  height: clamp(146px, 21svh, 160px);
+  height: clamp(190px, 28svh, 230px);
   margin: 0 0 10px;
   overflow: hidden;
   background: var(--color-surface-muted);
@@ -1811,7 +1812,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 45%;
 }
 
 .place-details__cover figcaption {

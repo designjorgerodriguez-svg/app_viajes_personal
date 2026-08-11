@@ -109,10 +109,10 @@
       "categoryId": "village",
       "latitude": 43.34058,
       "longitude": -1.44847,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Espelette%20Village.jpg?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Espelette_Village.jpg",
-      "imageAttribution": "Wikimedia Commons · CC BY-SA 3.0 / CC BY 2.5",
-      "alt": "Casas tradicionales y calle del pueblo de Espelette",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Espelette.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Espelette.jpg",
+      "imageAttribution": "Anne-Liam · CC BY-SA 4.0",
+      "alt": "Vista luminosa del pueblo de Espelette y sus casas tradicionales",
       "description": "Pueblo labortano conocido por el Piment d’Espelette y por sus casas tradicionales de fachadas blancas con entramados rojos.",
       "tips": [
         "Buena parada para probar cocina local y comprar productos de pimiento de Espelette."
@@ -303,10 +303,10 @@
       "categoryId": "village",
       "latitude": 43.306764,
       "longitude": -1.498918,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ainhoa%2C%20Pyr%C3%A9n%C3%A9es-Atlantiques.jpg",
-      "imageAttribution": "Spiggot · CC BY-SA 3.0",
-      "alt": "Plaza y frontón de Ainhoa",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ainhoa%20rue%20principale.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ainhoa_rue_principale.jpg",
+      "imageAttribution": "Harrieta171 · CC BY-SA 3.0",
+      "alt": "Calle principal de Ainhoa con sus casas tradicionales vascas",
       "description": "Pequeña villa vasca conocida por su calle principal de casas tradicionales de los siglos XVII y XVIII.",
       "tips": [
         "Es una parada corta y muy fotogénica; recórrela a pie sin necesidad de dedicarle medio día."
@@ -566,10 +566,10 @@
       "categoryId": "beach",
       "latitude": 43.5994671,
       "longitude": -1.4724452,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Labenne-plage%2001.JPG?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Labenne-plage%2001.JPG",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Labenne-plage%2014.JPG?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Labenne-plage_14.JPG",
       "imageAttribution": "Traumrune · CC BY-SA 3.0",
-      "alt": "Playa de Labenne-Océan",
+      "alt": "Amplia playa de Labenne-Océan con arena, olas y horizonte atlántico",
       "description": "Playa atlántica amplia, con dunas y acceso directo desde Labenne-Océan.",
       "tips": [
         "En verano, con perro, aléjate del sector de baño vigilado y sigue la señalización local."
@@ -630,10 +630,10 @@
       "categoryId": "beach",
       "latitude": 43.7999923,
       "longitude": -1.4086102,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Messanges%20111.jpg?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Messanges_111.jpg",
-      "imageAttribution": "Didier belin · CC BY-SA 3.0",
-      "alt": "Playa de arena y dunas en Messanges",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Messanges%20%281%29.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Messanges_%281%29.jpg",
+      "imageAttribution": "loewensprung · CC BY 2.0",
+      "alt": "Playa de Messanges con dunas, arena y océano Atlántico",
       "description": "Gran playa de arena al sur de Messanges, con dunas, surf y un entorno poco urbanizado.",
       "tips": [
         "Es una de las opciones sencillas para playa con perro por tener una norma más clara que otros arenales."
