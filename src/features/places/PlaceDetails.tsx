@@ -175,11 +175,7 @@ export function PlaceDetails({
         {place.imageUrl ? (
           <figure className="place-details__cover">
             <img alt={place.alt} decoding="async" src={place.imageUrl} />
-            <figcaption>
-              <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
-                {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
-              </a>
-            </figcaption>
+            {place.imageAttribution ? <figcaption>{place.imageAttribution}</figcaption> : null}
           </figure>
         ) : null}
         {place.description ? <p className="place-description">{place.description}</p> : null}
@@ -244,12 +240,6 @@ export function PlaceDetails({
             <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
           </button>
         )}
-        {place.officialSourceUrl ? (
-          <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
-            <ExternalLink size={16} />
-            <span>Fuente</span>
-          </a>
-        ) : null}
       </div>
       {routeError ? <p className="inline-error" role="alert">{routeError}</p> : null}
       {routeGoogleMapsUrl || place.googleMapsUrl ? (
