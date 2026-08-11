@@ -130,28 +130,36 @@ async function calculateExactRoadOrder(
   destinations: Coordinate[],
   signal?: AbortSignal,
 ) {
-  const finalDestinationIndex = destinations.length - 1
   const candidateOrders = permutations(
-    destinations.slice(0, finalDestinationIndex).map((_, index) => index),
-  ).map((order) => [...order, finalDestinationIndex])
-
-  const candidates = await Promise.all(
-    candidateOrders.map(async (order) => {
-      try {
-        const response = await requestDrivingRoute(
-          [origin, ...order.map((index) => destinations[index])],
-          signal,
-        )
-        return { order, response, durationSeconds: response.trip.summary.time }
-      } catch (error) {
-        if (signal?.aborted) throw error
-        return null
-      }
-    }),
+    destinations.map((_, index) => index),
   )
 
+  const candidates: Array<{
+    order: number[]
+    response: StadiaRouteResponse
+    durationSeconds: number
+  }> = []
+  const batchSize = 4
+
+  for (let index = 0; index < candidateOrders.length; index += batchSize) {
+    const batch = await Promise.all(
+      candidateOrders.slice(index, index + batchSize).map(async (order) => {
+        try {
+          const response = await requestDrivingRoute(
+            [origin, ...order.map((destinationIndex) => destinations[destinationIndex])],
+            signal,
+          )
+          return { order, response, durationSeconds: response.trip.summary.time }
+        } catch (error) {
+          if (signal?.aborted) throw error
+          return null
+        }
+      }),
+    )
+    candidates.push(...batch.filter((candidate) => candidate !== null))
+  }
+
   return candidates
-    .filter((candidate) => candidate !== null)
     .sort((first, second) => first.durationSeconds - second.durationSeconds)[0] ?? null
 }
 
@@ -160,10 +168,7 @@ async function calculateRoadAwareOrder(
   destinations: Coordinate[],
   signal?: AbortSignal,
 ) {
-  const finalDestinationIndex = destinations.length - 1
-  const remainingIndexes = destinations
-    .slice(0, finalDestinationIndex)
-    .map((_, index) => index)
+  const remainingIndexes = destinations.map((_, index) => index)
   const orderedIndexes: number[] = []
   let currentLocation = origin
 
@@ -213,7 +218,7 @@ async function calculateRoadAwareOrder(
     remainingIndexes.splice(remainingIndexes.indexOf(nextIndex), 1)
   }
 
-  orderedIndexes.push(...remainingIndexes, finalDestinationIndex)
+  orderedIndexes.push(...remainingIndexes)
   return orderedIndexes
 }
 
@@ -226,7 +231,7 @@ export async function calculateOptimizedDrivingRoute(
     throw new Error('Añade al menos un destino para calcular la ruta.')
   }
 
-  if (destinations.length >= 3 && destinations.length <= 4) {
+  if (destinations.length >= 2 && destinations.length <= 4) {
     const exactRoute = await calculateExactRoadOrder(origin, destinations, signal)
     if (exactRoute) {
       return {
@@ -236,7 +241,7 @@ export async function calculateOptimizedDrivingRoute(
     }
   }
 
-  const orderedDestinationIndexes = destinations.length >= 3
+  const orderedDestinationIndexes = destinations.length >= 2
     ? await calculateRoadAwareOrder(origin, destinations, signal)
     : destinations.map((_, index) => index)
   const orderedDestinations = orderedDestinationIndexes.map((index) => destinations[index])
