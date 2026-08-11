@@ -219,6 +219,58 @@ function App() {
       })
   }
 
+  const removePlaceFromRoute = (placeId: string) => {
+    if (
+      !geolocation.coordinate
+      || !routePlaceIds.includes(placeId)
+      || routeStatus === 'loading'
+    ) return
+
+    const previousPlaceIds = routePlaceIds
+    const previousOrderedPlaceIds = orderedRoutePlaceIds
+    const previousRoute = activeRoute
+    const nextPlaceIds = routePlaceIds.filter((id) => id !== placeId)
+
+    if (nextPlaceIds.length === 0) {
+      hideRoute()
+      return
+    }
+
+    const destinations = nextPlaceIds
+      .map((id) => activePlaces.find((place) => place.id === id))
+      .filter((place): place is TripPlace => Boolean(place))
+    if (destinations.length !== nextPlaceIds.length) {
+      setRouteStatus('error')
+      setRouteError('No se han podido localizar todas las paradas de la ruta.')
+      return
+    }
+
+    const controller = new AbortController()
+    activeRouteRequestRef.current?.abort()
+    activeRouteRequestRef.current = controller
+    setRoutePlaceIds(nextPlaceIds)
+    setOrderedRoutePlaceIds(previousOrderedPlaceIds.filter((id) => id !== placeId))
+    setPendingRouteId(null)
+    setRouteStatus('loading')
+    setRouteError('')
+
+    void calculateOptimizedDrivingRoute(geolocation.coordinate, destinations, controller.signal)
+      .then((result) => {
+        if (controller.signal.aborted) return
+        setActiveRoute(result.route)
+        setOrderedRoutePlaceIds(result.orderedDestinationIndexes.map((index) => nextPlaceIds[index]))
+        setRouteStatus('success')
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        setActiveRoute(previousRoute)
+        setRoutePlaceIds(previousPlaceIds)
+        setOrderedRoutePlaceIds(previousOrderedPlaceIds)
+        setRouteStatus('error')
+        setRouteError(error instanceof Error ? error.message : 'No se ha podido recalcular la ruta.')
+      })
+  }
+
   const hideRoute = () => {
     activeRouteRequestRef.current?.abort()
     setActiveRoute(null)
@@ -299,6 +351,7 @@ function App() {
             onDeletePlace={deletePlace}
             onMapError={setMapError}
             onHideRoute={hideRoute}
+            onRemovePlaceFromRoute={removePlaceFromRoute}
             onRequestLocation={geolocation.requestLocation}
             onRequestRoute={requestRoute}
             onSelectPlace={selectMapPlace}

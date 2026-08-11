@@ -8,6 +8,7 @@ interface RouteStopsDetailsProps {
   routeLoading: boolean
   routePlaces: TripPlace[]
   onCollapse: () => void
+  onRemoveStop: (placeId: string) => void
   onRemoveRoute: () => void
 }
 
@@ -17,6 +18,7 @@ export function RouteStopsDetails({
   routeLoading,
   routePlaces,
   onCollapse,
+  onRemoveStop,
   onRemoveRoute,
 }: RouteStopsDetailsProps) {
   return (
@@ -63,11 +65,26 @@ export function RouteStopsDetails({
             <li className="route-stop-entry" key={place.id}>
               <div className="route-stop-leg">
                 <span aria-hidden="true" />
-                <p>{leg ? `≈ ${leg.distanceKm.toFixed(1)} km · ${leg.durationMinutes} min` : 'Tramo pendiente'}</p>
+                <p>
+                  {routeLoading
+                    ? 'Recalculando…'
+                    : leg
+                      ? `≈ ${leg.distanceKm.toFixed(1)} km · ${leg.durationMinutes} min`
+                      : 'Tramo pendiente'}
+                </p>
               </div>
               <div className="route-stop">
                 <span className="route-stop__marker" style={{ background: category.color }}>{index + 1}</span>
                 <span><strong>{place.name}</strong><small>{place.locality}</small></span>
+                <button
+                  className="route-stop__remove"
+                  disabled={routeLoading}
+                  onClick={() => onRemoveStop(place.id)}
+                  type="button"
+                  aria-label={`Eliminar ${place.name} de la ruta`}
+                >
+                  <X size={16} strokeWidth={2.4} />
+                </button>
               </div>
             </li>
           )

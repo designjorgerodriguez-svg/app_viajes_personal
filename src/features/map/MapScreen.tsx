@@ -42,6 +42,7 @@ interface MapScreenProps {
   onDeletePlace: (placeId: string) => void
   onHideRoute: () => void
   onMapError: (message: string) => void
+  onRemovePlaceFromRoute: (placeId: string) => void
   onRequestLocation: () => void
   onRequestRoute: (place: TripPlace) => void
   onSelectPlace: (placeId: string | null) => void
@@ -106,6 +107,18 @@ export function MapScreen(props: MapScreenProps) {
     setDetailsCompact(true)
     setShowRouteOverview(false)
     props.onRequestRoute(props.selectedPlace)
+  }
+
+  const removeRouteStop = (placeId: string) => {
+    const remainingPlaces = props.routePlaces.filter((place) => place.id !== placeId)
+    if (props.selectedPlace?.id === placeId) {
+      props.onSelectPlace(remainingPlaces[0]?.id ?? null)
+    }
+    if (remainingPlaces.length <= 1) {
+      setShowRouteOverview(false)
+      setDetailsCompact(true)
+    }
+    props.onRemovePlaceFromRoute(placeId)
   }
 
   return (
@@ -202,6 +215,7 @@ export function MapScreen(props: MapScreenProps) {
             setDetailsCompact(true)
             setShowRouteOverview(false)
           }}
+          onRemoveStop={removeRouteStop}
           onRemoveRoute={removeRoute}
         />
       ) : props.selectedPlace ? (
