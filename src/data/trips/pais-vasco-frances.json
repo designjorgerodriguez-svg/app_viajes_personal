@@ -598,10 +598,10 @@
       "categoryId": "beach",
       "latitude": 43.577416,
       "longitude": -1.48817,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20d%27Ondres.JPG?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20d%27Ondres.JPG",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20d%27Ondres.JPG?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage_d%27Ondres.JPG",
       "imageAttribution": "Benoît Prieur · CC0",
-      "alt": "Playa de Ondres junto al Atlántico",
+      "alt": "Playa de Ondres con arena, dunas y océano Atlántico",
       "description": "Playa oceánica rodeada de dunas y bosque, con un ambiente más natural que las playas urbanas.",
       "tips": [
         "En verano, usa el acceso norte con perro y mantente fuera de la zona reglamentada."
@@ -694,10 +694,10 @@
       "categoryId": "beach",
       "latitude": 44.4583359,
       "longitude": -1.2543617,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20Biscarrosse.JPG?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20Biscarrosse.JPG",
-      "imageAttribution": "KoS · dominio público",
-      "alt": "Playa atlántica de Biscarrosse",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Biscarrosse%20Plage%202.JPG?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Biscarrosse_Plage_2.JPG",
+      "imageAttribution": "Echtner · CC BY 3.0",
+      "alt": "Playa atlántica de Biscarrosse con arena, océano y cielo abierto",
       "description": "Playa del extremo norte de Biscarrosse-Plage, con bosque y dunas detrás del arenal.",
       "tips": [
         "En verano camina hacia el norte desde el acceso principal hasta salir claramente de la zona vigilada."
@@ -726,10 +726,10 @@
       "categoryId": "beach",
       "latitude": 44.4425923,
       "longitude": -1.256915,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plage%20Biscarrosse.JPG?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Plage%20Biscarrosse.JPG",
-      "imageAttribution": "KoS · dominio público",
-      "alt": "Playa atlántica de Biscarrosse",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Biscarrosse%20beaches%2C%20looking%20south%2C%202015.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Biscarrosse_beaches%2C_looking_south%2C_2015.jpg",
+      "imageAttribution": "DimiTalen · CC0",
+      "alt": "Vista amplia de las playas de Biscarrosse mirando hacia el sur",
       "description": "Playa del extremo sur de Biscarrosse-Plage, con dunas y amplios sectores fuera de la zona vigilada.",
       "tips": [
         "En verano camina hacia el sur desde el puesto de vigilancia para llegar al sector apto."
@@ -758,10 +758,10 @@
       "categoryId": "swimming",
       "latitude": 43.886756,
       "longitude": -1.319433,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lac%20de%20L%C3%A9on%20Landes%20France.jpg?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Lac%20de%20L%C3%A9on%20Landes%20France.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sunset%20Lac%20de%20L%C3%A9on%20Landes.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sunset_Lac_de_L%C3%A9on_Landes.jpg",
       "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
-      "alt": "Panorámica del lago de Léon",
+      "alt": "Atardecer sobre el lago de Léon con reflejos en el agua",
       "description": "Playa de agua dulce en la orilla sur del lago de Léon, rodeada de bosque y del espacio natural del lago.",
       "tips": [
         "Buena alternativa al Atlántico para un baño más tranquilo; respeta los accesos y zonas protegidas."
@@ -790,10 +790,10 @@
       "categoryId": "swimming",
       "latitude": 43.9015605,
       "longitude": -1.3110476,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lac%20de%20L%C3%A9on%20Landes%20France.jpg?width=1200",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Lac%20de%20L%C3%A9on%20Landes%20France.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lac%20de%20L%C3%A9on%20Landes%20France.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Lac_de_L%C3%A9on_Landes_France.jpg",
       "imageAttribution": "VIGNA christian · CC BY-SA 4.0",
-      "alt": "Panorámica del lago de Léon",
+      "alt": "Panorámica amplia del lago de Léon rodeado de vegetación",
       "description": "Pequeña playa lacustre al norte del lago de Léon, más recogida y protegida del viento.",
       "tips": [
         "Si buscas un baño más tranquilo y menos concurrido que la playa principal de Léon, esta puede encajar mejor."
