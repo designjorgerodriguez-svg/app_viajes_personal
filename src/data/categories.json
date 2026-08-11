@@ -1,0 +1,51 @@
+[
+  {
+    "id": "village",
+    "label": "Pueblo",
+    "icon": "House",
+    "color": "#8D6B52",
+    "group": "urban"
+  },
+  {
+    "id": "city",
+    "label": "Ciudad",
+    "icon": "Building2",
+    "color": "#536D75",
+    "group": "urban"
+  },
+  {
+    "id": "nature",
+    "label": "Naturaleza",
+    "icon": "Trees",
+    "color": "#2B8A57",
+    "group": "nature"
+  },
+  {
+    "id": "beach",
+    "label": "Playa",
+    "icon": "Waves",
+    "color": "#1589A6",
+    "group": "water"
+  },
+  {
+    "id": "swimming",
+    "label": "Baño",
+    "icon": "Droplets",
+    "color": "#168CA0",
+    "group": "water"
+  },
+  {
+    "id": "hiking",
+    "label": "Senderismo / Montaña",
+    "icon": "Mountain",
+    "color": "#4D7D46",
+    "group": "nature"
+  },
+  {
+    "id": "monument",
+    "label": "Monumento",
+    "icon": "Landmark",
+    "color": "#B86747",
+    "group": "heritage"
+  }
+]

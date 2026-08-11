@@ -1,75 +1,61 @@
-import { Heart, MapPin, Search, SlidersHorizontal, Trees, Waves } from 'lucide-react'
+import { Search, SlidersHorizontal } from 'lucide-react'
+import { useState } from 'react'
+import { categoryById } from '../../data'
+import type { PlaceUserState, TripPlace } from '../../types/data'
+import { FilterDialog } from '../filters/FilterDialog'
+import type { PlaceFilters } from '../filters/placeFilters'
+import { PlaceCard } from './PlaceCard'
 
-const cards = [
-  {
-    name: 'Rocher de la Vierge',
-    place: 'Biarritz',
-    category: 'Monumento',
-    tone: 'terracotta',
-    note: 'Perros con condiciones',
-    icon: MapPin,
-  },
-  {
-    name: 'Plage du Centre',
-    place: 'Bidart',
-    category: 'Playa',
-    tone: 'blue',
-    note: 'Consulta las condiciones',
-    icon: Waves,
-  },
-  {
-    name: 'Bosque de Ahetze',
-    place: 'Ahetze',
-    category: 'Naturaleza',
-    tone: 'green',
-    note: 'Sin información sobre perros',
-    icon: Trees,
-  },
-]
+interface PlacesScreenProps {
+  filters: PlaceFilters
+  places: TripPlace[]
+  visibleCount: number
+  getPlaceState: (placeId: string) => PlaceUserState
+  onChangeFilters: (filters: PlaceFilters) => void
+  onOpenPlace: (placeId: string) => void
+  onToggleFavorite: (placeId: string) => void
+}
 
-export function PlacesPreview() {
+export function PlacesScreen({ filters, places, visibleCount, getPlaceState, onChangeFilters, onOpenPlace, onToggleFavorite }: PlacesScreenProps) {
+  const [filterOpen, setFilterOpen] = useState(false)
   return (
     <section className="content-screen">
       <header className="content-header">
-        <span className="eyebrow">En el mapa ahora</span>
+        <span className="eyebrow">País Vasco francés</span>
         <h1>Lugares</h1>
-        <p>3 lugares visibles en la zona de Biarritz y Bidart.</p>
+        <p>{places.length} resultados · {visibleCount} visibles en el mapa actual.</p>
       </header>
 
       <div className="content-toolbar">
         <label className="search-field search-field--page">
           <Search size={19} aria-hidden="true" />
-          <input type="search" placeholder="Buscar por nombre" />
+          <input onChange={(event) => onChangeFilters({ ...filters, query: event.target.value })} placeholder="Buscar por nombre o localidad" type="search" value={filters.query} />
         </label>
-        <button className="filter-button filter-button--square" type="button" aria-label="Abrir filtros">
+        <button className="filter-button filter-button--square" onClick={() => setFilterOpen(true)} type="button" aria-label="Abrir filtros">
           <SlidersHorizontal size={19} />
         </button>
       </div>
 
-      <div className="active-filter-row" aria-label="Filtros activos">
-        <button type="button" data-active="true">Todos</button>
-        <button type="button">Costa</button>
-        <button type="button">Naturaleza</button>
+      <div className="active-filter-row" aria-label="Resumen de filtros">
+        <button data-active={filters.categoryIds.length === 0 && !filters.favoritesOnly} onClick={() => onChangeFilters({ ...filters, categoryIds: [], favoritesOnly: false })} type="button">Todos</button>
+        {filters.favoritesOnly ? <button data-active="true" type="button">Favoritos</button> : null}
+        {filters.categoryIds.map((categoryId) => <button data-active="true" key={categoryId} type="button">{categoryById[categoryId]?.label ?? categoryId}</button>)}
       </div>
 
-      <div className="place-list">
-        {cards.map(({ name, place, category, tone, note, icon: Icon }) => (
-          <article className="place-card" key={name}>
-            <div className={`place-card__visual place-card__visual--${tone}`} aria-hidden="true">
-              <Icon size={25} />
-            </div>
-            <div className="place-card__content">
-              <span className={`category-label category-label--${tone}`}>{category}</span>
-              <h2>{name}</h2>
-              <p>{place}</p>
-              <span className="place-card__note">{note}</span>
-            </div>
-            <button className="icon-button icon-button--ghost" type="button" aria-label={`Añadir ${name} a favoritos`}>
-              <Heart size={19} />
-            </button>
-          </article>
-        ))}
-      </div>
+      {places.length > 0 ? (
+        <div className="place-list">
+          {places.map((place) => (
+            <PlaceCard key={place.id} place={place} state={getPlaceState(place.id)} onOpen={() => onOpenPlace(place.id)} onToggleFavorite={() => onToggleFavorite(place.id)} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty-state empty-state--compact">
+          <Search className="empty-state__standalone-icon" size={28} />
+          <h2>No hay coincidencias</h2><p>Prueba otra búsqueda o limpia los filtros.</p>
+        </div>
+      )}
+
+      {filterOpen ? <FilterDialog filters={filters} onChange={onChangeFilters} onClose={() => setFilterOpen(false)} /> : null}
     </section>
   )
 }

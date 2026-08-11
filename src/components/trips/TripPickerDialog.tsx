@@ -1,10 +1,16 @@
-import { Check, Search, X } from 'lucide-react'
+import { Check, X } from 'lucide-react'
+import type { TripSummary } from '../../types/data'
 
 interface TripPickerDialogProps {
+  activeTripId: string
+  trips: TripSummary[]
   onClose: () => void
+  onSelect: (tripId: string) => void
 }
 
-export function TripPickerDialog({ onClose }: TripPickerDialogProps) {
+const statusLabels = { upcoming: 'Próximo', active: 'En curso', past: 'Pasado' }
+
+export function TripPickerDialog({ activeTripId, trips, onClose, onSelect }: TripPickerDialogProps) {
   return (
     <div className="dialog-backdrop" role="presentation" onMouseDown={onClose}>
       <section
@@ -15,33 +21,30 @@ export function TripPickerDialog({ onClose }: TripPickerDialogProps) {
         role="dialog"
       >
         <header className="dialog-header">
-          <div>
-            <span className="eyebrow">Viaje activo</span>
-            <h2 id="trip-dialog-title">Tus viajes</h2>
-          </div>
-          <button className="icon-button" onClick={onClose} type="button" aria-label="Cerrar">
+          <div><span className="eyebrow">Viaje activo</span><h2 id="trip-dialog-title">Tus viajes</h2></div>
+          <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar">
             <X size={20} />
           </button>
         </header>
 
-        <label className="search-field">
-          <Search size={18} aria-hidden="true" />
-          <input type="search" placeholder="Buscar viaje" />
-        </label>
-
-        <div className="trip-option" data-selected="true">
-          <div>
-            <strong>País Vasco Francés</strong>
-            <span>Agosto 2026 · Próximo</span>
-          </div>
-          <span className="trip-option__check" aria-label="Seleccionado">
-            <Check size={17} />
-          </span>
+        <div className="trip-options">
+          {trips.map((trip) => {
+            const selected = trip.id === activeTripId
+            return (
+              <button
+                className="trip-option"
+                data-selected={selected}
+                key={trip.id}
+                onClick={() => { onSelect(trip.id); onClose() }}
+                type="button"
+              >
+                <span><strong>{trip.name}</strong><small>{trip.periodLabel} · {statusLabels[trip.status]}</small></span>
+                {selected ? <span className="trip-option__check" aria-label="Seleccionado"><Check size={17} /></span> : null}
+              </button>
+            )
+          })}
         </div>
-
-        <p className="dialog-hint">
-          Los siguientes viajes aparecerán aquí cuando se añadan a los datos del proyecto.
-        </p>
+        <p className="dialog-hint">Los próximos viajes aparecerán aquí al añadirlos a los datos privados del proyecto.</p>
       </section>
     </div>
   )

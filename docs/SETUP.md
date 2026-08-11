@@ -1,6 +1,6 @@
 # Configuración del proyecto
 
-## Fase 1: desarrollo local
+## Desarrollo local
 
 No se necesita ninguna cuenta externa ni clave API.
 
@@ -17,23 +17,30 @@ pnpm install
 pnpm dev
 ```
 
-El terminal mostrará una dirección local. Abrirla en el navegador para usar la aplicación. En Codex Desktop se puede emplear el runtime de Node incluido aunque Node no esté instalado globalmente.
+El terminal mostrará una dirección local. Ábrela en el navegador para usar la aplicación. En Codex Desktop se puede emplear el runtime de Node incluido aunque Node no esté instalado globalmente.
+
+## Stadia Maps
+
+El mapa y las rutas funcionan en `localhost` y `127.0.0.1` sin cuenta ni clave. La aplicación usa autenticación por dominio en el navegador, de modo que no incluye secretos de Stadia.
+
+Al publicar la aplicación habrá que realizar estas acciones externas:
+
+1. Crear o abrir una cuenta de Stadia Maps.
+2. Añadir el dominio exacto de la web publicada en **Property Management**.
+3. Comprobar el mapa y una ruta desde ese dominio.
+
+Documentación oficial: [autenticación](https://docs.stadiamaps.com/authentication/), [estilo Outdoors](https://docs.stadiamaps.com/map-styles/outdoors/) y [rutas](https://docs.stadiamaps.com/routing/standard-routing/).
 
 ## Variables de entorno previstas
 
-Las integraciones se añadirán más adelante. Cuando existan, el repositorio incluirá `.env.example` sin valores secretos y el archivo local `.env.local` quedará ignorado por Git.
+Stadia no necesita una variable en el navegador. Supabase solo se configurará si se activa la sincronización privada:
 
 ```dotenv
-VITE_STADIA_API_KEY=
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
-Todo valor con prefijo `VITE_` es visible para quien abra la web. La clave de Stadia deberá restringirse por dominio y la clave pública de Supabase dependerá de políticas RLS seguras.
-
-## Stadia Maps
-
-Se configurará en la fase de mapas/routing. En ese momento se comprobará la documentación oficial vigente y se guiará una sola acción externa cada vez: crear o abrir la cuenta, restringir el dominio, copiar la clave y guardarla localmente.
+Todo valor con prefijo `VITE_` es visible para quien abra la web. La clave pública de Supabase dependerá de políticas RLS seguras.
 
 ## Supabase
 
@@ -41,7 +48,7 @@ Se añadirá después de completar los estados locales. Antes de crear tablas o 
 
 ## GitHub Pages
 
-Se configurará al final, cuando la aplicación local sea estable. El despliegue necesitará un `base` adecuado al nombre del repositorio y una acción de GitHub. GitHub Pages publica archivos accesibles por URL y no debe tratarse como una barrera de privacidad.
+Se configurará cuando la aplicación local sea estable. El despliegue necesitará un `base` adecuado al nombre del repositorio y una acción de GitHub. GitHub Pages publica archivos accesibles por URL y no debe tratarse como una barrera de privacidad.
 
 ## Probar la PWA
 
@@ -52,4 +59,4 @@ pnpm build
 pnpm preview
 ```
 
-La instalación en iPhone, Android y escritorio se comprobará en la fase final. La PWA conservará la interfaz y los datos ya descargados, pero no prometerá mapas ni rutas completas sin conexión.
+La PWA conserva la interfaz y los datos ya descargados, pero no promete mapas ni rutas completas sin conexión.

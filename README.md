@@ -1,20 +1,21 @@
 # Brújula
 
-Aplicación web privada y móvil para preparar viajes, consultar lugares sobre el mapa y conservar pequeños estados personales como favoritos, visitados y lugares ocultos.
+Aplicación web privada y móvil para preparar viajes, consultar lugares sobre el mapa y conservar estados personales como favoritos, visitados y lugares ocultos.
 
 ## Estado actual
 
-La Fase 1 contiene:
+La aplicación contiene:
 
 - React, TypeScript y Vite.
-- Arquitectura inicial separada por funcionalidades.
-- Diseño responsive con mapa como pantalla principal.
+- Diseño responsive con MapLibre como pantalla principal.
 - Navegación Mapa, Lugares, Favoritos y Viajes.
-- Selector de viaje y estados visuales interactivos de demostración.
+- Mapas Stadia Outdoors y satélite, zoom, pantalla completa y geolocalización.
+- Búsqueda local, filtros por categoría, agrupación de marcadores y fichas detalladas.
+- Favoritos, visitados y borrado lógico persistentes en el dispositivo.
+- Rutas en coche desde la ubicación actual y enlace externo a Google Maps.
+- Un primer viaje con nueve lugares contrastados en fuentes oficiales.
 - Manifest, service worker y caché de la interfaz para PWA.
 - Aviso de conexión offline.
-
-El mapa mostrado en esta fase es una maqueta visual. MapLibre, Stadia Maps, los datos reales y la persistencia se incorporan en las siguientes fases.
 
 ## Desarrollo local
 
@@ -26,6 +27,7 @@ pnpm dev
 Comprobaciones antes de guardar cambios:
 
 ```bash
+pnpm validate:data
 pnpm typecheck
 pnpm lint
 pnpm build
@@ -39,10 +41,10 @@ Consulta [docs/SETUP.md](docs/SETUP.md) para la puesta en marcha y [docs/CONTENT
 src/
   app/             entrada y estado global
   components/      piezas de interfaz reutilizables
-  data/            categorías e información de viajes (Fase 2)
-  features/        mapa, lugares, viajes, favoritos y PWA
+  data/            categorías e información verificada de viajes
+  features/        mapa, lugares, viajes, favoritos y filtros
   hooks/           lógica reutilizable de React
-  services/        adaptadores de Stadia, geolocalización y Supabase
+  services/        adaptadores de Stadia, persistencia y futura sincronización
   styles/          tokens visuales y estilos globales
   types/           contratos TypeScript compartidos
 docs/
@@ -51,7 +53,7 @@ docs/
   SETUP.md
 ```
 
-El contenido vivirá en JSON versionado. Stadia y Supabase se conectarán mediante adaptadores para que ninguna API externa quede acoplada a los componentes.
+El contenido vive en JSON versionado. Stadia está aislado mediante adaptadores; Supabase se añadirá del mismo modo si se activa la sincronización privada.
 
 ## Privacidad y credenciales
 
