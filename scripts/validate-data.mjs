@@ -40,12 +40,16 @@ for (const file of files) {
     const imageFields = [place.imageUrl, place.imageSourceUrl, place.imageAttribution, place.alt]
     const completedImageFields = imageFields.filter((value) => typeof value === 'string' && value.trim()).length
     if (completedImageFields !== 0 && completedImageFields !== imageFields.length) {
-      errors.push(`${place.id}: la imagen requiere URL local, fuente, atribución y texto alternativo`)
+      errors.push(`${place.id}: la imagen requiere URL, fuente, atribución y texto alternativo`)
     }
     if (completedImageFields === imageFields.length) {
-      if (!place.imageUrl.startsWith('/')) errors.push(`${place.id}: imageUrl debe ser una ruta local pública`)
+      const isLocalImage = place.imageUrl.startsWith('/')
+      const isRemoteImage = place.imageUrl.startsWith('https://')
+      if (!isLocalImage && !isRemoteImage) {
+        errors.push(`${place.id}: imageUrl debe ser una ruta local pública o una URL HTTPS`)
+      }
       if (!place.imageSourceUrl.startsWith('https://')) errors.push(`${place.id}: imageSourceUrl debe usar HTTPS`)
-      if (place.imageUrl.startsWith('/')) {
+      if (isLocalImage) {
         try {
           await access(join(process.cwd(), 'public', place.imageUrl.slice(1)))
         } catch {
