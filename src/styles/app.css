@@ -55,24 +55,41 @@
 
 .bottom-nav__toggle {
   position: absolute;
-  top: -34px;
+  top: 2px;
   left: 50%;
   z-index: 2;
   display: grid;
-  width: 72px;
-  height: 38px;
-  padding: 2px 0 0;
-  color: #fff;
-  background: var(--color-primary-strong);
+  width: 44px;
+  height: 28px;
+  padding: 0;
+  color: var(--color-primary-strong);
+  background: transparent;
   border: 0;
-  border-radius: 38px 38px 0 0;
-  box-shadow: 0 -5px 16px rgb(20 80 60 / 16%);
+  border-radius: 10px;
+  box-shadow: none;
   transform: translateX(-50%);
+  transition: top 180ms ease, width 180ms ease, height 180ms ease, color 180ms ease, background 180ms ease;
   place-items: center;
 }
 
 .bottom-nav[data-collapsed='true'] .bottom-nav__toggle {
-  box-shadow: 0 -7px 20px rgb(20 80 60 / 22%);
+  top: -27px;
+  width: 48px;
+  height: 31px;
+  color: #fff;
+  background: var(--color-primary-strong);
+  border-radius: 25px 25px 0 0;
+  box-shadow: 0 -5px 16px rgb(20 80 60 / 20%);
+}
+
+@media (hover: hover) {
+  .bottom-nav:not([data-collapsed='true']) .bottom-nav__toggle:hover {
+    background: var(--color-mint);
+  }
+
+  .bottom-nav[data-collapsed='true'] .bottom-nav__toggle:hover {
+    filter: brightness(1.06);
+  }
 }
 
 .brand-mark {
