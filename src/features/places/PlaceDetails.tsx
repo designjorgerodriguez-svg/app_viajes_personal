@@ -187,7 +187,7 @@ export function PlaceDetails({
           {place.price ? (
             <div data-warning="true">
               <Ticket size={18} />
-              <span><strong>{place.price.label}</strong></span>
+              <span><small>{place.price.label}</small></span>
             </div>
           ) : null}
         </div>
