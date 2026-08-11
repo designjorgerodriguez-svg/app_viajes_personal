@@ -60,6 +60,10 @@ interface MarkerValue {
 
 const EMPTY_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] }
 
+function getBrandGreen() {
+  return getComputedStyle(document.documentElement).getPropertyValue('--color-primary-strong').trim() || '#00D47F'
+}
+
 function routeToGeoJson(route: RouteResult | null): GeoJSON.FeatureCollection {
   if (!route) return EMPTY_COLLECTION
   return {
@@ -85,6 +89,7 @@ function userLocationToGeoJson(location: Coordinate | null): GeoJSON.FeatureColl
 }
 
 function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
+  const brandGreen = getBrandGreen()
   map.addSource('route', { type: 'geojson', data: routeToGeoJson(snapshot.route) })
   map.addLayer({
     id: 'route-outline',
@@ -97,7 +102,7 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'route-line',
     type: 'line',
     source: 'route',
-    paint: { 'line-color': '#079A61', 'line-width': 7, 'line-opacity': 1 },
+    paint: { 'line-color': brandGreen, 'line-width': 7, 'line-opacity': 1 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
   })
 
@@ -106,7 +111,7 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     id: 'user-location-halo',
     type: 'circle',
     source: 'user-location',
-    paint: { 'circle-color': '#1589A6', 'circle-radius': 23, 'circle-opacity': 0.16 },
+    paint: { 'circle-color': brandGreen, 'circle-radius': 23, 'circle-opacity': 0.16 },
   })
 }
 
@@ -179,7 +184,7 @@ function renderPlaceMarker(
   const selected = snapshot.selectedPlaceId === place.id
   element.className = 'waypoint-marker'
   element.dataset.selected = String(selected)
-  element.style.setProperty('--marker-color', category?.color ?? '#286F67')
+  element.style.setProperty('--marker-color', 'var(--color-primary-strong)')
   element.setAttribute(
     'aria-label',
     `Abrir ${place.name}${state?.favorite ? ', favorito' : ''}${state?.visited ? ', visitado' : ''}`,
