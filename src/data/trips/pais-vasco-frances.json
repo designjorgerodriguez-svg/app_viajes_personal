@@ -207,65 +207,6 @@
       "additionalInfo": []
     },
     {
-      "id": "es-mad-madrid-puerta-sol",
-      "tripId": "pais-vasco-frances",
-      "name": "Puerta del Sol",
-      "locality": "Madrid",
-      "categoryId": "city",
-      "latitude": 40.416889,
-      "longitude": -3.703611,
-      "imageUrl": "/images/places/puerta-del-sol-madrid.jpg",
-      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Puerta_del_Sol_(Madrid)_18.jpg",
-      "imageAttribution": "Luis García (Zaqarbal) · CC BY-SA 3.0",
-      "alt": "Vista de la Puerta del Sol con la Real Casa de Correos y una fuente en primer plano",
-      "description": "Plaza peatonal del centro de Madrid donde se encuentran la Real Casa de Correos, la placa del Kilómetro Cero y la estatua del Oso y el Madroño.",
-      "tips": ["Aprovecha el recorrido peatonal para localizar la placa del Kilómetro Cero y el Oso y el Madroño."],
-      "price": null,
-      "dogAccess": "unknown",
-      "dogNotes": "",
-      "officialSourceUrl": "https://www.esmadrid.com/informacion-turistica/puerta-del-sol",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.416889%2C-3.703611",
-      "additionalInfo": [
-        {
-          "label": "Uso",
-          "value": "Punto de prueba para ubicación, distancia y recorridos"
-        }
-      ]
-    },
-    {
-      "id": "es-mad-aranjuez-jardines",
-      "tripId": "pais-vasco-frances",
-      "name": "Jardines de Aranjuez",
-      "locality": "Aranjuez",
-      "categoryId": "nature",
-      "latitude": 40.041097,
-      "longitude": -3.589661,
-      "imageUrl": "",
-      "imageSourceUrl": "",
-      "imageAttribution": "",
-      "alt": "",
-      "description": "Conjunto de jardines históricos del Real Sitio de Aranjuez. El Jardín del Príncipe, de 150 hectáreas, reúne grandes paseos arbolados, fuentes, el Estanque de los Chinescos y el paisaje de la ribera del Tajo.",
-      "tips": [
-        "En agosto los jardines abren a las 08:30; hasta el 15 de agosto cierran a las 21:30 y desde el 16 a las 20:30.",
-        "El Jardín del Príncipe mantiene apertura parcial según el aviso vigente de Patrimonio Nacional; revisa las zonas abiertas antes de ir."
-      ],
-      "price": null,
-      "dogAccess": "conditional",
-      "dogNotes": "VisitMadrid indica que se admiten mascotas en los jardines del Príncipe y de la Isla siempre atadas con correa y respetando las normas de limpieza; revisa restricciones puntuales antes de la visita.",
-      "officialSourceUrl": "https://www.patrimonionacional.es/visita/jardines-de-aranjuez",
-      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.041097%2C-3.589661",
-      "additionalInfo": [
-        {
-          "label": "Entrada",
-          "value": "Gratuita en los jardines de la Isla y del Príncipe"
-        },
-        {
-          "label": "Fuente perros",
-          "value": "VisitMadrid · Jardines Reales de Aranjuez"
-        }
-      ]
-    },
-    {
       "id": "es-mad-rascafria-penalara",
       "tripId": "pais-vasco-frances",
       "name": "Pico de Peñalara",
