@@ -301,6 +301,43 @@
           "value": "Circular de unos 14 km · unos 650 m de desnivel"
         }
       ]
+    },
+    {
+      "id": "es-mad-la-cabrera-pico-miel",
+      "tripId": "pais-vasco-frances",
+      "name": "Pico de la Miel",
+      "locality": "La Cabrera",
+      "categoryId": "hiking",
+      "latitude": 40.879039,
+      "longitude": -3.607864,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pico_de_la_Miel_-_01.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Pico_de_la_Miel_-_01.jpg",
+      "imageAttribution": "Carlos Delgado · CC BY-SA 3.0",
+      "alt": "Pico de la Miel en la Sierra de La Cabrera",
+      "description": "Cumbre emblemática de la Sierra de La Cabrera, al norte de Madrid, con 1.392 metros de altitud. Su perfil granítico redondeado es uno de los símbolos de la zona y desde la cima se obtiene una amplia panorámica del entorno serrano.",
+      "tips": [
+        "La ruta de Sierra Norte Madrid parte junto al Centro de Iniciativas Turísticas Villa San Roque, en La Cabrera, y sigue un PR señalizado con marcas blancas y amarillas hasta la base del pico.",
+        "Se puede alcanzar la cima por sendero sin necesidad de practicar escalada; aun así, el terreno granítico exige calzado adecuado y precaución."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una norma oficial específica sobre acceso con perros para esta ruta; conviene comprobar las restricciones vigentes antes de ir.",
+      "officialSourceUrl": "https://www.sierranortemadrid.org/ruta/sierra-de-la-cabrera/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.879039%2C-3.607864",
+      "additionalInfo": [
+        {
+          "label": "Altitud",
+          "value": "1.392 m"
+        },
+        {
+          "label": "Acceso habitual",
+          "value": "La Cabrera · entorno de Villa San Roque"
+        },
+        {
+          "label": "Tipo",
+          "value": "Senderismo por terreno granítico"
+        }
+      ]
     }
   ]
 }
