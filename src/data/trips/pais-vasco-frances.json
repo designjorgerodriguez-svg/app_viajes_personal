@@ -18,9 +18,7 @@
         "Reserva con antelación en temporada alta; en verano suele haber visitas en varios idiomas."
       ],
       "price": {
-        "label": "Visita de pago",
-        "amount": 11.5,
-        "currency": "EUR"
+        "label": "Tarifas · Guiada: adulto 12,90 €, 6–13 años 5,90 €, familia 35 € · Libre: adulto 11,50 €, 6–13 años 5,30 €, familia 31 € · Parque: adulto 2,50 €, hasta 13 años gratis"
       },
       "dogAccess": "unknown",
       "dogNotes": "No he encontrado una regla oficial suficientemente clara para el acceso con perro al interior.",
@@ -150,7 +148,9 @@
         "Consulta la meteorología o la webcam antes de subir: con niebla se pierde buena parte de las vistas.",
         "Reserva con antelación en temporada alta."
       ],
-      "price": null,
+      "price": {
+        "label": "Tarifas 2026 · Clásico ida/vuelta: adulto 26 €, 4–12 años 18 €, familia 82 € · Perro 6,50 € · Privilegio: adulto 31 €, niño 22 €"
+      },
       "dogAccess": "conditional",
       "dogNotes": "La información oficial admite perros en el tren bajo condiciones; deben viajar controlados y conviene revisar la tarifa y normas vigentes antes de comprar.",
       "officialSourceUrl": "https://www.rhune.com/es/faq-3/",
@@ -506,9 +506,7 @@
         "Para visita guiada, reserva antes."
       ],
       "price": {
-        "label": "Visita guiada",
-        "amount": 15,
-        "currency": "EUR"
+        "label": "Visita + degustación · 15 € por adulto · menores de 18 años gratis"
       },
       "dogAccess": "allowed",
       "dogNotes": "La información turística consultada indica que se admiten animales; avisa al reservar una visita guiada.",
@@ -895,7 +893,9 @@
       "tips": [
         "Puede encajar como alternativa de agua dulce cerca de Bayona, aunque supone desviarse de la ruta principal."
       ],
-      "price": null,
+      "price": {
+        "label": "Playa gratis · Parque acuático 1 h: niño 10 €, adulto 12 € · Toboganes: niño 8 €, adulto 9 € · Combo: niño 15 €, adulto 18 €"
+      },
       "dogAccess": "conditional",
       "dogNotes": "La ficha oficial admite mascotas en el recinto, pero no deja claro si pueden entrar en la zona de baño o en el agua.",
       "officialSourceUrl": "https://www.tourisme64.com/activites/sames/LOIAQU064FS0003N-water-park-de-sames/",
