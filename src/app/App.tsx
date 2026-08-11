@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AppShell } from '../components/layout/AppShell'
 import { OfflineNotice } from '../components/system/OfflineNotice'
 import { tripDataById, trips } from '../data'
@@ -9,8 +9,12 @@ import { PlacesScreen } from '../features/places/PlacesPreview'
 import { TripsScreen } from '../features/trips/TripsPreview'
 import { useGeolocation } from '../hooks/useGeolocation'
 import { usePlaceStates } from '../hooks/usePlaceStates'
+import { createGoogleMapsDirectionsUrl } from '../services/maps/googleMapsDirectionsService'
 import type { MapStyleId } from '../services/maps/stadiaMapService'
-import { calculateDrivingRoute } from '../services/routing/stadiaRoutingService'
+import {
+  calculateDrivingRoute,
+  calculateOptimizedDrivingRoute,
+} from '../services/routing/stadiaRoutingService'
 import type { MapBoundsValue, RouteResult, RouteStatus, TripPlace } from '../types/data'
 import type { NavigationSection } from '../types/navigation'
 
@@ -25,11 +29,13 @@ function App() {
   const [isOnline, setIsOnline] = useState(() => navigator.onLine)
   const [route, setRoute] = useState<RouteResult | null>(null)
   const [routePlaceId, setRoutePlaceId] = useState<string | null>(null)
-  const [visibleRoutePlaceId, setVisibleRoutePlaceId] = useState<string | null>(null)
+  const [activeRoute, setActiveRoute] = useState<RouteResult | null>(null)
+  const [routePlaceIds, setRoutePlaceIds] = useState<string[]>([])
+  const [orderedRoutePlaceIds, setOrderedRoutePlaceIds] = useState<string[]>([])
   const [pendingRouteId, setPendingRouteId] = useState<string | null>(null)
   const [routeStatus, setRouteStatus] = useState<RouteStatus>('idle')
   const [routeError, setRouteError] = useState('')
-  const [routeRefreshKey, setRouteRefreshKey] = useState(0)
+  const activeRouteRequestRef = useRef<AbortController | null>(null)
   const geolocation = useGeolocation()
   const placeStates = usePlaceStates()
 
@@ -44,6 +50,13 @@ function App() {
     [filteredPlaces, mapBounds],
   )
   const selectedPlace = filteredPlaces.find((place) => place.id === selectedPlaceId) ?? null
+  const hasActiveRoute = routePlaceIds.length > 0
+  const orderedRoutePlaces = orderedRoutePlaceIds
+    .map((placeId) => activePlaces.find((place) => place.id === placeId))
+    .filter((place): place is TripPlace => Boolean(place))
+  const googleMapsRouteUrl = geolocation.coordinate && orderedRoutePlaces.length > 0
+    ? createGoogleMapsDirectionsUrl(geolocation.coordinate, orderedRoutePlaces)
+    : ''
   const favoritePlaces = activePlaces.filter((place) => {
     const state = placeStates.getState(place.id)
     return state.favorite && !state.deleted
@@ -65,12 +78,16 @@ function App() {
       setSelectedPlaceId(null)
       setRoute(null)
       setRoutePlaceId(null)
-      setVisibleRoutePlaceId(null)
+      setActiveRoute(null)
+      setRoutePlaceIds([])
+      setOrderedRoutePlaceIds([])
       setPendingRouteId(null)
+      activeRouteRequestRef.current?.abort()
     }
   }, [filteredPlaces, selectedPlaceId])
 
   useEffect(() => {
+    if (hasActiveRoute) return
     if (!selectedPlace || !geolocation.coordinate) {
       setRoute(null)
       setRoutePlaceId(null)
@@ -107,15 +124,44 @@ function App() {
       })
 
     return () => controller.abort()
-  }, [geolocation.coordinate, routeRefreshKey, selectedPlace])
+  }, [geolocation.coordinate, hasActiveRoute, selectedPlace])
 
   useEffect(() => {
-    if (!route || !routePlaceId || pendingRouteId !== routePlaceId) return
-    setVisibleRoutePlaceId(routePlaceId)
-    setPendingRouteId(null)
-  }, [pendingRouteId, route, routePlaceId])
+    if (!geolocation.coordinate || !pendingRouteId) return
+    const place = activePlaces.find((item) => item.id === pendingRouteId)
+    if (!place) return
+
+    const controller = new AbortController()
+    activeRouteRequestRef.current?.abort()
+    activeRouteRequestRef.current = controller
+    setRouteStatus('loading')
+    setRouteError('')
+
+    void calculateDrivingRoute(geolocation.coordinate, place, controller.signal)
+      .then((result) => {
+        if (controller.signal.aborted) return
+        setActiveRoute(result)
+        setRoutePlaceIds([place.id])
+        setOrderedRoutePlaceIds([place.id])
+        setPendingRouteId(null)
+        setRouteStatus('success')
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        setRouteStatus('error')
+        setRouteError(error instanceof Error ? error.message : 'No se ha podido calcular el recorrido por carretera.')
+      })
+
+    return () => controller.abort()
+  }, [activePlaces, geolocation.coordinate, pendingRouteId])
 
   const requestRoute = (place: TripPlace) => {
+    if (activeRoute && routePlaceIds.includes(place.id)) return
+    activeRouteRequestRef.current?.abort()
+    setRoutePlaceIds([place.id])
+    setOrderedRoutePlaceIds([place.id])
+    setRouteError('')
+
     if (!geolocation.coordinate) {
       setPendingRouteId(place.id)
       geolocation.requestLocation()
@@ -123,42 +169,85 @@ function App() {
     }
 
     if (route && routePlaceId === place.id) {
-      setVisibleRoutePlaceId(place.id)
+      setActiveRoute(route)
       setPendingRouteId(null)
+      setRouteStatus('success')
       return
     }
 
     setPendingRouteId(place.id)
-    if (routeStatus === 'error') setRouteRefreshKey((value) => value + 1)
+  }
+
+  const addPlaceToRoute = (place: TripPlace) => {
+    if (
+      !geolocation.coordinate
+      || routePlaceIds.length === 0
+      || routePlaceIds.includes(place.id)
+      || routeStatus === 'loading'
+    ) return
+
+    const previousPlaceIds = routePlaceIds
+    const nextPlaceIds = [...routePlaceIds, place.id]
+    const destinations = nextPlaceIds
+      .map((placeId) => activePlaces.find((item) => item.id === placeId))
+      .filter((item): item is TripPlace => Boolean(item))
+    if (destinations.length !== nextPlaceIds.length) {
+      setRouteStatus('error')
+      setRouteError('No se han podido localizar todas las paradas de la ruta.')
+      return
+    }
+
+    const controller = new AbortController()
+    activeRouteRequestRef.current?.abort()
+    activeRouteRequestRef.current = controller
+    setRoutePlaceIds(nextPlaceIds)
+    setRouteStatus('loading')
+    setRouteError('')
+
+    void calculateOptimizedDrivingRoute(geolocation.coordinate, destinations, controller.signal)
+      .then((result) => {
+        if (controller.signal.aborted) return
+        setActiveRoute(result.route)
+        setOrderedRoutePlaceIds(result.orderedDestinationIndexes.map((index) => nextPlaceIds[index]))
+        setRouteStatus('success')
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        setRoutePlaceIds(previousPlaceIds)
+        setRouteStatus('error')
+        setRouteError(error instanceof Error ? error.message : 'No se ha podido optimizar la ruta.')
+      })
   }
 
   const hideRoute = () => {
-    setVisibleRoutePlaceId(null)
+    activeRouteRequestRef.current?.abort()
+    setActiveRoute(null)
+    setRoutePlaceIds([])
+    setOrderedRoutePlaceIds([])
     setPendingRouteId(null)
+    setRouteStatus('idle')
+    setRouteError('')
   }
 
   const selectMapPlace = useCallback((placeId: string | null) => {
-    if (placeId !== selectedPlaceId) setVisibleRoutePlaceId(null)
     if (!placeId) setPendingRouteId(null)
     setSelectedPlaceId(placeId)
-  }, [selectedPlaceId])
+  }, [])
 
   const clearRoute = () => {
+    activeRouteRequestRef.current?.abort()
     setRoute(null)
     setRoutePlaceId(null)
-    setVisibleRoutePlaceId(null)
+    setActiveRoute(null)
+    setRoutePlaceIds([])
+    setOrderedRoutePlaceIds([])
     setPendingRouteId(null)
     setRouteStatus('idle')
     setRouteError('')
   }
 
   const openPlace = (placeId: string) => {
-    if (routePlaceId !== placeId) {
-      clearRoute()
-    } else {
-      setVisibleRoutePlaceId(null)
-      setPendingRouteId(null)
-    }
+    if (hasActiveRoute || routePlaceId !== placeId) clearRoute()
     setSelectedPlaceId(placeId)
     setActiveSection('map')
   }
@@ -194,15 +283,18 @@ function App() {
             mapStyle={mapStyle}
             places={filteredPlaces}
             placeStates={placeStates.states}
-            route={routePlaceId === selectedPlaceId && visibleRoutePlaceId === selectedPlaceId ? route : null}
+            route={activeRoute}
             routeError={routeError}
-            routePreview={routePlaceId === selectedPlaceId ? route : null}
+            routeGoogleMapsUrl={googleMapsRouteUrl}
+            routePlaceIds={routePlaceIds}
+            routePreview={!hasActiveRoute && routePlaceId === selectedPlaceId ? route : null}
             routeStatus={routeStatus}
             selectedPlace={selectedPlace}
             userLocation={geolocation.coordinate}
             onBoundsChange={setMapBounds}
             onChangeFilters={setFilters}
             onChangeMapStyle={setMapStyle}
+            onAddPlaceToRoute={addPlaceToRoute}
             onDeletePlace={deletePlace}
             onMapError={setMapError}
             onHideRoute={hideRoute}

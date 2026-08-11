@@ -17,11 +17,15 @@ interface StadiaRouteResponse {
   }
 }
 
-export async function calculateDrivingRoute(
-  origin: Coordinate,
-  destination: Coordinate,
+export interface OptimizedDrivingRouteResult {
+  route: RouteResult
+  orderedDestinationIndexes: number[]
+}
+
+async function requestDrivingRoute(
+  locations: Coordinate[],
   signal?: AbortSignal,
-): Promise<RouteResult> {
+) {
   let request: Response
   try {
     request = await fetch('https://api.stadiamaps.com/route/v1', {
@@ -29,10 +33,11 @@ export async function calculateDrivingRoute(
       headers: { 'Content-Type': 'application/json' },
       signal,
       body: JSON.stringify({
-        locations: [
-          { lat: origin.latitude, lon: origin.longitude, type: 'break' },
-          { lat: destination.latitude, lon: destination.longitude, type: 'break' },
-        ],
+        locations: locations.map((location) => ({
+          lat: location.latitude,
+          lon: location.longitude,
+          type: 'break',
+        })),
         costing: 'auto',
         units: 'km',
         language: 'es-ES',
@@ -55,6 +60,10 @@ export async function calculateDrivingRoute(
     throw new Error('No se ha podido calcular una ruta para esos puntos.')
   }
 
+  return response
+}
+
+function toRouteResult(response: StadiaRouteResponse): RouteResult {
   const coordinates = response.trip.legs.flatMap((leg, legIndex) => {
     const legCoordinates = polyline
       .decode(leg.shape, 6)
@@ -79,5 +88,152 @@ export async function calculateDrivingRoute(
       west: summary.min_lon,
     },
     approximate: false,
+  }
+}
+
+export async function calculateDrivingRoute(
+  origin: Coordinate,
+  destination: Coordinate,
+  signal?: AbortSignal,
+): Promise<RouteResult> {
+  const response = await requestDrivingRoute([origin, destination], signal)
+  return toRouteResult(response)
+}
+
+function coordinateDistanceSquared(from: Coordinate, to: Coordinate) {
+  const latitudeScale = Math.cos(((from.latitude + to.latitude) / 2) * Math.PI / 180)
+  const latitude = from.latitude - to.latitude
+  const longitude = (from.longitude - to.longitude) * latitudeScale
+  return latitude * latitude + longitude * longitude
+}
+
+function permutations(values: number[]): number[][] {
+  if (values.length <= 1) return [values]
+  return values.flatMap((value, index) => (
+    permutations(values.filter((_, valueIndex) => valueIndex !== index))
+      .map((remainder) => [value, ...remainder])
+  ))
+}
+
+async function calculateExactRoadOrder(
+  origin: Coordinate,
+  destinations: Coordinate[],
+  signal?: AbortSignal,
+) {
+  const finalDestinationIndex = destinations.length - 1
+  const candidateOrders = permutations(
+    destinations.slice(0, finalDestinationIndex).map((_, index) => index),
+  ).map((order) => [...order, finalDestinationIndex])
+
+  const candidates = await Promise.all(
+    candidateOrders.map(async (order) => {
+      try {
+        const response = await requestDrivingRoute(
+          [origin, ...order.map((index) => destinations[index])],
+          signal,
+        )
+        return { order, response, durationSeconds: response.trip.summary.time }
+      } catch (error) {
+        if (signal?.aborted) throw error
+        return null
+      }
+    }),
+  )
+
+  return candidates
+    .filter((candidate) => candidate !== null)
+    .sort((first, second) => first.durationSeconds - second.durationSeconds)[0] ?? null
+}
+
+async function calculateRoadAwareOrder(
+  origin: Coordinate,
+  destinations: Coordinate[],
+  signal?: AbortSignal,
+) {
+  const finalDestinationIndex = destinations.length - 1
+  const remainingIndexes = destinations
+    .slice(0, finalDestinationIndex)
+    .map((_, index) => index)
+  const orderedIndexes: number[] = []
+  let currentLocation = origin
+
+  while (remainingIndexes.length > 1) {
+    const candidates = await Promise.all(
+      remainingIndexes.map(async (destinationIndex) => {
+        try {
+          const response = await requestDrivingRoute(
+            [currentLocation, destinations[destinationIndex]],
+            signal,
+          )
+          return {
+            destinationIndex,
+            durationSeconds: response.trip.summary.time,
+          }
+        } catch (error) {
+          if (signal?.aborted) throw error
+          return { destinationIndex, durationSeconds: Number.POSITIVE_INFINITY }
+        }
+      }),
+    )
+
+    candidates.sort((first, second) => {
+      if (first.durationSeconds !== second.durationSeconds) {
+        return first.durationSeconds - second.durationSeconds
+      }
+      return coordinateDistanceSquared(
+        currentLocation,
+        destinations[first.destinationIndex],
+      ) - coordinateDistanceSquared(
+        currentLocation,
+        destinations[second.destinationIndex],
+      )
+    })
+
+    const nextIndex = Number.isFinite(candidates[0].durationSeconds)
+      ? candidates[0].destinationIndex
+      : remainingIndexes.reduce((closestIndex, destinationIndex) => (
+          coordinateDistanceSquared(currentLocation, destinations[destinationIndex])
+            < coordinateDistanceSquared(currentLocation, destinations[closestIndex])
+            ? destinationIndex
+            : closestIndex
+        ))
+
+    orderedIndexes.push(nextIndex)
+    currentLocation = destinations[nextIndex]
+    remainingIndexes.splice(remainingIndexes.indexOf(nextIndex), 1)
+  }
+
+  orderedIndexes.push(...remainingIndexes, finalDestinationIndex)
+  return orderedIndexes
+}
+
+export async function calculateOptimizedDrivingRoute(
+  origin: Coordinate,
+  destinations: Coordinate[],
+  signal?: AbortSignal,
+): Promise<OptimizedDrivingRouteResult> {
+  if (destinations.length === 0) {
+    throw new Error('Añade al menos un destino para calcular la ruta.')
+  }
+
+  if (destinations.length >= 3 && destinations.length <= 4) {
+    const exactRoute = await calculateExactRoadOrder(origin, destinations, signal)
+    if (exactRoute) {
+      return {
+        route: toRouteResult(exactRoute.response),
+        orderedDestinationIndexes: exactRoute.order,
+      }
+    }
+  }
+
+  const orderedDestinationIndexes = destinations.length >= 3
+    ? await calculateRoadAwareOrder(origin, destinations, signal)
+    : destinations.map((_, index) => index)
+  const orderedDestinations = orderedDestinationIndexes.map((index) => destinations[index])
+  const response = await requestDrivingRoute([origin, ...orderedDestinations], signal)
+
+  return {
+    route: toRouteResult(response),
+    orderedDestinationIndexes,
   }
 }

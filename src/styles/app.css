@@ -1958,6 +1958,17 @@
   box-shadow: inset 3px 0 0 var(--color-primary-strong);
 }
 
+.route-summary--add-stop {
+  color: #fff;
+  background: var(--color-primary-strong);
+  border-color: var(--color-primary-strong);
+}
+
+.route-summary--add-stop > svg,
+.route-summary--add-stop small {
+  color: #fff;
+}
+
 .route-summary--footer:disabled {
   cursor: wait;
   opacity: 0.65;

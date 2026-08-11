@@ -26,12 +26,15 @@ interface MapScreenProps {
   placeStates: PlaceStateMap
   route: RouteResult | null
   routeError: string
+  routeGoogleMapsUrl: string
+  routePlaceIds: string[]
   routePreview: RouteResult | null
   routeStatus: RouteStatus
   selectedPlace: TripPlace | null
   userLocation: Coordinate | null
   getPlaceState: (placeId: string) => PlaceUserState
   onBoundsChange: (bounds: MapBoundsValue) => void
+  onAddPlaceToRoute: (place: TripPlace) => void
   onChangeFilters: (filters: PlaceFilters) => void
   onChangeMapStyle: (style: MapStyleId) => void
   onDeletePlace: (placeId: string) => void
@@ -57,13 +60,11 @@ export function MapScreen(props: MapScreenProps) {
   const routeStartViewRef = useRef<TravelMapViewState | null>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [detailsCompact, setDetailsCompact] = useState(false)
-  const [routeSessionActive, setRouteSessionActive] = useState(false)
+  const routeActive = props.routePlaceIds.length > 0
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
 
   useEffect(() => {
     setDetailsCompact(false)
-    setRouteSessionActive(false)
-    routeStartViewRef.current = null
   }, [props.selectedPlace?.id])
 
   const restoreViewBeforeRoute = () => {
@@ -76,15 +77,13 @@ export function MapScreen(props: MapScreenProps) {
 
   const removeRoute = () => {
     props.onHideRoute()
-    setRouteSessionActive(false)
     setDetailsCompact(false)
     restoreViewBeforeRoute()
   }
 
   const closePlaceDetails = () => {
-    if (routeSessionActive) {
+    if (routeActive) {
       props.onHideRoute()
-      setRouteSessionActive(false)
       restoreViewBeforeRoute()
     }
     props.onSelectPlace(null)
@@ -92,9 +91,8 @@ export function MapScreen(props: MapScreenProps) {
 
   const requestRoute = () => {
     if (!props.selectedPlace) return
-    if (!routeSessionActive) {
+    if (!routeActive) {
       routeStartViewRef.current = mapRef.current?.getViewState() ?? null
-      setRouteSessionActive(true)
     }
     setDetailsCompact(true)
     props.onRequestRoute(props.selectedPlace)
@@ -115,7 +113,7 @@ export function MapScreen(props: MapScreenProps) {
         onBoundsChange={props.onBoundsChange}
         onMapError={props.onMapError}
         onSelectPlace={(placeId) => {
-          if (routeSessionActive && placeId !== props.selectedPlace?.id) removeRoute()
+          if (routeActive && placeId !== props.selectedPlace?.id) setDetailsCompact(false)
           props.onSelectPlace(placeId)
         }}
       />
@@ -188,10 +186,17 @@ export function MapScreen(props: MapScreenProps) {
           place={props.selectedPlace}
           route={props.route}
           routeError={props.routeError}
+          routeGoogleMapsUrl={props.routeGoogleMapsUrl || props.selectedPlace.googleMapsUrl}
           routeLoading={props.routeStatus === 'loading'}
           routePreview={props.routePreview}
-          routeActive={routeSessionActive}
+          routeActive={routeActive}
+          routeStopCount={props.routePlaceIds.length}
+          placeInRoute={props.routePlaceIds.includes(props.selectedPlace.id)}
           state={props.getPlaceState(props.selectedPlace.id)}
+          onAddToRoute={() => {
+            setDetailsCompact(true)
+            props.onAddPlaceToRoute(props.selectedPlace!)
+          }}
           onCollapse={() => setDetailsCompact(true)}
           onClose={closePlaceDetails}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}

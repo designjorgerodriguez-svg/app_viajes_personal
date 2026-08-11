@@ -6,6 +6,7 @@ import {
   CircleHelp,
   ExternalLink,
   Lightbulb,
+  ListPlus,
   LocateFixed,
   Map,
   PawPrint,
@@ -27,8 +28,12 @@ interface PlaceDetailsProps {
   route: RouteResult | null
   routeError: string
   routeActive: boolean
+  routeGoogleMapsUrl: string
   routeLoading: boolean
   routePreview: RouteResult | null
+  routeStopCount: number
+  placeInRoute: boolean
+  onAddToRoute: () => void
   onCollapse: () => void
   onClose: () => void
   onDelete: () => void
@@ -54,8 +59,12 @@ export function PlaceDetails({
   route,
   routeError,
   routeActive,
+  routeGoogleMapsUrl,
   routeLoading,
   routePreview,
+  routeStopCount,
+  placeInRoute,
+  onAddToRoute,
   onCollapse,
   onClose,
   onDelete,
@@ -75,7 +84,9 @@ export function PlaceDetails({
   const routeDescription = locationLoading && route
     ? 'La ruta sigue visible; actualizando tu posición…'
     : route
-      ? 'Recorrido por carretera visible en el mapa'
+      ? routeStopCount > 1
+        ? `${routeStopCount} paradas optimizadas · recorrido visible`
+        : 'Recorrido por carretera visible en el mapa'
       : routePreview
         ? `Destino: ${place.name} · pulsa para mostrar la ruta`
         : `Destino: ${place.name}`
@@ -90,9 +101,11 @@ export function PlaceDetails({
         <button className="place-route-peek__main" onClick={onExpand} type="button" aria-label="Mostrar ficha completa">
           <Route size={18} aria-hidden="true" />
           <span>
-            <strong>{place.name}</strong>
+            <strong>{routeStopCount > 1 ? `Ruta con ${routeStopCount} paradas` : place.name}</strong>
             <small>
-              {visibleRoute
+              {routeLoading && routeActive
+                ? 'Optimizando el orden y el recorrido…'
+                : visibleRoute
                 ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
                 : routePending
                   ? locationLoading ? 'Obteniendo tu ubicación…' : 'Calculando por carretera…'
@@ -104,10 +117,10 @@ export function PlaceDetails({
         <button className="icon-button icon-button--ghost" onClick={onRemoveRoute} type="button" aria-label="Quitar ruta del mapa">
           <X size={18} />
         </button>
-        {route && place.googleMapsUrl ? (
+        {route && routeGoogleMapsUrl ? (
           <a
             className="route-button route-button--compact"
-            href={place.googleMapsUrl}
+            href={routeGoogleMapsUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -205,29 +218,48 @@ export function PlaceDetails({
       </div>
 
       <div className="place-details__quick-actions">
-        <button
-          className="route-summary route-summary--footer"
-          data-drawn={Boolean(route)}
-          disabled={routePending}
-          onClick={onRoute}
-          type="button"
-          aria-label={route ? 'Actualizar ruta por carretera' : 'Mostrar ruta por carretera'}
-        >
-          {visibleRoute ? <Route size={18} /> : <LocateFixed size={18} />}
-          <span>
-            <strong>
-              {visibleRoute
-                ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
-                : routeLoading ? 'Calculando recorrido por carretera…' : 'Calcular distancia y recorrido'}
-            </strong>
-            <small>
-              {locationLoading
-                ? 'Obteniendo tu ubicación…'
-                : visibleRoute ? routeDescription : `Destino: ${place.name}`}
-            </small>
-          </span>
-          <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
-        </button>
+        {routeActive && !placeInRoute ? (
+          <button
+            className="route-summary route-summary--footer route-summary--add-stop"
+            disabled={routePending}
+            onClick={onAddToRoute}
+            type="button"
+            aria-label={`Añadir ${place.name} a la ruta`}
+          >
+            <ListPlus size={18} />
+            <span>
+              <strong>Añadir a la ruta</strong>
+              <small>Recalcular y optimizar {routeStopCount + 1} paradas</small>
+            </span>
+            <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
+          </button>
+        ) : (
+          <button
+            className="route-summary route-summary--footer"
+            data-drawn={Boolean(route)}
+            disabled={routePending}
+            onClick={onRoute}
+            type="button"
+            aria-label={route ? 'Plegar la ficha y mostrar la ruta' : 'Mostrar ruta por carretera'}
+          >
+            {visibleRoute ? <Route size={18} /> : <LocateFixed size={18} />}
+            <span>
+              <strong>
+                {routeLoading && routeActive
+                  ? 'Optimizando el recorrido…'
+                  : visibleRoute
+                    ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+                    : routeLoading ? 'Calculando recorrido por carretera…' : 'Calcular distancia y recorrido'}
+              </strong>
+              <small>
+                {locationLoading
+                  ? 'Obteniendo tu ubicación…'
+                  : visibleRoute ? routeDescription : `Destino: ${place.name}`}
+              </small>
+            </span>
+            <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
+          </button>
+        )}
         {place.officialSourceUrl ? (
           <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
             <ExternalLink size={16} />
@@ -236,8 +268,13 @@ export function PlaceDetails({
         ) : null}
       </div>
       {routeError ? <p className="inline-error" role="alert">{routeError}</p> : null}
-      {place.googleMapsUrl ? (
-        <a className="route-button route-button--large" href={place.googleMapsUrl} target="_blank" rel="noreferrer">
+      {routeGoogleMapsUrl || place.googleMapsUrl ? (
+        <a
+          className="route-button route-button--large"
+          href={routeGoogleMapsUrl || place.googleMapsUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Map size={19} />
           Abrir en Google Maps
           <ExternalLink size={15} />
