@@ -47,7 +47,7 @@ export function FilterDialog({ filters, onChange, onClose }: FilterDialogProps) 
             type="button"
           >
             <Star size={18} fill={filters.favoritesOnly ? 'currentColor' : 'none'} />
-            <span>Solo favoritos</span>
+            <span>Favoritos</span>
             {filters.favoritesOnly ? <Check size={17} /> : null}
           </button>
           <button

@@ -213,13 +213,13 @@ function renderPlaceMarker(
     if (state.favorite) {
       const favorite = document.createElement('span')
       favorite.className = 'waypoint-marker__badge waypoint-marker__badge--favorite'
-      favorite.innerHTML = staticIcon(<Star size={18} fill="currentColor" strokeWidth={2.2} />)
+      favorite.innerHTML = staticIcon(<Star size={20} fill="currentColor" strokeWidth={2.1} />)
       badges.append(favorite)
     }
     if (state.visited) {
       const visited = document.createElement('span')
       visited.className = 'waypoint-marker__badge waypoint-marker__badge--visited'
-      visited.innerHTML = staticIcon(<Check size={10} strokeWidth={3} />)
+      visited.innerHTML = staticIcon(<Check size={12} strokeWidth={3.2} />)
       badges.append(visited)
     }
     element.append(badges)
