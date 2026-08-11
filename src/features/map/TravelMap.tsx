@@ -2,13 +2,11 @@ import * as maplibregl from 'maplibre-gl'
 import type {
   GeoJSONSource,
   Map as MapLibreMap,
-  MapLayerMouseEvent,
-  StyleSpecification,
 } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import { categoryById } from '../../data'
-import { getStadiaStyleUrl, type MapStyleId } from '../../services/maps/stadiaMapService'
+import { getStadiaStyle, type MapStyleId } from '../../services/maps/stadiaMapService'
 import type { Coordinate, MapBoundsValue, RouteResult, TripPlace } from '../../types/data'
 
 interface TravelMapProps {
@@ -30,22 +28,6 @@ type MapPropsSnapshot = Pick<
 
 const EMPTY_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] }
 
-function placesToGeoJson(places: TripPlace[]): GeoJSON.FeatureCollection {
-  return {
-    type: 'FeatureCollection',
-    features: places.map((place) => ({
-      type: 'Feature',
-      geometry: { type: 'Point', coordinates: [place.longitude, place.latitude] },
-      properties: {
-        id: place.id,
-        name: place.name,
-        color: categoryById[place.categoryId]?.color ?? '#286F67',
-        initial: categoryById[place.categoryId]?.label.slice(0, 1) ?? 'L',
-      },
-    })),
-  }
-}
-
 function routeToGeoJson(route: RouteResult | null): GeoJSON.FeatureCollection {
   if (!route) return EMPTY_COLLECTION
   return {
@@ -66,10 +48,6 @@ function userLocationToGeoJson(location: Coordinate | null): GeoJSON.FeatureColl
   }
 }
 
-function selectedRadiusExpression(selectedPlaceId: string | null) {
-  return ['case', ['==', ['get', 'id'], selectedPlaceId ?? ''], 13, 10] as maplibregl.ExpressionSpecification
-}
-
 function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
   map.addSource('route', { type: 'geojson', data: routeToGeoJson(snapshot.route) })
   map.addLayer({
@@ -85,55 +63,6 @@ function addAppSourcesAndLayers(map: MapLibreMap, snapshot: MapPropsSnapshot) {
     source: 'route',
     paint: { 'line-color': '#0BAA77', 'line-width': 5 },
     layout: { 'line-cap': 'round', 'line-join': 'round' },
-  })
-
-  map.addSource('places', {
-    type: 'geojson',
-    data: placesToGeoJson(snapshot.places),
-    cluster: true,
-    clusterMaxZoom: 13,
-    clusterRadius: 48,
-  })
-  map.addLayer({
-    id: 'clusters',
-    type: 'circle',
-    source: 'places',
-    filter: ['has', 'point_count'],
-    paint: {
-      'circle-color': '#254E4B',
-      'circle-radius': ['step', ['get', 'point_count'], 18, 5, 22, 10, 27],
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 3,
-    },
-  })
-  map.addLayer({
-    id: 'cluster-count',
-    type: 'symbol',
-    source: 'places',
-    filter: ['has', 'point_count'],
-    layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12 },
-    paint: { 'text-color': '#ffffff' },
-  })
-  map.addLayer({
-    id: 'place-points',
-    type: 'circle',
-    source: 'places',
-    filter: ['!', ['has', 'point_count']],
-    paint: {
-      'circle-color': ['get', 'color'],
-      'circle-radius': selectedRadiusExpression(snapshot.selectedPlaceId),
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 3,
-      'circle-opacity': 0.98,
-    },
-  })
-  map.addLayer({
-    id: 'place-initials',
-    type: 'symbol',
-    source: 'places',
-    filter: ['!', ['has', 'point_count']],
-    layout: { 'text-field': ['get', 'initial'], 'text-size': 11, 'text-font': ['Noto Sans Bold'] },
-    paint: { 'text-color': '#ffffff' },
   })
 
   map.addSource('user-location', { type: 'geojson', data: userLocationToGeoJson(snapshot.userLocation) })
@@ -161,9 +90,62 @@ function setSourceData(map: MapLibreMap, sourceId: string, data: GeoJSON.Feature
   source?.setData(data)
 }
 
+interface PlaceMarkerValue {
+  element: HTMLButtonElement
+  marker: maplibregl.Marker
+}
+
+function syncPlaceMarkers(
+  map: MapLibreMap,
+  markerMap: Map<string, PlaceMarkerValue>,
+  places: TripPlace[],
+  selectedPlaceId: string | null,
+  onSelectPlace: (placeId: string) => void,
+) {
+  const activeIds = new Set(places.map((place) => place.id))
+  const localityGroups = new Map<string, TripPlace[]>()
+  places.forEach((place) => {
+    localityGroups.set(place.locality, [...(localityGroups.get(place.locality) ?? []), place])
+  })
+  markerMap.forEach(({ marker }, placeId) => {
+    if (!activeIds.has(placeId)) {
+      marker.remove()
+      markerMap.delete(placeId)
+    }
+  })
+
+  places.forEach((place) => {
+    const localityPlaces = localityGroups.get(place.locality) ?? [place]
+    const localityIndex = localityPlaces.findIndex((item) => item.id === place.id)
+    const horizontalOffset = (localityIndex - (localityPlaces.length - 1) / 2) * 44
+    let value = markerMap.get(place.id)
+    if (!value) {
+      const category = categoryById[place.categoryId]
+      const element = document.createElement('button')
+      element.className = 'travel-place-marker'
+      element.type = 'button'
+      element.setAttribute('aria-label', `Abrir ${place.name}`)
+      element.style.setProperty('--marker-color', category?.color ?? '#286F67')
+      const label = document.createElement('span')
+      label.textContent = category?.label.slice(0, 1) ?? 'L'
+      element.append(label)
+      element.addEventListener('click', () => onSelectPlace(place.id))
+      const marker = new maplibregl.Marker({ element, anchor: 'bottom' })
+        .setLngLat([place.longitude, place.latitude])
+        .addTo(map)
+      value = { element, marker }
+      markerMap.set(place.id, value)
+    }
+    value.marker.setOffset([horizontalOffset, 0])
+    value.element.dataset.selected = String(place.id === selectedPlaceId)
+  })
+}
+
 export function TravelMap(props: TravelMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MapLibreMap | null>(null)
+  const placeMarkersRef = useRef<Map<string, PlaceMarkerValue>>(new Map())
+  const appliedStyleIdRef = useRef(props.styleId)
   const snapshotRef = useRef<MapPropsSnapshot>(props)
   snapshotRef.current = props
 
@@ -174,7 +156,7 @@ export function TravelMap(props: TravelMapProps) {
     try {
       map = new maplibregl.Map({
         container: containerRef.current,
-        style: getStadiaStyleUrl(props.styleId),
+        style: getStadiaStyle(props.styleId),
         center: [-1.62, 43.42],
         zoom: 9.4,
       })
@@ -184,8 +166,36 @@ export function TravelMap(props: TravelMapProps) {
     }
 
     mapRef.current = map
+    const placeMarkers = placeMarkersRef.current
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
     map.addControl(new maplibregl.FullscreenControl(), 'bottom-right')
+
+    syncPlaceMarkers(
+      map,
+      placeMarkers,
+      snapshotRef.current.places,
+      snapshotRef.current.selectedPlaceId,
+      (placeId) => snapshotRef.current.onSelectPlace(placeId),
+    )
+    const initialCoordinates = snapshotRef.current.places.map(
+      (place) => [place.longitude, place.latitude] as [number, number],
+    )
+    if (initialCoordinates.length > 0) {
+      const bounds = initialCoordinates.reduce(
+        (value, coordinate) => value.extend(coordinate),
+        new maplibregl.LngLatBounds(initialCoordinates[0], initialCoordinates[0]),
+      )
+      map.fitBounds(bounds, {
+        padding: {
+          top: window.innerWidth < 560 ? 180 : 115,
+          right: 90,
+          bottom: 80,
+          left: 90,
+        },
+        maxZoom: 12,
+        duration: 0,
+      })
+    }
 
     const updateBounds = () => {
       const bounds = map.getBounds()
@@ -208,52 +218,17 @@ export function TravelMap(props: TravelMapProps) {
       }
     }
 
-    const handlePointClick = (event: MapLayerMouseEvent) => {
-      const feature = event.features?.[0]
-      const placeId = feature?.properties?.id as string | undefined
-      if (placeId) snapshotRef.current.onSelectPlace(placeId)
-    }
-
-    const handleClusterClick = async (event: MapLayerMouseEvent) => {
-      const feature = event.features?.[0]
-      const clusterId = feature?.properties?.cluster_id as number | undefined
-      if (clusterId === undefined || feature?.geometry.type !== 'Point') return
-      const source = map.getSource('places') as GeoJSONSource
-      const zoom = await source.getClusterExpansionZoom(clusterId)
-      map.easeTo({ center: feature.geometry.coordinates as [number, number], zoom })
-    }
-
-    const setPointer = () => { map.getCanvas().style.cursor = 'pointer' }
-    const unsetPointer = () => { map.getCanvas().style.cursor = '' }
     const handleMapError = (event: maplibregl.ErrorEvent) => {
       const message = event.error?.message
       if (message) props.onMapError(`El mapa no pudo cargar un recurso: ${message}`)
     }
-
     map.on('style.load', syncStyle)
     map.on('error', handleMapError)
     map.on('moveend', updateBounds)
-    map.on('click', 'place-points', handlePointClick)
-    map.on('click', 'clusters', handleClusterClick)
-    map.on('mouseenter', 'place-points', setPointer)
-    map.on('mouseleave', 'place-points', unsetPointer)
-    map.on('mouseenter', 'clusters', setPointer)
-    map.on('mouseleave', 'clusters', unsetPointer)
-
-    map.once('load', () => {
-      const coordinates = snapshotRef.current.places.map(
-        (place) => [place.longitude, place.latitude] as [number, number],
-      )
-      if (coordinates.length > 0) {
-        const bounds = coordinates.reduce(
-          (value, coordinate) => value.extend(coordinate),
-          new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
-        )
-        map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 })
-      }
-    })
 
     return () => {
+      placeMarkers.forEach(({ marker }) => marker.remove())
+      placeMarkers.clear()
       map.remove()
       mapRef.current = null
     }
@@ -263,22 +238,24 @@ export function TravelMap(props: TravelMapProps) {
 
   useEffect(() => {
     const map = mapRef.current
-    if (map && map.getStyle() && map.isStyleLoaded()) {
-      map.setStyle(getStadiaStyleUrl(props.styleId) as string | StyleSpecification)
+    if (map && props.styleId !== appliedStyleIdRef.current) {
+      appliedStyleIdRef.current = props.styleId
+      containerRef.current?.removeAttribute('data-ready')
+      map.setStyle(getStadiaStyle(props.styleId))
     }
   }, [props.styleId])
 
   useEffect(() => {
     const map = mapRef.current
-    if (!map?.getSource('places')) return
-    setSourceData(map, 'places', placesToGeoJson(props.places))
-  }, [props.places])
-
-  useEffect(() => {
-    const map = mapRef.current
-    if (!map?.getLayer('place-points')) return
-    map.setPaintProperty('place-points', 'circle-radius', selectedRadiusExpression(props.selectedPlaceId))
-  }, [props.selectedPlaceId])
+    if (!map) return
+    syncPlaceMarkers(
+      map,
+      placeMarkersRef.current,
+      props.places,
+      props.selectedPlaceId,
+      (placeId) => snapshotRef.current.onSelectPlace(placeId),
+    )
+  }, [props.places, props.selectedPlaceId])
 
   useEffect(() => {
     const map = mapRef.current

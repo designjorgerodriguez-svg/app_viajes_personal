@@ -10,7 +10,7 @@ La aplicación contiene:
 - Diseño responsive con MapLibre como pantalla principal.
 - Navegación Mapa, Lugares, Favoritos y Viajes.
 - Mapas Stadia Outdoors y satélite, zoom, pantalla completa y geolocalización.
-- Búsqueda local, filtros por categoría, agrupación de marcadores y fichas detalladas.
+- Búsqueda local, filtros por categoría, marcadores accesibles y fichas detalladas.
 - Favoritos, visitados y borrado lógico persistentes en el dispositivo.
 - Rutas en coche desde la ubicación actual y enlace externo a Google Maps.
 - Un primer viaje con nueve lugares contrastados en fuentes oficiales.
