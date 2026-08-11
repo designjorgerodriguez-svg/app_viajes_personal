@@ -201,6 +201,32 @@
       "officialSourceUrl": "https://www.hendaye-tourisme.fr/activites/PNAAQU064FS00003-domaine-dabbadia/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3765%2C-1.75641",
       "additionalInfo": []
+    },
+    {
+      "id": "es-mad-madrid-puerta-sol",
+      "tripId": "pais-vasco-frances",
+      "name": "Puerta del Sol",
+      "locality": "Madrid",
+      "categoryId": "city",
+      "latitude": 40.416889,
+      "longitude": -3.703611,
+      "imageUrl": "/images/places/puerta-del-sol-madrid.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Puerta_del_Sol_(Madrid)_18.jpg",
+      "imageAttribution": "Luis García (Zaqarbal) · CC BY-SA 3.0",
+      "alt": "Vista de la Puerta del Sol con la Real Casa de Correos y una fuente en primer plano",
+      "description": "Plaza peatonal del centro de Madrid donde se encuentran la Real Casa de Correos, la placa del Kilómetro Cero y la estatua del Oso y el Madroño.",
+      "tips": [],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "",
+      "officialSourceUrl": "https://www.esmadrid.com/informacion-turistica/puerta-del-sol",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=40.416889%2C-3.703611",
+      "additionalInfo": [
+        {
+          "label": "Uso",
+          "value": "Punto de prueba para ubicación, distancia y recorridos"
+        }
+      ]
     }
   ]
 }
