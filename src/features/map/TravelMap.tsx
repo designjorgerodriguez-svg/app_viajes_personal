@@ -1,16 +1,24 @@
 import * as maplibregl from 'maplibre-gl'
-import type {
-  GeoJSONSource,
-  Map as MapLibreMap,
-} from 'maplibre-gl'
+import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { useEffect, useRef } from 'react'
+import { Check, Star } from 'lucide-react'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import Supercluster from 'supercluster'
+import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categoryById } from '../../data'
 import { getStadiaStyle, type MapStyleId } from '../../services/maps/stadiaMapService'
-import type { Coordinate, MapBoundsValue, RouteResult, TripPlace } from '../../types/data'
+import type {
+  Coordinate,
+  MapBoundsValue,
+  PlaceStateMap,
+  RouteResult,
+  TripPlace,
+} from '../../types/data'
 
 interface TravelMapProps {
   active: boolean
+  placeStates: PlaceStateMap
   places: TripPlace[]
   route: RouteResult | null
   selectedPlaceId: string | null
@@ -21,10 +29,32 @@ interface TravelMapProps {
   onSelectPlace: (placeId: string) => void
 }
 
+export interface TravelMapHandle {
+  zoomIn: () => void
+  zoomOut: () => void
+  toggleFullscreen: () => void
+}
+
+interface PlaceClusterProperties {
+  placeId: string
+}
+
 type MapPropsSnapshot = Pick<
   TravelMapProps,
-  'places' | 'route' | 'selectedPlaceId' | 'userLocation' | 'onBoundsChange' | 'onSelectPlace'
+  | 'placeStates'
+  | 'places'
+  | 'route'
+  | 'selectedPlaceId'
+  | 'userLocation'
+  | 'onBoundsChange'
+  | 'onSelectPlace'
 >
+
+interface MarkerValue {
+  element: HTMLButtonElement
+  marker: maplibregl.Marker
+  signature: string
+}
 
 const EMPTY_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] }
 
@@ -90,64 +120,94 @@ function setSourceData(map: MapLibreMap, sourceId: string, data: GeoJSON.Feature
   source?.setData(data)
 }
 
-interface PlaceMarkerValue {
-  element: HTMLButtonElement
-  marker: maplibregl.Marker
+function createClusterIndex(places: TripPlace[]) {
+  const points: Array<Supercluster.PointFeature<PlaceClusterProperties>> = places.map((place) => ({
+    type: 'Feature',
+    geometry: { type: 'Point', coordinates: [place.longitude, place.latitude] },
+    properties: { placeId: place.id },
+  }))
+  return new Supercluster<PlaceClusterProperties>({ radius: 62, maxZoom: 15, minPoints: 2 }).load(points)
 }
 
-function syncPlaceMarkers(
-  map: MapLibreMap,
-  markerMap: Map<string, PlaceMarkerValue>,
-  places: TripPlace[],
-  selectedPlaceId: string | null,
-  onSelectPlace: (placeId: string) => void,
+function staticIcon(icon: React.ReactNode) {
+  return renderToStaticMarkup(icon)
+}
+
+function renderPlaceMarker(
+  element: HTMLButtonElement,
+  place: TripPlace,
+  snapshot: MapPropsSnapshot,
 ) {
-  const activeIds = new Set(places.map((place) => place.id))
-  const localityGroups = new Map<string, TripPlace[]>()
-  places.forEach((place) => {
-    localityGroups.set(place.locality, [...(localityGroups.get(place.locality) ?? []), place])
-  })
-  markerMap.forEach(({ marker }, placeId) => {
-    if (!activeIds.has(placeId)) {
-      marker.remove()
-      markerMap.delete(placeId)
-    }
-  })
+  const category = categoryById[place.categoryId]
+  const state = snapshot.placeStates[place.id]
+  const selected = snapshot.selectedPlaceId === place.id
+  element.className = 'waypoint-marker'
+  element.dataset.selected = String(selected)
+  element.style.setProperty('--marker-color', category?.color ?? '#286F67')
+  element.setAttribute(
+    'aria-label',
+    `Abrir ${place.name}${state?.favorite ? ', favorito' : ''}${state?.visited ? ', visitado' : ''}`,
+  )
+  element.replaceChildren()
 
-  places.forEach((place) => {
-    const localityPlaces = localityGroups.get(place.locality) ?? [place]
-    const localityIndex = localityPlaces.findIndex((item) => item.id === place.id)
-    const horizontalOffset = (localityIndex - (localityPlaces.length - 1) / 2) * 44
-    let value = markerMap.get(place.id)
-    if (!value) {
-      const category = categoryById[place.categoryId]
-      const element = document.createElement('button')
-      element.className = 'travel-place-marker'
-      element.type = 'button'
-      element.setAttribute('aria-label', `Abrir ${place.name}`)
-      element.style.setProperty('--marker-color', category?.color ?? '#286F67')
-      const label = document.createElement('span')
-      label.textContent = category?.label.slice(0, 1) ?? 'L'
-      element.append(label)
-      element.addEventListener('click', () => onSelectPlace(place.id))
-      const marker = new maplibregl.Marker({ element, anchor: 'bottom' })
-        .setLngLat([place.longitude, place.latitude])
-        .addTo(map)
-      value = { element, marker }
-      markerMap.set(place.id, value)
+  const pin = document.createElement('span')
+  pin.className = 'waypoint-marker__pin'
+  const icon = document.createElement('span')
+  icon.className = 'waypoint-marker__icon'
+  icon.innerHTML = staticIcon(<CategoryIcon category={category} size={17} strokeWidth={2.35} />)
+  pin.append(icon)
+  element.append(pin)
+
+  if (state?.favorite || state?.visited) {
+    const badges = document.createElement('span')
+    badges.className = 'waypoint-marker__badges'
+    if (state.favorite) {
+      const favorite = document.createElement('span')
+      favorite.className = 'waypoint-marker__badge waypoint-marker__badge--favorite'
+      favorite.innerHTML = staticIcon(<Star size={9} fill="currentColor" strokeWidth={2.6} />)
+      badges.append(favorite)
     }
-    value.marker.setOffset([horizontalOffset, 0])
-    value.element.dataset.selected = String(place.id === selectedPlaceId)
-  })
+    if (state.visited) {
+      const visited = document.createElement('span')
+      visited.className = 'waypoint-marker__badge waypoint-marker__badge--visited'
+      visited.innerHTML = staticIcon(<Check size={10} strokeWidth={3} />)
+      badges.append(visited)
+    }
+    element.append(badges)
+  }
 }
 
-export function TravelMap(props: TravelMapProps) {
+function createClusterMarker(count: number) {
+  const element = document.createElement('button')
+  element.className = 'waypoint-cluster'
+  element.type = 'button'
+  element.setAttribute('aria-label', `${count} lugares en esta zona; acercar el mapa`)
+  const label = document.createElement('span')
+  label.textContent = String(count)
+  element.append(label)
+  return element
+}
+
+export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function TravelMap(props, ref) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MapLibreMap | null>(null)
-  const placeMarkersRef = useRef<Map<string, PlaceMarkerValue>>(new Map())
+  const markersRef = useRef<Map<string, MarkerValue>>(new Map())
+  const clusterIndexRef = useRef(createClusterIndex(props.places))
   const appliedStyleIdRef = useRef(props.styleId)
   const snapshotRef = useRef<MapPropsSnapshot>(props)
   snapshotRef.current = props
+
+  useImperativeHandle(ref, () => ({
+    zoomIn: () => mapRef.current?.zoomIn(),
+    zoomOut: () => mapRef.current?.zoomOut(),
+    toggleFullscreen: () => {
+      if (document.fullscreenElement) {
+        void document.exitFullscreen()
+      } else {
+        void containerRef.current?.parentElement?.requestFullscreen()
+      }
+    },
+  }), [])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -155,6 +215,7 @@ export function TravelMap(props: TravelMapProps) {
     let map: MapLibreMap
     try {
       map = new maplibregl.Map({
+        attributionControl: false,
         container: containerRef.current,
         style: getStadiaStyle(props.styleId),
         center: [-1.62, 43.42],
@@ -166,36 +227,8 @@ export function TravelMap(props: TravelMapProps) {
     }
 
     mapRef.current = map
-    const placeMarkers = placeMarkersRef.current
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
-    map.addControl(new maplibregl.FullscreenControl(), 'bottom-right')
-
-    syncPlaceMarkers(
-      map,
-      placeMarkers,
-      snapshotRef.current.places,
-      snapshotRef.current.selectedPlaceId,
-      (placeId) => snapshotRef.current.onSelectPlace(placeId),
-    )
-    const initialCoordinates = snapshotRef.current.places.map(
-      (place) => [place.longitude, place.latitude] as [number, number],
-    )
-    if (initialCoordinates.length > 0) {
-      const bounds = initialCoordinates.reduce(
-        (value, coordinate) => value.extend(coordinate),
-        new maplibregl.LngLatBounds(initialCoordinates[0], initialCoordinates[0]),
-      )
-      map.fitBounds(bounds, {
-        padding: {
-          top: window.innerWidth < 560 ? 180 : 115,
-          right: 90,
-          bottom: 80,
-          left: 90,
-        },
-        maxZoom: 12,
-        duration: 0,
-      })
-    }
+    const markers = markersRef.current
+    map.addControl(new maplibregl.AttributionControl({ compact: false }), 'bottom-left')
 
     const updateBounds = () => {
       const bounds = map.getBounds()
@@ -207,6 +240,98 @@ export function TravelMap(props: TravelMapProps) {
       })
     }
 
+    const syncMarkers = () => {
+      const bounds = map.getBounds()
+      const features = clusterIndexRef.current.getClusters(
+        [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()],
+        Math.floor(map.getZoom()),
+      )
+      const activeKeys = new Set<string>()
+
+      features.forEach((feature) => {
+        const coordinates = feature.geometry.coordinates as [number, number]
+        if ('cluster' in feature.properties && feature.properties.cluster) {
+          const { cluster_id: clusterId, point_count: count } = feature.properties
+          const key = `cluster-${clusterId}`
+          activeKeys.add(key)
+          let value = markers.get(key)
+          if (!value) {
+            const element = createClusterMarker(count)
+            value = {
+              element,
+              marker: new maplibregl.Marker({ element, anchor: 'center' }).setLngLat(coordinates).addTo(map),
+              signature: `cluster-${count}`,
+            }
+            markers.set(key, value)
+          } else {
+            value.marker.setLngLat(coordinates)
+            if (value.signature !== `cluster-${count}`) {
+              value.element.firstElementChild!.textContent = String(count)
+              value.element.setAttribute('aria-label', `${count} lugares en esta zona; acercar el mapa`)
+              value.signature = `cluster-${count}`
+            }
+          }
+          value.element.onclick = () => {
+            const zoom = clusterIndexRef.current.getClusterExpansionZoom(clusterId)
+            map.easeTo({ center: coordinates, zoom: Math.min(zoom, 16) })
+          }
+          return
+        }
+
+        const placeId = feature.properties.placeId
+        const place = snapshotRef.current.places.find((item) => item.id === placeId)
+        if (!place) return
+        const state = snapshotRef.current.placeStates[placeId]
+        const signature = `${placeId}-${Boolean(state?.favorite)}-${Boolean(state?.visited)}-${snapshotRef.current.selectedPlaceId === placeId}`
+        const key = `place-${placeId}`
+        activeKeys.add(key)
+        let value = markers.get(key)
+        if (!value) {
+          const element = document.createElement('button')
+          element.type = 'button'
+          element.addEventListener('click', () => snapshotRef.current.onSelectPlace(placeId))
+          renderPlaceMarker(element, place, snapshotRef.current)
+          value = {
+            element,
+            marker: new maplibregl.Marker({ element, anchor: 'bottom' })
+              .setLngLat([place.longitude, place.latitude])
+              .addTo(map),
+            signature,
+          }
+          markers.set(key, value)
+        } else {
+          value.marker.setLngLat([place.longitude, place.latitude])
+          if (value.signature !== signature) {
+            renderPlaceMarker(value.element, place, snapshotRef.current)
+            value.signature = signature
+          }
+        }
+      })
+
+      markers.forEach(({ marker }, key) => {
+        if (!activeKeys.has(key)) {
+          marker.remove()
+          markers.delete(key)
+        }
+      })
+    }
+
+    const initialCoordinates = snapshotRef.current.places.map(
+      (place) => [place.longitude, place.latitude] as [number, number],
+    )
+    if (initialCoordinates.length > 0) {
+      const initialBounds = initialCoordinates.reduce(
+        (value, coordinate) => value.extend(coordinate),
+        new maplibregl.LngLatBounds(initialCoordinates[0], initialCoordinates[0]),
+      )
+      map.fitBounds(initialBounds, {
+        padding: { top: 110, right: 90, bottom: 90, left: 90 },
+        maxZoom: 12,
+        duration: 0,
+      })
+    }
+    syncMarkers()
+
     const syncStyle = () => {
       try {
         addAppSourcesAndLayers(map, snapshotRef.current)
@@ -217,18 +342,25 @@ export function TravelMap(props: TravelMapProps) {
         props.onMapError(`No se pudieron dibujar los lugares: ${message}`)
       }
     }
-
     const handleMapError = (event: maplibregl.ErrorEvent) => {
       const message = event.error?.message
       if (message) props.onMapError(`El mapa no pudo cargar un recurso: ${message}`)
     }
+    const handleMoveEnd = () => {
+      updateBounds()
+      syncMarkers()
+    }
+    const handleFullscreenChange = () => window.setTimeout(() => map.resize(), 0)
+
     map.on('style.load', syncStyle)
     map.on('error', handleMapError)
-    map.on('moveend', updateBounds)
+    map.on('moveend', handleMoveEnd)
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
 
     return () => {
-      placeMarkers.forEach(({ marker }) => marker.remove())
-      placeMarkers.clear()
+      document.removeEventListener('fullscreenchange', handleFullscreenChange)
+      markers.forEach(({ marker }) => marker.remove())
+      markers.clear()
       map.remove()
       mapRef.current = null
     }
@@ -248,14 +380,9 @@ export function TravelMap(props: TravelMapProps) {
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
-    syncPlaceMarkers(
-      map,
-      placeMarkersRef.current,
-      props.places,
-      props.selectedPlaceId,
-      (placeId) => snapshotRef.current.onSelectPlace(placeId),
-    )
-  }, [props.places, props.selectedPlaceId])
+    clusterIndexRef.current = createClusterIndex(props.places)
+    map.fire('moveend')
+  }, [props.placeStates, props.places, props.selectedPlaceId])
 
   useEffect(() => {
     const map = mapRef.current
@@ -264,7 +391,7 @@ export function TravelMap(props: TravelMapProps) {
     if (props.route) {
       const bounds = props.route.bounds
       map.fitBounds([[bounds.west, bounds.south], [bounds.east, bounds.north]], {
-        padding: { top: 150, right: 70, bottom: 270, left: 70 },
+        padding: { top: 120, right: 70, bottom: 280, left: 70 },
         maxZoom: 14,
       })
     }
@@ -284,4 +411,4 @@ export function TravelMap(props: TravelMapProps) {
   }, [props.active])
 
   return <div className="travel-map" ref={containerRef} aria-label="Mapa interactivo del viaje" />
-}
+})

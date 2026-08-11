@@ -1,31 +1,28 @@
-import { Layers3, LocateFixed, Search, SlidersHorizontal } from 'lucide-react'
-import { useState } from 'react'
-import { TripPickerDialog } from '../../components/trips/TripPickerDialog'
-import { TripSelector } from '../../components/trips/TripSelector'
-import { trips } from '../../data'
+import { Layers3, LocateFixed, Maximize2, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
+import { useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
 import type {
   Coordinate,
   MapBoundsValue,
+  PlaceStateMap,
   PlaceUserState,
   RouteResult,
   TripPlace,
-  TripSummary,
 } from '../../types/data'
 import { FilterDialog } from '../filters/FilterDialog'
 import type { PlaceFilters } from '../filters/placeFilters'
 import { PlaceDetails } from '../places/PlaceDetails'
-import { TravelMap } from './TravelMap'
+import { TravelMap, type TravelMapHandle } from './TravelMap'
 
 interface MapScreenProps {
   active: boolean
-  activeTrip: TripSummary
   filters: PlaceFilters
   geolocationStatus: GeolocationStatus
   mapError: string
   mapStyle: MapStyleId
   places: TripPlace[]
+  placeStates: PlaceStateMap
   route: RouteResult | null
   routeError: string
   routeLoading: boolean
@@ -40,7 +37,6 @@ interface MapScreenProps {
   onRequestLocation: () => void
   onRequestRoute: (place: TripPlace) => void
   onSelectPlace: (placeId: string | null) => void
-  onSelectTrip: (tripId: string) => void
   onToggleFavorite: (placeId: string) => void
   onToggleVisited: (placeId: string) => void
 }
@@ -55,15 +51,17 @@ const locationMessages: Partial<Record<GeolocationStatus, string>> = {
 }
 
 export function MapScreen(props: MapScreenProps) {
-  const [tripPickerOpen, setTripPickerOpen] = useState(false)
+  const mapRef = useRef<TravelMapHandle>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
 
   return (
     <section className="map-screen" aria-label="Mapa del viaje">
       <TravelMap
+        ref={mapRef}
         active={props.active}
         places={props.places}
+        placeStates={props.placeStates}
         route={props.route}
         selectedPlaceId={props.selectedPlace?.id ?? null}
         styleId={props.mapStyle}
@@ -74,7 +72,6 @@ export function MapScreen(props: MapScreenProps) {
       />
 
       <div className="map-topbar">
-        <TripSelector trip={props.activeTrip} onOpen={() => setTripPickerOpen(true)} />
         <div className="map-tools">
           <label className="search-field search-field--map">
             <Search size={18} aria-hidden="true" />
@@ -92,7 +89,7 @@ export function MapScreen(props: MapScreenProps) {
         </div>
       </div>
 
-      <div className="map-custom-controls">
+      <div className="map-control-stack" aria-label="Controles del mapa">
         <button
           className="icon-button icon-button--surface"
           onClick={() => props.onChangeMapStyle(props.mapStyle === 'outdoors' ? 'satellite' : 'outdoors')}
@@ -110,6 +107,32 @@ export function MapScreen(props: MapScreenProps) {
           aria-label="Centrar en mi ubicación"
         >
           <LocateFixed size={20} />
+        </button>
+        <span className="map-control-stack__separator" aria-hidden="true" />
+        <button
+          className="icon-button icon-button--surface"
+          onClick={() => mapRef.current?.zoomIn()}
+          type="button"
+          aria-label="Acercar mapa"
+        >
+          <Plus size={20} />
+        </button>
+        <button
+          className="icon-button icon-button--surface"
+          onClick={() => mapRef.current?.zoomOut()}
+          type="button"
+          aria-label="Alejar mapa"
+        >
+          <Minus size={20} />
+        </button>
+        <span className="map-control-stack__separator" aria-hidden="true" />
+        <button
+          className="icon-button icon-button--surface"
+          onClick={() => mapRef.current?.toggleFullscreen()}
+          type="button"
+          aria-label="Ver mapa a pantalla completa"
+        >
+          <Maximize2 size={19} />
         </button>
       </div>
 
@@ -137,14 +160,6 @@ export function MapScreen(props: MapScreenProps) {
 
       {filterOpen ? (
         <FilterDialog filters={props.filters} onChange={props.onChangeFilters} onClose={() => setFilterOpen(false)} />
-      ) : null}
-      {tripPickerOpen ? (
-        <TripPickerDialog
-          activeTripId={props.activeTrip.id}
-          trips={trips}
-          onClose={() => setTripPickerOpen(false)}
-          onSelect={props.onSelectTrip}
-        />
       ) : null}
     </section>
   )

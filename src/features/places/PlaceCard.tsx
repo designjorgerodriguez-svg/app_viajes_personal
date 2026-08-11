@@ -1,4 +1,4 @@
-import { Check, Heart, PawPrint } from 'lucide-react'
+import { Check, PawPrint, Star } from 'lucide-react'
 import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categoryById } from '../../data'
 import type { PlaceUserState, TripPlace } from '../../types/data'
@@ -28,7 +28,10 @@ export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardP
         type="button"
         aria-label={`Abrir ${place.name} en el mapa`}
       >
-        <CategoryIcon category={category} size={27} />
+        {place.imageUrl ? <img alt="" decoding="async" loading="lazy" src={place.imageUrl} /> : null}
+        <span className="place-card__category" aria-hidden="true">
+          <CategoryIcon category={category} size={19} />
+        </span>
       </button>
       <button className="place-card__content" onClick={onOpen} type="button">
         <span className="category-label" style={{ color: category.color }}>{category.label}</span>
@@ -46,7 +49,7 @@ export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardP
         type="button"
         aria-label={state.favorite ? `Quitar ${place.name} de favoritos` : `Añadir ${place.name} a favoritos`}
       >
-        <Heart size={20} fill={state.favorite ? 'currentColor' : 'none'} />
+        <Star size={19} fill={state.favorite ? 'currentColor' : 'none'} />
       </button>
     </article>
   )

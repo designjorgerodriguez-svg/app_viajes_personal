@@ -2,11 +2,11 @@ import {
   Check,
   CircleHelp,
   ExternalLink,
-  Heart,
   Lightbulb,
   Map,
   PawPrint,
   Route,
+  Star,
   Ticket,
   Trash2,
   TriangleAlert,
@@ -59,6 +59,16 @@ export function PlaceDetails({
   return (
     <article className="place-details" aria-live="polite">
       <div className="place-details__handle" aria-hidden="true" />
+      {place.imageUrl ? (
+        <figure className="place-details__cover">
+          <img alt={place.alt} decoding="async" src={place.imageUrl} />
+          <figcaption>
+            <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">
+              {place.imageAttribution}<ExternalLink size={11} aria-hidden="true" />
+            </a>
+          </figcaption>
+        </figure>
+      ) : null}
       <header className="place-details__header">
         <div className="place-details__category-icon" style={{ color: category.color, background: `${category.color}18` }}>
           <CategoryIcon category={category} size={23} />
@@ -68,21 +78,32 @@ export function PlaceDetails({
           <h1>{place.name}</h1>
           <p>{place.locality}</p>
         </div>
-        <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
-          <X size={20} />
-        </button>
+        <div className="place-details__header-actions">
+          <button
+            className="icon-button icon-button--state"
+            data-active={state.favorite}
+            onClick={onToggleFavorite}
+            type="button"
+            aria-label={state.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+            aria-pressed={state.favorite}
+          >
+            <Star size={17} fill={state.favorite ? 'currentColor' : 'none'} />
+          </button>
+          <button
+            className="icon-button icon-button--state"
+            data-active={state.visited}
+            onClick={onToggleVisited}
+            type="button"
+            aria-label={state.visited ? 'Marcar como no visitado' : 'Marcar como visitado'}
+            aria-pressed={state.visited}
+          >
+            <Check size={18} strokeWidth={2.5} />
+          </button>
+          <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
+            <X size={19} />
+          </button>
+        </div>
       </header>
-
-      <div className="place-details__actions">
-        <button data-active={state.favorite} onClick={onToggleFavorite} type="button">
-          <Heart size={17} fill={state.favorite ? 'currentColor' : 'none'} />
-          {state.favorite ? 'Favorito' : 'Guardar'}
-        </button>
-        <button data-active={state.visited} onClick={onToggleVisited} type="button">
-          <Check size={17} />
-          {state.visited ? 'Visitado' : 'Marcar visita'}
-        </button>
-      </div>
 
       <div className="place-details__scroll">
         {place.description ? <p className="place-description">{place.description}</p> : null}

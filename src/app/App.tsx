@@ -137,13 +137,13 @@ function App() {
         <div className="app-view" data-active={activeSection === 'map'}>
           <MapScreen
             active={activeSection === 'map'}
-            activeTrip={activeTrip}
             filters={filters}
             geolocationStatus={geolocation.status}
             getPlaceState={placeStates.getState}
             mapError={mapError}
             mapStyle={mapStyle}
             places={filteredPlaces}
+            placeStates={placeStates.states}
             route={routePlaceId === selectedPlaceId ? route : null}
             routeError={routeError}
             routeLoading={routeLoading}
@@ -157,7 +157,6 @@ function App() {
             onRequestLocation={geolocation.requestLocation}
             onRequestRoute={requestRoute}
             onSelectPlace={setSelectedPlaceId}
-            onSelectTrip={selectTrip}
             onToggleFavorite={placeStates.toggleFavorite}
             onToggleVisited={placeStates.toggleVisited}
           />
