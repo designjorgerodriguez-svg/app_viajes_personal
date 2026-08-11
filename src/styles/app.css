@@ -955,19 +955,6 @@
   line-height: 1.4;
 }
 
-.place-card__advice[data-warning='true'] {
-  background: #fff8e8;
-  border-color: #f0dfb4;
-}
-
-.place-card__advice[data-warning='true'] > svg {
-  color: #a66a08;
-}
-
-.place-card__advice[data-warning='true'] small {
-  color: #665b41;
-}
-
 .content-screen--centerable {
   display: flex;
   flex-direction: column;
@@ -1857,6 +1844,19 @@
   border-radius: 12px;
 }
 
+.detail-facts > div[data-warning='true'] {
+  background: #fff8e8;
+  border: 1px solid #f0dfb4;
+}
+
+.detail-facts > div[data-warning='true'] > svg {
+  color: #a66a08;
+}
+
+.detail-facts > div[data-warning='true'] small {
+  color: #665b41;
+}
+
 .detail-facts svg,
 .tips-box > svg,
 .route-summary > svg {
@@ -1889,15 +1889,6 @@
   color: var(--color-primary-strong);
 }
 
-.tips-box[data-warning='true'] {
-  background: #fff8e8;
-  border-color: #f0dfb4;
-}
-
-.tips-box[data-warning='true'] > svg {
-  color: #a66a08;
-}
-
 .tips-box strong {
   font-size: 0.72rem;
 }
@@ -1907,10 +1898,6 @@
   color: #43514f;
   font-size: 0.68rem;
   line-height: 1.45;
-}
-
-.tips-box[data-warning='true'] p {
-  color: #665b41;
 }
 
 .route-summary {

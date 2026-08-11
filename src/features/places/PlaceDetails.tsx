@@ -60,7 +60,6 @@ export function PlaceDetails({
   const visibleRoute = route ?? routePreview
   const routeIsApproximate = !route || route.approximate
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
-  const adviceHasWarningTone = Boolean(place.price) || place.dogAccess !== 'allowed'
   const routeDescription = locationLoading && route
     ? 'La línea verde ya está visible; actualizando tu posición…'
     : route
@@ -147,19 +146,19 @@ export function PlaceDetails({
         {place.description ? <p className="place-description">{place.description}</p> : null}
 
         <div className="detail-facts">
-          <div>
+          <div data-warning={place.dogAccess === 'not-allowed'}>
             <DogIcon size={18} />
             <span><strong>{dog.label}</strong>{place.dogNotes ? <small>{place.dogNotes}</small> : null}</span>
           </div>
           {place.price ? (
-            <div>
+            <div data-warning="true">
               <Ticket size={18} />
               <span><strong>{place.price.label}</strong></span>
             </div>
           ) : null}
         </div>
 
-        <div className="tips-box" data-warning={adviceHasWarningTone}>
+        <div className="tips-box">
           <Lightbulb size={18} />
           <div><strong>Consejo para la visita</strong>{place.tips.map((tip) => <p key={tip}>{tip}</p>)}</div>
         </div>

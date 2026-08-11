@@ -19,7 +19,6 @@ const dogLabels = {
 
 export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardProps) {
   const category = categoryById[place.categoryId]
-  const adviceHasWarningTone = Boolean(place.price) || place.dogAccess !== 'allowed'
   return (
     <article className="place-card">
       <button
@@ -52,7 +51,7 @@ export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardP
       >
         <Star size={19} fill={state.favorite ? 'currentColor' : 'none'} />
       </button>
-      <div className="place-card__advice" data-warning={adviceHasWarningTone}>
+      <div className="place-card__advice">
         <Lightbulb size={15} aria-hidden="true" />
         <span>
           <strong>Consejo</strong>
