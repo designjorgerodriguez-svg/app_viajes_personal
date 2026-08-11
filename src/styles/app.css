@@ -1722,6 +1722,16 @@
   border-radius: 12px;
 }
 
+.route-button--compact {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 3px;
+  background: var(--color-primary-strong);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
 .place-details__handle {
   flex: 0 0 auto;
   width: 34px;
@@ -1810,6 +1820,11 @@
   height: 40px;
   min-height: 40px;
   border-radius: 12px;
+}
+
+.icon-button--route-collapse {
+  color: var(--color-primary-strong);
+  background: var(--color-mint);
 }
 
 .icon-button--state {

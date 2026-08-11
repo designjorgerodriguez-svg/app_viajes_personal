@@ -31,9 +31,18 @@ interface TravelMapProps {
 }
 
 export interface TravelMapHandle {
-  focusCoordinate: (coordinate: Coordinate) => void
+  getViewState: () => TravelMapViewState | null
+  restoreViewState: (viewState: TravelMapViewState) => void
   zoomIn: () => void
   zoomOut: () => void
+}
+
+export interface TravelMapViewState {
+  center: [number, number]
+  zoom: number
+  bearing: number
+  pitch: number
+  padding: { top: number; right: number; bottom: number; left: number }
 }
 
 interface PlaceClusterProperties {
@@ -254,10 +263,30 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
   snapshotRef.current = props
 
   useImperativeHandle(ref, () => ({
-    focusCoordinate: (coordinate) => mapRef.current?.easeTo({
-      center: [coordinate.longitude, coordinate.latitude],
-      zoom: Math.max(mapRef.current.getZoom(), 15),
-    }),
+    getViewState: () => {
+      const map = mapRef.current
+      if (!map) return null
+      const center = map.getCenter()
+      const padding = map.getPadding()
+      return {
+        center: [center.lng, center.lat],
+        zoom: map.getZoom(),
+        bearing: map.getBearing(),
+        pitch: map.getPitch(),
+        padding: {
+          top: padding.top ?? 0,
+          right: padding.right ?? 0,
+          bottom: padding.bottom ?? 0,
+          left: padding.left ?? 0,
+        },
+      }
+    },
+    restoreViewState: (viewState) => {
+      const map = mapRef.current
+      if (!map) return
+      map.stop()
+      map.easeTo({ ...viewState, duration: 450 })
+    },
     zoomIn: () => mapRef.current?.zoomIn(),
     zoomOut: () => mapRef.current?.zoomOut(),
   }), [])

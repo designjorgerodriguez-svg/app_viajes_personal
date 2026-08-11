@@ -14,7 +14,7 @@ import type {
 import { FilterDialog } from '../filters/FilterDialog'
 import type { PlaceFilters } from '../filters/placeFilters'
 import { PlaceDetails } from '../places/PlaceDetails'
-import { TravelMap, type TravelMapHandle } from './TravelMap'
+import { TravelMap, type TravelMapHandle, type TravelMapViewState } from './TravelMap'
 
 interface MapScreenProps {
   active: boolean
@@ -35,6 +35,7 @@ interface MapScreenProps {
   onChangeFilters: (filters: PlaceFilters) => void
   onChangeMapStyle: (style: MapStyleId) => void
   onDeletePlace: (placeId: string) => void
+  onHideRoute: () => void
   onMapError: (message: string) => void
   onRequestLocation: () => void
   onRequestRoute: (place: TripPlace) => void
@@ -53,22 +54,50 @@ const locationMessages: Partial<Record<GeolocationStatus, string>> = {
 
 export function MapScreen(props: MapScreenProps) {
   const mapRef = useRef<TravelMapHandle>(null)
+  const routeStartViewRef = useRef<TravelMapViewState | null>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [detailsCompact, setDetailsCompact] = useState(false)
+  const [routeSessionActive, setRouteSessionActive] = useState(false)
   const activeFilterCount = props.filters.categoryIds.length + Number(props.filters.favoritesOnly)
 
   useEffect(() => {
     setDetailsCompact(false)
+    setRouteSessionActive(false)
+    routeStartViewRef.current = null
   }, [props.selectedPlace?.id])
 
+  const restoreViewBeforeRoute = () => {
+    const viewState = routeStartViewRef.current
+    routeStartViewRef.current = null
+    if (viewState) {
+      window.requestAnimationFrame(() => mapRef.current?.restoreViewState(viewState))
+    }
+  }
+
+  const removeRoute = () => {
+    props.onHideRoute()
+    setRouteSessionActive(false)
+    setDetailsCompact(false)
+    restoreViewBeforeRoute()
+  }
+
   const closePlaceDetails = () => {
-    if (detailsCompact && props.selectedPlace) {
-      mapRef.current?.focusCoordinate({
-        latitude: props.selectedPlace.latitude,
-        longitude: props.selectedPlace.longitude,
-      })
+    if (routeSessionActive) {
+      props.onHideRoute()
+      setRouteSessionActive(false)
+      restoreViewBeforeRoute()
     }
     props.onSelectPlace(null)
+  }
+
+  const requestRoute = () => {
+    if (!props.selectedPlace) return
+    if (!routeSessionActive) {
+      routeStartViewRef.current = mapRef.current?.getViewState() ?? null
+      setRouteSessionActive(true)
+    }
+    setDetailsCompact(true)
+    props.onRequestRoute(props.selectedPlace)
   }
 
   return (
@@ -85,7 +114,10 @@ export function MapScreen(props: MapScreenProps) {
         userLocation={props.userLocation}
         onBoundsChange={props.onBoundsChange}
         onMapError={props.onMapError}
-        onSelectPlace={(placeId) => props.onSelectPlace(placeId)}
+        onSelectPlace={(placeId) => {
+          if (routeSessionActive && placeId !== props.selectedPlace?.id) removeRoute()
+          props.onSelectPlace(placeId)
+        }}
       />
 
       <div className="map-topbar">
@@ -158,14 +190,14 @@ export function MapScreen(props: MapScreenProps) {
           routeError={props.routeError}
           routeLoading={props.routeStatus === 'loading'}
           routePreview={props.routePreview}
+          routeActive={routeSessionActive}
           state={props.getPlaceState(props.selectedPlace.id)}
+          onCollapse={() => setDetailsCompact(true)}
           onClose={closePlaceDetails}
           onDelete={() => props.onDeletePlace(props.selectedPlace!.id)}
           onExpand={() => setDetailsCompact(false)}
-          onRoute={() => {
-            setDetailsCompact(true)
-            props.onRequestRoute(props.selectedPlace!)
-          }}
+          onRemoveRoute={removeRoute}
+          onRoute={requestRoute}
           onToggleFavorite={() => props.onToggleFavorite(props.selectedPlace!.id)}
           onToggleVisited={() => props.onToggleVisited(props.selectedPlace!.id)}
         />

@@ -1,5 +1,6 @@
 import {
   Check,
+  ChevronDown,
   ChevronRight,
   ChevronUp,
   CircleHelp,
@@ -25,11 +26,14 @@ interface PlaceDetailsProps {
   state: PlaceUserState
   route: RouteResult | null
   routeError: string
+  routeActive: boolean
   routeLoading: boolean
   routePreview: RouteResult | null
+  onCollapse: () => void
   onClose: () => void
   onDelete: () => void
   onExpand: () => void
+  onRemoveRoute: () => void
   onRoute: () => void
   onToggleFavorite: () => void
   onToggleVisited: () => void
@@ -49,11 +53,14 @@ export function PlaceDetails({
   state,
   route,
   routeError,
+  routeActive,
   routeLoading,
   routePreview,
+  onCollapse,
   onClose,
   onDelete,
   onExpand,
+  onRemoveRoute,
   onRoute,
   onToggleFavorite,
   onToggleVisited,
@@ -94,9 +101,21 @@ export function PlaceDetails({
           </span>
           <ChevronUp size={17} aria-hidden="true" />
         </button>
-        <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar recorrido">
+        <button className="icon-button icon-button--ghost" onClick={onRemoveRoute} type="button" aria-label="Quitar ruta del mapa">
           <X size={18} />
         </button>
+        {route && place.googleMapsUrl ? (
+          <a
+            className="route-button route-button--compact"
+            href={place.googleMapsUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Map size={17} />
+            Abrir en Google Maps
+            <ExternalLink size={14} />
+          </a>
+        ) : null}
       </article>
     )
   }
@@ -134,6 +153,16 @@ export function PlaceDetails({
           >
             <Check size={18} strokeWidth={2.5} />
           </button>
+          {routeActive ? (
+            <button
+              className="icon-button icon-button--route-collapse"
+              onClick={onCollapse}
+              type="button"
+              aria-label="Plegar ficha y mantener la ruta"
+            >
+              <ChevronDown size={18} />
+            </button>
+          ) : null}
           <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
             <X size={19} />
           </button>

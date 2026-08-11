@@ -132,6 +132,11 @@ function App() {
     if (routeStatus === 'error') setRouteRefreshKey((value) => value + 1)
   }
 
+  const hideRoute = () => {
+    setVisibleRoutePlaceId(null)
+    setPendingRouteId(null)
+  }
+
   const selectMapPlace = useCallback((placeId: string | null) => {
     if (placeId !== selectedPlaceId) setVisibleRoutePlaceId(null)
     if (!placeId) setPendingRouteId(null)
@@ -200,6 +205,7 @@ function App() {
             onChangeMapStyle={setMapStyle}
             onDeletePlace={deletePlace}
             onMapError={setMapError}
+            onHideRoute={hideRoute}
             onRequestLocation={geolocation.requestLocation}
             onRequestRoute={requestRoute}
             onSelectPlace={selectMapPlace}
