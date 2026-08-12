@@ -45,14 +45,22 @@ function formatWeekday(date: string, index: number) {
   return weekday.charAt(0).toUpperCase() + weekday.slice(1)
 }
 
+function getMeteoblueForecastUrl(latitude: number, longitude: number) {
+  const parameters = new URLSearchParams({
+    lat: String(latitude),
+    lon: String(longitude),
+  })
+  return `https://www.meteoblue.com/es/tiempo/semana/index?${parameters}`
+}
+
 export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherForecastCardProps) {
   const { days, error, loading, retry } = useWeatherForecast(latitude, longitude)
+  const meteoblueForecastUrl = getMeteoblueForecastUrl(latitude, longitude)
 
   return (
     <section className="weather-card" aria-label={`Previsión del tiempo para ${placeName}`}>
       <header className="weather-card__header">
         <strong>Próximos 5 días</strong>
-        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a>
       </header>
 
       {loading ? (
@@ -81,10 +89,14 @@ export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherF
               ? 'probabilidad de precipitación no disponible'
               : `${day.precipitationProbability} por ciento de precipitación`
             return (
-              <div
+              <a
                 className="weather-day"
+                href={meteoblueForecastUrl}
                 key={day.date}
-                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}. Abrir previsión en Meteoblue`}
+                title={`Ver la previsión para ${placeName} en Meteoblue`}
               >
                 <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
                 <time dateTime={day.date}>{dayLabel}</time>
@@ -96,7 +108,7 @@ export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherF
                   <Droplets size={10} aria-hidden="true" />
                   {day.precipitationProbability === null ? '—' : `${day.precipitationProbability}%`}
                 </span>
-              </div>
+              </a>
             )
           })}
         </div>

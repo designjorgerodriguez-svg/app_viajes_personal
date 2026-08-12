@@ -1676,8 +1676,30 @@
   border-color: var(--color-primary-border);
 }
 
-.map-control-stack__compass svg {
+.map-north-indicator {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: var(--color-petrol);
+  line-height: 1;
   transition: transform 180ms ease-out;
+}
+
+.map-control-stack__compass[data-rotated='true'] .map-north-indicator {
+  color: var(--color-primary-strong);
+}
+
+.map-north-indicator > span {
+  font-size: 0.48rem;
+  font-weight: 900;
+}
+
+.map-north-indicator > svg {
+  margin-top: -2px;
 }
 
 @media (hover: hover) {
@@ -2024,7 +2046,7 @@
   min-width: 0;
   margin-bottom: 7px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
 }
 
@@ -2034,14 +2056,6 @@
   letter-spacing: 0.01em;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.weather-card__header a {
-  flex: 0 0 auto;
-  color: rgb(255 255 255 / 72%);
-  font-size: 0.52rem;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .weather-card__days {
@@ -2058,7 +2072,10 @@
   align-items: center;
   justify-content: flex-start;
   gap: 2px;
+  color: #fff;
   text-align: center;
+  text-decoration: none;
+  border-radius: 7px;
 }
 
 .weather-day + .weather-day {
@@ -2068,7 +2085,13 @@
 .weather-day > svg {
   flex: 0 0 auto;
   margin-bottom: 1px;
-  color: #fff;
+  color: var(--color-weather-accent);
+}
+
+@media (hover: hover) {
+  .weather-day:hover {
+    background: rgb(255 255 255 / 8%);
+  }
 }
 
 .weather-day time {
