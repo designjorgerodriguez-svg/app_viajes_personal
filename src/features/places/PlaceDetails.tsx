@@ -135,46 +135,46 @@ export function PlaceDetails({
       <header className="place-details__header">
         <div className="place-details__title">
           <h1>{place.name}</h1>
+          <div className="place-details__header-actions">
+            <button
+              className="icon-button icon-button--state"
+              data-active={state.favorite}
+              onClick={onToggleFavorite}
+              type="button"
+              aria-label={state.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+              aria-pressed={state.favorite}
+            >
+              <Star size={17} fill={state.favorite ? 'currentColor' : 'none'} />
+            </button>
+            <button
+              className="icon-button icon-button--state"
+              data-active={state.visited}
+              onClick={onToggleVisited}
+              type="button"
+              aria-label={state.visited ? 'Marcar como no visitado' : 'Marcar como visitado'}
+              aria-pressed={state.visited}
+            >
+              <Check size={18} strokeWidth={2.5} />
+            </button>
+            {routeActive ? (
+              <button
+                className="icon-button icon-button--route-collapse"
+                onClick={onCollapse}
+                type="button"
+                aria-label="Plegar ficha y mantener la ruta"
+              >
+                <ChevronDown size={18} />
+              </button>
+            ) : null}
+            <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
+              <X size={19} />
+            </button>
+          </div>
           <p>
             <span className="category-label" style={{ color: category.color }}>{category.label}</span>
             <span aria-hidden="true"> · </span>
             {place.locality}
           </p>
-        </div>
-        <div className="place-details__header-actions">
-          <button
-            className="icon-button icon-button--state"
-            data-active={state.favorite}
-            onClick={onToggleFavorite}
-            type="button"
-            aria-label={state.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
-            aria-pressed={state.favorite}
-          >
-            <Star size={17} fill={state.favorite ? 'currentColor' : 'none'} />
-          </button>
-          <button
-            className="icon-button icon-button--state"
-            data-active={state.visited}
-            onClick={onToggleVisited}
-            type="button"
-            aria-label={state.visited ? 'Marcar como no visitado' : 'Marcar como visitado'}
-            aria-pressed={state.visited}
-          >
-            <Check size={18} strokeWidth={2.5} />
-          </button>
-          {routeActive ? (
-            <button
-              className="icon-button icon-button--route-collapse"
-              onClick={onCollapse}
-              type="button"
-              aria-label="Plegar ficha y mantener la ruta"
-            >
-              <ChevronDown size={18} />
-            </button>
-          ) : null}
-          <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
-            <X size={19} />
-          </button>
         </div>
       </header>
       <div className="place-details__scroll">
