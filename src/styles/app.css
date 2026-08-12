@@ -37,7 +37,10 @@
   z-index: 60;
   width: min(calc(100% - 36px), 388px);
   transform: translateX(-50%);
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    bottom 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: bottom, transform;
 }
 
 .bottom-nav[data-collapsed='true'] {
@@ -55,7 +58,12 @@
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 999px;
   box-shadow: 0 12px 30px rgb(17 53 50 / 25%);
-  transition: opacity 150ms ease, visibility 150ms ease;
+  transform: translateY(0) scale(1);
+  transform-origin: center bottom;
+  transition:
+    opacity 180ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
 }
 
 .bottom-nav__toggle {
@@ -73,8 +81,33 @@
   border-radius: 50%;
   box-shadow: none;
   transform: translateX(-50%);
-  transition: top 180ms ease, width 180ms ease, height 180ms ease, border-radius 180ms ease, transform 180ms ease;
+  overflow: hidden;
+  transition:
+    top 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   place-items: center;
+}
+
+.bottom-nav__toggle-icon {
+  position: absolute;
+  display: grid;
+  transition:
+    opacity 150ms ease,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  place-items: center;
+}
+
+.bottom-nav__toggle-icon--open {
+  opacity: 0;
+  transform: translateY(8px) scale(0.7);
+}
+
+.bottom-nav__toggle-icon--close {
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 .bottom-nav__toggle:focus-visible {
@@ -95,10 +128,25 @@
   transform: translate(-50%, 0);
 }
 
+.bottom-nav[data-collapsed='true'] .bottom-nav__toggle-icon--open {
+  opacity: 1;
+  transform: translateY(-1px) scale(1);
+}
+
+.bottom-nav[data-collapsed='true'] .bottom-nav__toggle-icon--close {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.7);
+}
+
 .bottom-nav[data-collapsed='true'] .bottom-nav__items {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+  transform: translateY(14px) scale(0.94);
+  transition:
+    opacity 160ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 280ms;
 }
 
 @media (hover: hover) {

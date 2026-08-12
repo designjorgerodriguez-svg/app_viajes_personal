@@ -207,7 +207,7 @@ export function MapScreen(props: MapScreenProps) {
           aria-pressed={Math.abs(mapBearing) > 0.1}
           title="Norte arriba"
         >
-          <span className="map-north-indicator" style={{ transform: `rotate(${-mapBearing}deg)` }}>
+          <span className="map-north-indicator" style={{ transform: `rotate(${-mapBearing - 45}deg)` }}>
             <Compass size={21} strokeWidth={2} aria-hidden="true" />
           </span>
         </button>
