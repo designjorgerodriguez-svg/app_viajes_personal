@@ -45,17 +45,16 @@ function formatWeekday(date: string, index: number) {
   return weekday.charAt(0).toUpperCase() + weekday.slice(1)
 }
 
-function getMeteoblueForecastUrl(latitude: number, longitude: number) {
+function getMeteoblueCoordinateSearchUrl(latitude: number, longitude: number) {
   const parameters = new URLSearchParams({
-    lat: String(latitude),
-    lon: String(longitude),
+    query: `${latitude} ${longitude}`,
   })
-  return `https://www.meteoblue.com/es/tiempo/semana/index?${parameters}`
+  return `https://www.meteoblue.com/es/tiempo/search/index?${parameters}`
 }
 
 export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherForecastCardProps) {
   const { days, error, loading, retry } = useWeatherForecast(latitude, longitude)
-  const meteoblueForecastUrl = getMeteoblueForecastUrl(latitude, longitude)
+  const meteoblueCoordinateSearchUrl = getMeteoblueCoordinateSearchUrl(latitude, longitude)
 
   return (
     <section className="weather-card" aria-label={`Previsión del tiempo para ${placeName}`}>
@@ -91,12 +90,12 @@ export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherF
             return (
               <a
                 className="weather-day"
-                href={meteoblueForecastUrl}
+                href={meteoblueCoordinateSearchUrl}
                 key={day.date}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}. Abrir previsión en Meteoblue`}
-                title={`Ver la previsión para ${placeName} en Meteoblue`}
+                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}. Buscar estas coordenadas en Meteoblue`}
+                title={`Buscar la previsión cerca de ${placeName} en Meteoblue`}
               >
                 <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
                 <time dateTime={day.date}>{dayLabel}</time>

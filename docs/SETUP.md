@@ -37,7 +37,7 @@ La previsión de cinco días se consulta directamente desde el navegador mediant
 
 La modalidad gratuita está destinada a uso no comercial y requiere atribución. El proveedor y sus condiciones quedan identificados en esta documentación pública del proyecto. Documentación oficial: [API de previsión de Open-Meteo](https://open-meteo.com/en/docs) y [condiciones de uso](https://open-meteo.com/en/terms).
 
-Cada día de la tarjeta abre externamente la previsión semanal de Meteoblue mediante las mismas coordenadas GPS. Meteoblue se utiliza únicamente como enlace de consulta ampliada; los datos resumidos de la tarjeta proceden de Open-Meteo.
+Cada día de la tarjeta abre externamente la búsqueda de Meteoblue con las coordenadas GPS del lugar. Meteoblue muestra los puntos con nombre más cercanos, ya que su web pública no admite una URL de previsión directa para un punto GPS arbitrario; esa consulta exacta requiere su API con clave. Meteoblue se utiliza únicamente como enlace de consulta ampliada y los datos resumidos de la tarjeta proceden de Open-Meteo.
 
 ## Variables de entorno previstas
 
