@@ -2059,7 +2059,7 @@
 .weather-card__days {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  min-height: 67px;
+  min-height: 82px;
 }
 
 .weather-day {
@@ -2069,7 +2069,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 2px;
+  gap: 4px;
   color: #fff;
   text-align: center;
   text-decoration: none;
@@ -2086,25 +2086,17 @@
   }
 }
 
-.weather-day__heading {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.weather-day__heading > svg {
+.weather-day > svg {
   flex: 0 0 auto;
   color: var(--color-weather-accent);
 }
 
-.weather-day__heading time {
+.weather-day time {
   max-width: 100%;
   overflow: hidden;
   color: rgb(255 255 255 / 80%);
   font-size: 0.56rem;
-  font-weight: 750;
+  font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -2113,6 +2105,7 @@
   display: block;
   max-width: 100%;
   font-size: 0.72rem;
+  font-weight: 500;
   line-height: 1;
   white-space: nowrap;
 }
@@ -2121,7 +2114,7 @@
   display: block;
   color: rgb(255 255 255 / 68%);
   font-size: 0.58rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -2132,7 +2125,7 @@
   gap: 1px;
   color: rgb(255 255 255 / 88%);
   font-size: 0.56rem;
-  font-weight: 750;
+  font-weight: 500;
   white-space: nowrap;
 }
 

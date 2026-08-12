@@ -92,12 +92,10 @@ export function WeatherForecastCard({ latitude, locality, longitude, placeName }
                 aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}.${meteoblueLocationUrl ? ' Abrir directamente en Meteoblue' : ''}`}
                 title={meteoblueLocationUrl ? `Ver la previsión para ${locality} en Meteoblue` : undefined}
               >
-                <span className="weather-day__heading">
-                  <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
-                  <time dateTime={day.date}>{dayLabel}</time>
-                </span>
-                <strong className="weather-day__maximum">{day.maximumTemperature}°</strong>
-                <small className="weather-day__minimum">{day.minimumTemperature}°</small>
+                <time dateTime={day.date}>{dayLabel}</time>
+                <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
+                <span className="weather-day__maximum">{day.maximumTemperature}°</span>
+                <span className="weather-day__minimum">{day.minimumTemperature}°</span>
                 <span className="weather-day__precipitation">
                   <Droplets size={10} aria-hidden="true" />
                   {day.precipitationProbability === null ? '—' : `${day.precipitationProbability}%`}
