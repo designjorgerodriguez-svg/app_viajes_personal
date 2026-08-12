@@ -18,6 +18,8 @@ import {
   X,
 } from 'lucide-react'
 import { categoryById } from '../../data'
+import { formatDuration } from '../../utils/formatDuration'
+import { WeatherForecastCard } from '../weather/WeatherForecastCard'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
 
 interface PlaceDetailsProps {
@@ -96,7 +98,7 @@ export function PlaceDetails({
               {routeLoading && routeActive
                 ? 'Optimizando el orden y el recorrido…'
                 : visibleRoute
-                ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+                ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${formatDuration(visibleRoute.durationMinutes)}`
                 : routePending
                   ? locationLoading ? 'Obteniendo tu ubicación…' : 'Calculando por carretera…'
                   : routeError || place.locality}
@@ -197,9 +199,22 @@ export function PlaceDetails({
           <div><strong>Consejo para la visita</strong>{place.tips.map((tip) => <p key={tip}>{tip}</p>)}</div>
         </div>
 
-        <button className="delete-place-button" onClick={confirmDelete} type="button">
-          <Trash2 size={16} /> Ocultar lugar
-        </button>
+        <div className="place-details__weather-row">
+          <WeatherForecastCard
+            latitude={place.latitude}
+            longitude={place.longitude}
+            placeName={place.name}
+          />
+          <button
+            className="delete-place-button"
+            onClick={confirmDelete}
+            type="button"
+            aria-label={`Ocultar ${place.name}`}
+            title="Ocultar lugar"
+          >
+            <Trash2 size={19} />
+          </button>
+        </div>
       </div>
 
       <div className="place-details__quick-actions">
@@ -232,7 +247,7 @@ export function PlaceDetails({
                 {routeLoading && routeActive
                   ? 'Optimizando el recorrido…'
                   : visibleRoute
-                    ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${visibleRoute.durationMinutes} min`
+                    ? `${distancePrefix}${visibleRoute.distanceKm.toFixed(1)} km · ${distancePrefix}${formatDuration(visibleRoute.durationMinutes)}`
                     : routeLoading ? 'Calculando recorrido por carretera…' : 'Calcular distancia y recorrido'}
               </strong>
             </span>

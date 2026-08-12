@@ -1,6 +1,7 @@
 import { ChevronDown, ExternalLink, Map, Navigation, X } from 'lucide-react'
 import { categoryById } from '../../data'
 import type { RouteResult, TripPlace } from '../../types/data'
+import { formatDuration } from '../../utils/formatDuration'
 
 interface RouteStopsDetailsProps {
   googleMapsUrl: string
@@ -30,7 +31,7 @@ export function RouteStopsDetails({
           <p>
             {routeLoading
               ? 'Actualizando el recorrido…'
-              : `${route.distanceKm.toFixed(1)} km · ${route.durationMinutes} min en total`}
+              : `${route.distanceKm.toFixed(1)} km · ${formatDuration(route.durationMinutes)} en total`}
           </p>
         </div>
         <div className="place-details__header-actions">
@@ -69,7 +70,7 @@ export function RouteStopsDetails({
                   {routeLoading
                     ? 'Recalculando…'
                     : leg
-                      ? `≈ ${leg.distanceKm.toFixed(1)} km · ${leg.durationMinutes} min`
+                      ? `≈ ${leg.distanceKm.toFixed(1)} km · ${formatDuration(leg.durationMinutes)}`
                       : 'Tramo pendiente'}
                 </p>
               </div>
