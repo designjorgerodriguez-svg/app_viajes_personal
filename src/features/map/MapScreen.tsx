@@ -1,4 +1,4 @@
-import { Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal, Triangle } from 'lucide-react'
+import { Compass, Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
@@ -208,8 +208,7 @@ export function MapScreen(props: MapScreenProps) {
           title="Norte arriba"
         >
           <span className="map-north-indicator" style={{ transform: `rotate(${-mapBearing}deg)` }}>
-            <span aria-hidden="true">N</span>
-            <Triangle size={11} fill="currentColor" strokeWidth={2.2} aria-hidden="true" />
+            <Compass size={21} strokeWidth={2} aria-hidden="true" />
           </span>
         </button>
       </div>

@@ -1755,10 +1755,8 @@
   display: flex;
   width: 25px;
   height: 25px;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
   color: var(--color-petrol);
   line-height: 1;
   transition: transform 180ms ease-out;
@@ -1766,15 +1764,6 @@
 
 .map-control-stack__compass[data-rotated='true'] .map-north-indicator {
   color: var(--color-primary-strong);
-}
-
-.map-north-indicator > span {
-  font-size: 0.48rem;
-  font-weight: 900;
-}
-
-.map-north-indicator > svg {
-  margin-top: -2px;
 }
 
 @media (hover: hover) {
