@@ -87,8 +87,6 @@ export function WeatherForecastCard({ latitude, locality, longitude, placeName }
                 className="weather-day"
                 href={meteoblueLocationUrl || undefined}
                 key={day.date}
-                target="_blank"
-                rel="noreferrer"
                 aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}.${meteoblueLocationUrl ? ' Abrir directamente en Meteoblue' : ''}`}
                 title={meteoblueLocationUrl ? `Ver la previsión para ${locality} en Meteoblue` : undefined}
               >
