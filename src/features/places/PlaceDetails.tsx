@@ -202,6 +202,7 @@ export function PlaceDetails({
         <div className="place-details__weather-row">
           <WeatherForecastCard
             latitude={place.latitude}
+            locality={place.locality}
             longitude={place.longitude}
             placeName={place.name}
           />

@@ -2080,19 +2080,26 @@
   border-left: 1px solid rgb(255 255 255 / 16%);
 }
 
-.weather-day > svg {
-  flex: 0 0 auto;
-  margin-bottom: 1px;
-  color: var(--color-weather-accent);
-}
-
 @media (hover: hover) {
   .weather-day:hover {
     background: rgb(255 255 255 / 8%);
   }
 }
 
-.weather-day time {
+.weather-day__heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.weather-day__heading > svg {
+  flex: 0 0 auto;
+  color: var(--color-weather-accent);
+}
+
+.weather-day__heading time {
   max-width: 100%;
   overflow: hidden;
   color: rgb(255 255 255 / 80%);
@@ -2102,23 +2109,23 @@
   white-space: nowrap;
 }
 
-.weather-day strong {
-  display: flex;
+.weather-day__maximum {
+  display: block;
   max-width: 100%;
-  align-items: baseline;
-  gap: 2px;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1;
   white-space: nowrap;
 }
 
-.weather-day strong small {
+.weather-day__minimum {
+  display: block;
   color: rgb(255 255 255 / 68%);
   font-size: 0.58rem;
   font-weight: 700;
+  line-height: 1;
 }
 
-.weather-day > span {
+.weather-day__precipitation {
   display: flex;
   max-width: 100%;
   align-items: center;

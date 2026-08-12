@@ -11,10 +11,12 @@ import {
   Sun,
   type LucideIcon,
 } from 'lucide-react'
+import { useMeteoblueLocationUrl } from '../../hooks/useMeteoblueLocationUrl'
 import { useWeatherForecast } from '../../hooks/useWeatherForecast'
 
 interface WeatherForecastCardProps {
   latitude: number
+  locality: string
   longitude: number
   placeName: string
 }
@@ -45,16 +47,9 @@ function formatWeekday(date: string, index: number) {
   return weekday.charAt(0).toUpperCase() + weekday.slice(1)
 }
 
-function getMeteoblueCoordinateSearchUrl(latitude: number, longitude: number) {
-  const parameters = new URLSearchParams({
-    query: `${latitude} ${longitude}`,
-  })
-  return `https://www.meteoblue.com/es/tiempo/search/index?${parameters}`
-}
-
-export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherForecastCardProps) {
+export function WeatherForecastCard({ latitude, locality, longitude, placeName }: WeatherForecastCardProps) {
   const { days, error, loading, retry } = useWeatherForecast(latitude, longitude)
-  const meteoblueCoordinateSearchUrl = getMeteoblueCoordinateSearchUrl(latitude, longitude)
+  const meteoblueLocationUrl = useMeteoblueLocationUrl(locality, latitude, longitude)
 
   return (
     <section className="weather-card" aria-label={`Previsión del tiempo para ${placeName}`}>
@@ -90,20 +85,20 @@ export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherF
             return (
               <a
                 className="weather-day"
-                href={meteoblueCoordinateSearchUrl}
+                href={meteoblueLocationUrl || undefined}
                 key={day.date}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}. Buscar estas coordenadas en Meteoblue`}
-                title={`Buscar la previsión cerca de ${placeName} en Meteoblue`}
+                aria-label={`${dayLabel}: ${condition.label}, máxima ${day.maximumTemperature} grados, mínima ${day.minimumTemperature} grados y ${precipitationLabel}.${meteoblueLocationUrl ? ' Abrir directamente en Meteoblue' : ''}`}
+                title={meteoblueLocationUrl ? `Ver la previsión para ${locality} en Meteoblue` : undefined}
               >
-                <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
-                <time dateTime={day.date}>{dayLabel}</time>
-                <strong>
-                  {day.maximumTemperature}°
-                  <small>{day.minimumTemperature}°</small>
-                </strong>
-                <span>
+                <span className="weather-day__heading">
+                  <WeatherIcon size={21} strokeWidth={1.9} aria-hidden="true" />
+                  <time dateTime={day.date}>{dayLabel}</time>
+                </span>
+                <strong className="weather-day__maximum">{day.maximumTemperature}°</strong>
+                <small className="weather-day__minimum">{day.minimumTemperature}°</small>
+                <span className="weather-day__precipitation">
                   <Droplets size={10} aria-hidden="true" />
                   {day.precipitationProbability === null ? '—' : `${day.precipitationProbability}%`}
                 </span>
