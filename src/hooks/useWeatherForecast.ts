@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
-  getFiveDayWeatherForecast,
+  getSevenDayWeatherForecast,
   type DailyWeatherForecast,
 } from '../services/weather/openMeteoWeatherService'
 
@@ -24,7 +24,7 @@ export function useWeatherForecast(latitude: number, longitude: number) {
     const controller = new AbortController()
     setState(initialState)
 
-    void getFiveDayWeatherForecast(latitude, longitude, controller.signal)
+    void getSevenDayWeatherForecast(latitude, longitude, controller.signal)
       .then((days) => setState({ days, error: '', loading: false }))
       .catch((error: unknown) => {
         if (controller.signal.aborted) return

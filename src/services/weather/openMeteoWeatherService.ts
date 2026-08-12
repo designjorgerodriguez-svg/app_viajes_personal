@@ -25,7 +25,7 @@ interface CachedForecast {
   days: DailyWeatherForecast[]
 }
 
-const FORECAST_DAYS = 5
+const FORECAST_DAYS = 7
 const CACHE_DURATION_MS = 30 * 60 * 1000
 const forecastCache = new Map<string, CachedForecast>()
 
@@ -33,7 +33,7 @@ function coordinateCacheKey(latitude: number, longitude: number) {
   return `${latitude.toFixed(4)},${longitude.toFixed(4)}`
 }
 
-function hasFiveDays(daily: OpenMeteoDailyResponse) {
+function hasForecastDays(daily: OpenMeteoDailyResponse) {
   return [
     daily.time,
     daily.weather_code,
@@ -43,7 +43,7 @@ function hasFiveDays(daily: OpenMeteoDailyResponse) {
   ].every((values) => Array.isArray(values) && values.length >= FORECAST_DAYS)
 }
 
-export async function getFiveDayWeatherForecast(
+export async function getSevenDayWeatherForecast(
   latitude: number,
   longitude: number,
   signal?: AbortSignal,
@@ -65,7 +65,7 @@ export async function getFiveDayWeatherForecast(
   if (!response.ok || payload.error) {
     throw new Error(payload.reason || 'No se pudo consultar la previsión meteorológica.')
   }
-  if (!payload.daily || !hasFiveDays(payload.daily)) {
+  if (!payload.daily || !hasForecastDays(payload.daily)) {
     throw new Error('La previsión meteorológica recibida está incompleta.')
   }
 

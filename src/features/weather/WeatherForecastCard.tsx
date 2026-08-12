@@ -59,12 +59,12 @@ export function WeatherForecastCard({ latitude, longitude, placeName }: WeatherF
   return (
     <section className="weather-card" aria-label={`Previsión del tiempo para ${placeName}`}>
       <header className="weather-card__header">
-        <strong>Próximos 5 días</strong>
+        <strong>Próximos 7 días</strong>
       </header>
 
       {loading ? (
         <div className="weather-card__days weather-card__days--loading" aria-label="Cargando previsión">
-          {Array.from({ length: 5 }, (_, index) => <span key={index} />)}
+          {Array.from({ length: 7 }, (_, index) => <span key={index} />)}
         </div>
       ) : null}
 

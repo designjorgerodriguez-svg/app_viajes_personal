@@ -205,15 +205,6 @@ export function PlaceDetails({
             longitude={place.longitude}
             placeName={place.name}
           />
-          <button
-            className="delete-place-button"
-            onClick={confirmDelete}
-            type="button"
-            aria-label={`Ocultar ${place.name}`}
-            title="Ocultar lugar"
-          >
-            <Trash2 size={19} />
-          </button>
         </div>
       </div>
 
@@ -254,12 +245,23 @@ export function PlaceDetails({
             <ChevronRight className="route-summary__chevron" size={17} aria-hidden="true" />
           </button>
         )}
-        {place.officialSourceUrl ? (
-          <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
-            <ExternalLink size={16} />
-            <span>Fuente</span>
-          </a>
-        ) : null}
+        <div className="place-details__aux-actions">
+          {place.officialSourceUrl ? (
+            <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
+              <ExternalLink size={16} />
+              <span>Fuente</span>
+            </a>
+          ) : null}
+          <button
+            className="delete-place-button"
+            onClick={confirmDelete}
+            type="button"
+            aria-label={`Ocultar ${place.name}`}
+            title="Ocultar lugar"
+          >
+            <Trash2 size={19} />
+          </button>
+        </div>
       </div>
       {routeError ? <p className="inline-error" role="alert">{routeError}</p> : null}
       {routeGoogleMapsUrl || place.googleMapsUrl ? (

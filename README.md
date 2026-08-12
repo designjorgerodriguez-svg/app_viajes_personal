@@ -13,7 +13,7 @@ La aplicación contiene:
 - Búsqueda local, filtros por categoría, marcadores accesibles y fichas detalladas.
 - Favoritos, visitados y borrado lógico persistentes en el dispositivo.
 - Rutas en coche desde la ubicación actual y enlace externo a Google Maps.
-- Previsión meteorológica simplificada de cinco días para las coordenadas de cada lugar.
+- Previsión meteorológica simplificada de siete días para las coordenadas de cada lugar.
 - Un primer viaje con nueve lugares contrastados en fuentes oficiales.
 - Manifest, service worker y caché de la interfaz para PWA.
 - Aviso de conexión offline.
