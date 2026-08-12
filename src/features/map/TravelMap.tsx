@@ -25,6 +25,7 @@ interface TravelMapProps {
   selectedPlaceId: string | null
   styleId: MapStyleId
   userLocation: Coordinate | null
+  onBearingChange: (bearing: number) => void
   onBoundsChange: (bounds: MapBoundsValue) => void
   onMapError: (message: string) => void
   onSelectPlace: (placeId: string) => void
@@ -32,6 +33,7 @@ interface TravelMapProps {
 
 export interface TravelMapHandle {
   getViewState: () => TravelMapViewState | null
+  resetNorth: () => void
   restoreViewState: (viewState: TravelMapViewState) => void
   zoomIn: () => void
   zoomOut: () => void
@@ -57,6 +59,7 @@ type MapPropsSnapshot = Pick<
   | 'routeOverlayCompact'
   | 'selectedPlaceId'
   | 'userLocation'
+  | 'onBearingChange'
   | 'onBoundsChange'
   | 'onSelectPlace'
 >
@@ -287,6 +290,12 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
       map.stop()
       map.easeTo({ ...viewState, duration: 450 })
     },
+    resetNorth: () => {
+      const map = mapRef.current
+      if (!map) return
+      map.stop()
+      map.easeTo({ bearing: 0, duration: 450 })
+    },
     zoomIn: () => mapRef.current?.zoomIn(),
     zoomOut: () => mapRef.current?.zoomOut(),
   }), [])
@@ -445,10 +454,12 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
       updateBounds()
       syncMarkers()
     }
+    const handleRotate = () => snapshotRef.current.onBearingChange(map.getBearing())
     map.on('style.load', syncStyle)
     map.on('error', handleMapError)
     map.on('move', syncRouteOverlay)
     map.on('moveend', handleMoveEnd)
+    map.on('rotate', handleRotate)
     map.on('resize', syncRouteOverlay)
 
     return () => {
@@ -457,6 +468,7 @@ export const TravelMap = forwardRef<TravelMapHandle, TravelMapProps>(function Tr
       userLocationMarkerRef.current?.remove()
       userLocationMarkerRef.current = null
       map.off('move', syncRouteOverlay)
+      map.off('rotate', handleRotate)
       map.off('resize', syncRouteOverlay)
       map.remove()
       mapRef.current = null

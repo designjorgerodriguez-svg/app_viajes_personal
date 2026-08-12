@@ -1667,6 +1667,19 @@
   border-color: var(--color-primary-strong);
 }
 
+.map-control-stack .map-control-stack__compass {
+  margin-top: 1px;
+}
+
+.map-control-stack .map-control-stack__compass[data-rotated='true'] {
+  color: var(--color-primary-strong);
+  border-color: var(--color-primary-border);
+}
+
+.map-control-stack__compass svg {
+  transition: transform 180ms ease-out;
+}
+
 @media (hover: hover) {
   .filter-button:hover,
   .map-control-stack .icon-button--surface:hover {

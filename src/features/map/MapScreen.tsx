@@ -1,4 +1,4 @@
-import { Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
+import { Compass, Layers3, LocateFixed, Minus, Plus, Search, SlidersHorizontal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { GeolocationStatus } from '../../hooks/useGeolocation'
 import type { MapStyleId } from '../../services/maps/stadiaMapService'
@@ -64,6 +64,7 @@ export function MapScreen(props: MapScreenProps) {
   const [filterOpen, setFilterOpen] = useState(false)
   const [detailsCompact, setDetailsCompact] = useState(false)
   const [showRouteOverview, setShowRouteOverview] = useState(false)
+  const [mapBearing, setMapBearing] = useState(0)
   const routeActive = props.routePlaceIds.length > 0
   const activeFilterCount = props.filters.categoryIds.length
     + Number(props.filters.favoritesOnly)
@@ -133,6 +134,7 @@ export function MapScreen(props: MapScreenProps) {
         selectedPlaceId={props.selectedPlace?.id ?? null}
         styleId={props.mapStyle}
         userLocation={props.userLocation}
+        onBearingChange={setMapBearing}
         onBoundsChange={props.onBoundsChange}
         onMapError={props.onMapError}
         onSelectPlace={(placeId) => {
@@ -195,6 +197,17 @@ export function MapScreen(props: MapScreenProps) {
           aria-label="Alejar mapa"
         >
           <Minus size={18} />
+        </button>
+        <button
+          className="icon-button icon-button--surface map-control-stack__compass"
+          data-rotated={Math.abs(mapBearing) > 0.1}
+          onClick={() => mapRef.current?.resetNorth()}
+          type="button"
+          aria-label="Orientar el mapa al norte"
+          aria-pressed={Math.abs(mapBearing) > 0.1}
+          title="Norte arriba"
+        >
+          <Compass size={18} style={{ transform: `rotate(${-mapBearing}deg)` }} />
         </button>
       </div>
 
