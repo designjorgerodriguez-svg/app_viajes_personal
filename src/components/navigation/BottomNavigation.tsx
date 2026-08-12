@@ -39,7 +39,7 @@ export function BottomNavigation({
         aria-expanded={!collapsed}
         aria-label={collapsed ? 'Mostrar menú principal' : 'Ocultar menú principal'}
       >
-        {collapsed ? <ChevronUp size={15} strokeWidth={2.8} /> : <X size={20} strokeWidth={2.6} />}
+        {collapsed ? <ChevronUp size={17} strokeWidth={2.8} /> : <X size={22} strokeWidth={2.6} />}
       </button>
       <div className="bottom-nav__items" id="main-navigation-items" aria-hidden={collapsed || undefined}>
         <div className="brand-mark" aria-hidden="true">
