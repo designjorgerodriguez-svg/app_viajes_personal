@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Check,
   ChevronDown,
@@ -20,6 +21,7 @@ import {
 import { categoryById } from '../../data'
 import { formatDuration } from '../../utils/formatDuration'
 import { WeatherForecastCard } from '../weather/WeatherForecastCard'
+import { ConfirmHidePlaceDialog } from './ConfirmHidePlaceDialog'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
 
 interface PlaceDetailsProps {
@@ -76,6 +78,7 @@ export function PlaceDetails({
   onToggleFavorite,
   onToggleVisited,
 }: PlaceDetailsProps) {
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false)
   const category = categoryById[place.categoryId]
   const dog = dogInfo[place.dogAccess]
   const DogIcon = dog.icon
@@ -84,7 +87,8 @@ export function PlaceDetails({
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
   const routePending = locationLoading || routeLoading
   const confirmDelete = () => {
-    if (window.confirm(`¿Ocultar “${place.name}” de Brújula?`)) onDelete()
+    setDeleteConfirmationOpen(false)
+    onDelete()
   }
 
   if (compact) {
@@ -255,7 +259,7 @@ export function PlaceDetails({
           ) : null}
           <button
             className="delete-place-button"
-            onClick={confirmDelete}
+            onClick={() => setDeleteConfirmationOpen(true)}
             type="button"
             aria-label={`Ocultar ${place.name}`}
             title="Ocultar lugar"
@@ -276,6 +280,12 @@ export function PlaceDetails({
           Abrir en Google Maps
           <ExternalLink size={15} />
         </a>
+      ) : null}
+      {deleteConfirmationOpen ? (
+        <ConfirmHidePlaceDialog
+          onCancel={() => setDeleteConfirmationOpen(false)}
+          onConfirm={confirmDelete}
+        />
       ) : null}
     </article>
   )
