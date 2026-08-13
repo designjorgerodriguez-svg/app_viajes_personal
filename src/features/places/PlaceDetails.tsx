@@ -132,55 +132,49 @@ export function PlaceDetails({
   return (
     <article className="place-details" aria-live="polite">
       <div className="place-details__handle" aria-hidden="true" />
-      <header className="place-details__header" style={{ position: 'relative' }}>
-        <button
-          className="icon-button icon-button--ghost"
-          onClick={onClose}
-          style={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }}
-          type="button"
-          aria-label="Cerrar ficha"
-        >
-          <X size={19} />
-        </button>
-        <div className="place-details__title" style={{ paddingRight: 46 }}>
-          <h1>{place.name}</h1>
-          <div className="place-details__header-actions">
+      <header className="place-details__header">
+        <div className="place-details__title">
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
+            <h1 style={{ flex: '1 1 auto', minWidth: 0 }}>{place.name}</h1>
             <button
-              className="icon-button icon-button--state"
-              data-active={state.favorite}
-              onClick={onToggleFavorite}
+              className="icon-button icon-button--ghost"
+              onClick={onClose}
+              style={{ flex: '0 0 auto', marginTop: -5 }}
               type="button"
-              aria-label={state.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
-              aria-pressed={state.favorite}
+              aria-label="Cerrar ficha"
             >
-              <Star size={17} fill={state.favorite ? 'currentColor' : 'none'} />
+              <X size={19} />
             </button>
-            <button
-              className="icon-button icon-button--state"
-              data-active={state.visited}
-              onClick={onToggleVisited}
-              type="button"
-              aria-label={state.visited ? 'Marcar como no visitado' : 'Marcar como visitado'}
-              aria-pressed={state.visited}
-            >
-              <Check size={18} strokeWidth={2.5} />
-            </button>
-            {routeActive ? (
-              <button
-                className="icon-button icon-button--route-collapse"
-                onClick={onCollapse}
-                type="button"
-                aria-label="Plegar ficha y mantener la ruta"
-              >
-                <ChevronDown size={18} />
-              </button>
-            ) : null}
           </div>
-          <p>
-            <span className="category-label" style={{ color: category.color }}>{category.label}</span>
-            <span aria-hidden="true"> · </span>
-            {place.locality}
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 4 }}>
+            <p style={{ flex: '1 1 auto', minWidth: 0, marginTop: 0 }}>
+              <span className="category-label" style={{ color: category.color }}>{category.label}</span>
+              <span aria-hidden="true"> · </span>
+              {place.locality}
+            </p>
+            <div className="place-details__header-actions" style={{ flex: '0 0 auto', marginTop: 0 }}>
+              <button
+                className="icon-button icon-button--state"
+                data-active={state.favorite}
+                onClick={onToggleFavorite}
+                type="button"
+                aria-label={state.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                aria-pressed={state.favorite}
+              >
+                <Star size={17} fill={state.favorite ? 'currentColor' : 'none'} />
+              </button>
+              <button
+                className="icon-button icon-button--state"
+                data-active={state.visited}
+                onClick={onToggleVisited}
+                type="button"
+                aria-label={state.visited ? 'Marcar como no visitado' : 'Marcar como visitado'}
+                aria-pressed={state.visited}
+              >
+                <Check size={18} strokeWidth={2.5} />
+              </button>
+            </div>
+          </div>
         </div>
       </header>
       <div className="place-details__scroll">
@@ -257,6 +251,16 @@ export function PlaceDetails({
           </button>
         )}
         <div className="place-details__aux-actions">
+          {routeActive ? (
+            <button
+              className="icon-button icon-button--route-collapse"
+              onClick={onCollapse}
+              type="button"
+              aria-label="Plegar ficha y mantener la ruta"
+            >
+              <ChevronDown size={18} />
+            </button>
+          ) : null}
           {place.officialSourceUrl ? (
             <a className="place-source-button" href={place.officialSourceUrl} target="_blank" rel="noreferrer">
               <ExternalLink size={16} />
