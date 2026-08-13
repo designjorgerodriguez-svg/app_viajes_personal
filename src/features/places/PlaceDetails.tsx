@@ -135,7 +135,7 @@ export function PlaceDetails({
       <header className="place-details__header">
         <div className="place-details__title">
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
-            <h1 style={{ flex: '1 1 auto', minWidth: 0 }}>{place.name}</h1>
+            <h1 style={{ flex: '1 1 auto', minWidth: 0, marginBottom: 0 }}>{place.name}</h1>
             <button
               className="icon-button icon-button--ghost"
               onClick={onClose}
@@ -146,7 +146,7 @@ export function PlaceDetails({
               <X size={19} />
             </button>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 0 }}>
             <p style={{ flex: '1 1 auto', minWidth: 0, marginTop: 0 }}>
               <span className="category-label" style={{ color: category.color }}>{category.label}</span>
               <span aria-hidden="true"> · </span>
