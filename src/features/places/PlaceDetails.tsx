@@ -132,8 +132,17 @@ export function PlaceDetails({
   return (
     <article className="place-details" aria-live="polite">
       <div className="place-details__handle" aria-hidden="true" />
-      <header className="place-details__header">
-        <div className="place-details__title">
+      <header className="place-details__header" style={{ position: 'relative' }}>
+        <button
+          className="icon-button icon-button--ghost"
+          onClick={onClose}
+          style={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }}
+          type="button"
+          aria-label="Cerrar ficha"
+        >
+          <X size={19} />
+        </button>
+        <div className="place-details__title" style={{ paddingRight: 46 }}>
           <h1>{place.name}</h1>
           <div className="place-details__header-actions">
             <button
@@ -166,9 +175,6 @@ export function PlaceDetails({
                 <ChevronDown size={18} />
               </button>
             ) : null}
-            <button className="icon-button icon-button--ghost" onClick={onClose} type="button" aria-label="Cerrar ficha">
-              <X size={19} />
-            </button>
           </div>
           <p>
             <span className="category-label" style={{ color: category.color }}>{category.label}</span>
