@@ -139,7 +139,7 @@ export function PlaceDetails({
             <button
               className="icon-button icon-button--ghost"
               onClick={onClose}
-              style={{ position: 'absolute', top: -5, right: 0 }}
+              style={{ position: 'absolute', top: -16, right: 0 }}
               type="button"
               aria-label="Cerrar ficha"
             >
