@@ -134,19 +134,19 @@ export function PlaceDetails({
       <div className="place-details__handle" aria-hidden="true" />
       <header className="place-details__header">
         <div className="place-details__title">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
-            <h1 style={{ flex: '1 1 auto', minWidth: 0, marginBottom: 0 }}>{place.name}</h1>
+          <div style={{ position: 'relative', paddingRight: 46 }}>
+            <h1 style={{ marginBottom: 0 }}>{place.name}</h1>
             <button
               className="icon-button icon-button--ghost"
               onClick={onClose}
-              style={{ flex: '0 0 auto', marginTop: -5 }}
+              style={{ position: 'absolute', top: -5, right: 0 }}
               type="button"
               aria-label="Cerrar ficha"
             >
               <X size={19} />
             </button>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginTop: 1 }}>
             <p style={{ flex: '1 1 auto', minWidth: 0, marginTop: 0 }}>
               <span className="category-label" style={{ color: category.color }}>{category.label}</span>
               <span aria-hidden="true"> · </span>
