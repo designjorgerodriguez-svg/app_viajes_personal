@@ -58,13 +58,21 @@
 
   .waypoint-marker[data-selected='true'] {
     z-index: 10;
-    transform: scale(1.55);
-    transform-origin: 50% 100%;
-    filter: drop-shadow(0 8px 12px rgb(27 63 61 / 40%));
+    filter: drop-shadow(0 11px 16px rgb(27 63 61 / 46%));
   }
 
-  .waypoint-marker[data-selected='true'] .waypoint-marker__pin,
-  .waypoint-marker[data-selected='true'] .waypoint-marker__icon {
+  .waypoint-marker[data-selected='true'] .waypoint-marker__pin {
+    transform: rotate(-45deg) scale(2.05);
     transform-origin: center;
+  }
+
+  .waypoint-marker[data-selected='true'] .waypoint-marker__icon {
+    transform: translate(-50%, -50%) scale(2.05);
+    transform-origin: center;
+  }
+
+  .waypoint-marker[data-selected='true'] .waypoint-marker__badges {
+    transform: scale(1.18);
+    transform-origin: bottom left;
   }
 }
