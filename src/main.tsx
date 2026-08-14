@@ -5,6 +5,7 @@ import App from './app/App'
 import './styles/tokens.css'
 import './styles/global.css'
 import './styles/app.css'
+import './styles/desktop-sidebar.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
