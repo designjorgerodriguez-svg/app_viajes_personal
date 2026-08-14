@@ -82,6 +82,7 @@ export function PlaceDetails({
   const category = categoryById[place.categoryId]
   const dog = dogInfo[place.dogAccess]
   const DogIcon = dog.icon
+  const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`${place.name} ${place.locality}`)}`
   const visibleRoute = route ?? routePreview
   const routeIsApproximate = Boolean(visibleRoute?.approximate)
   const distancePrefix = routeIsApproximate ? '≈ ' : ''
@@ -135,7 +136,15 @@ export function PlaceDetails({
       <header className="place-details__header">
         <div className="place-details__title">
           <div style={{ position: 'relative', paddingRight: 46 }}>
-            <h1 style={{ marginBottom: 0 }}>{place.name}</h1>
+            <a
+              href={googleSearchUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Buscar ${place.name} en Google`}
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              <h1 style={{ marginBottom: 0 }}>{place.name}</h1>
+            </a>
             <button
               className="icon-button icon-button--ghost"
               onClick={onClose}
