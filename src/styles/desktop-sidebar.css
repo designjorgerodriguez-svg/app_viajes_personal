@@ -14,19 +14,20 @@
   .brand-mark {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    min-height: 58px;
-    margin-bottom: 24px;
-    padding: 0 14px;
+    min-height: 104px;
+    margin-bottom: 18px;
+    padding: 4px 0 10px;
     background: transparent;
   }
 
   .brand-mark img {
     display: block;
-    width: 52px;
-    height: 52px;
-    flex: 0 0 52px;
-    border-radius: 17px;
+    width: 88px;
+    height: 88px;
+    flex: 0 0 88px;
+    border-radius: 28px;
   }
 
   .nav-item {
@@ -53,5 +54,17 @@
 
   .nav-item[data-active='true'] .nav-icon {
     transform: none;
+  }
+
+  .waypoint-marker[data-selected='true'] {
+    z-index: 10;
+    transform: scale(1.55);
+    transform-origin: 50% 100%;
+    filter: drop-shadow(0 8px 12px rgb(27 63 61 / 40%));
+  }
+
+  .waypoint-marker[data-selected='true'] .waypoint-marker__pin,
+  .waypoint-marker[data-selected='true'] .waypoint-marker__icon {
+    transform-origin: center;
   }
 }
