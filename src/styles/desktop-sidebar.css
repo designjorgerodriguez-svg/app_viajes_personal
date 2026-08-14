@@ -62,12 +62,12 @@
   }
 
   .waypoint-marker[data-selected='true'] .waypoint-marker__pin {
-    transform: rotate(-45deg) scale(2.05);
+    transform: rotate(-45deg) scale(1.5);
     transform-origin: center;
   }
 
   .waypoint-marker[data-selected='true'] .waypoint-marker__icon {
-    transform: translate(-50%, -50%) scale(2.05);
+    transform: translate(-50%, -50%) scale(1.5);
     transform-origin: center;
   }
 
