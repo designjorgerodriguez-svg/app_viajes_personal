@@ -1442,6 +1442,43 @@
           "value": "1 h – 3 h"
         }
       ]
+    },
+    {
+      "id": "es-euskadi-vitoria-gasteiz",
+      "tripId": "pais-vasco-frances",
+      "name": "Vitoria-Gasteiz",
+      "locality": "Vitoria-Gasteiz, Álava",
+      "categoryId": "city",
+      "latitude": 42.8499813,
+      "longitude": -2.6726818,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vitoria%20-%20Plaza%20de%20la%20Virgen%20Blanca%2001.jpg?width=1600",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Vitoria_-_Plaza_de_la_Virgen_Blanca_01.jpg",
+      "imageAttribution": "Basotxerri · CC BY-SA 4.0",
+      "alt": "Plaza de la Virgen Blanca en el centro de Vitoria-Gasteiz",
+      "description": "Capital de Euskadi con un casco medieval en forma de almendra, plazas y calles históricas y una fuerte presencia de espacios verdes. Una visita corta encaja muy bien entre la Plaza de la Virgen Blanca, el Casco Medieval y el Ensanche.",
+      "tips": [
+        "Empieza por la Plaza de la Virgen Blanca y continúa a pie hacia el Casco Medieval; el itinerario oficial de un día propone después recorrer el Ensanche y el parque de La Florida.",
+        "Si dispones de más tiempo, el Ayuntamiento propone dedicar un segundo día a Artium, el Paseo de la Senda y el Anillo Verde."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "En el Anillo Verde los perros deben ir atados salvo en las zonas de esparcimiento específicamente habilitadas. Parques, jardines e interiores pueden tener normas propias, así que conviene revisar la señalización de cada espacio.",
+      "officialSourceUrl": "https://www.vitoria-gasteiz.org/wb021/was/contenidoAction.do?idioma=es&lang=es&locale=es&uid=u_33bad338_15b18518a8a__7da7",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Vitoria-Gasteiz%2C%20%C3%81lava",
+      "additionalInfo": [
+        {
+          "label": "Interés",
+          "value": "Plaza de la Virgen Blanca · Casco Medieval · Catedral de Santa María · Ensanche · Anillo Verde"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "4 h – día completo"
+        },
+        {
+          "label": "Consejo",
+          "value": "El centro se presta especialmente bien a recorrerlo a pie"
+        }
+      ]
     }
   ]
 }
