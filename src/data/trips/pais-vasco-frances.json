@@ -15,14 +15,15 @@
       "alt": "Fachada del castillo de Abbadia en Hendaye",
       "description": "Castillo-observatorio neogótico construido para Antoine d’Abbadie, con interiores del siglo XIX y un emplazamiento elevado sobre la costa atlántica.",
       "tips": [
-        "Reserva con antelación en temporada alta; en verano suele haber visitas en varios idiomas."
+        "Reserva la entrada con antelación: el aforo diario está limitado y en verano la reserva es obligatoria.",
+        "Combina la visita con el Domaine d’Abbadia y la Corniche; desde el entorno se obtienen buenas vistas hacia Les Deux Jumeaux."
       ],
       "price": {
         "label": "Tarifas · Guiada: adulto 12,90 €, 6–13 años 5,90 €, familia 35 € · Libre: adulto 11,50 €, 6–13 años 5,30 €, familia 31 € · Parque: adulto 2,50 €, hasta 13 años gratis"
       },
       "dogAccess": "unknown",
-      "dogNotes": "No he encontrado una regla oficial suficientemente clara para el acceso con perro al interior.",
-      "officialSourceUrl": "https://www.chateau-abbadia.fr/es/prepara-tu-visita/visitas-de-abbadia",
+      "dogNotes": "No he localizado una regla oficial suficientemente clara para el acceso con perro al interior del castillo. El espacio natural exterior tiene sus propias normas y señalización.",
+      "officialSourceUrl": "https://www.hendaye-tourisme.fr/activites-culturelles/chateau-abbadia/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3775%2C-1.7492",
       "additionalInfo": [
         {
@@ -47,23 +48,29 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Port%20de%20Saint-Jean-de-Luz.jpg",
       "imageAttribution": "Thomon · CC BY-SA 4.0",
       "alt": "Puerto pesquero de Saint-Jean-de-Luz",
-      "description": "Puerto pesquero y casco histórico junto a una bahía protegida, con paseo agradable entre el puerto, la Rue Gambetta y el frente marítimo.",
+      "description": "Puerto pesquero y casco histórico de Saint-Jean-de-Luz junto a una bahía protegida. El paseo enlaza fácilmente el puerto, la Place Louis XIV, Rue Gambetta, Les Halles y la Grande Plage.",
       "tips": [
-        "Recórrelo a pie y combínalo con el casco histórico y la Grande Plage."
+        "Recorre a pie el puerto, la Place Louis XIV y Rue Gambetta; esta última es peatonal y concentra comercios, productos locales y casas tradicionales.",
+        "La Grande Plage queda integrada en el centro y está protegida por los diques de la bahía.",
+        "Si continúas hacia Guéthary por la costa, Erromardie y Lafiténia son dos paradas interesantes; Lafiténia destaca especialmente por el surf y su entorno más natural."
       ],
       "price": null,
       "dogAccess": "conditional",
       "dogNotes": "En espacios públicos exteriores el paseo es compatible con perro; revisa las normas específicas de playas e interiores.",
-      "officialSourceUrl": "https://www.saint-jean-de-luz.com/",
+      "officialSourceUrl": "https://www.en-pays-basque.fr/es/costa-vasca/san-juan-de-luz/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.3869%2C-1.66494",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
-          "value": "1 h 30 – 2 h 30"
+          "value": "2 – 4 h"
         },
         {
           "label": "Qué ver",
-          "value": "Puerto · casco histórico · iglesia · bahía"
+          "value": "Puerto · Rue Gambetta · Place Louis XIV · Les Halles · Grande Plage"
+        },
+        {
+          "label": "Continuación costera",
+          "value": "Erromardie · Lafiténia · Guéthary"
         }
       ]
     },
@@ -111,9 +118,11 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Espelette.jpg",
       "imageAttribution": "Anne-Liam · CC BY-SA 4.0",
       "alt": "Vista luminosa del pueblo de Espelette y sus casas tradicionales",
-      "description": "Pueblo labortano conocido por el Piment d’Espelette y por sus casas tradicionales de fachadas blancas con entramados rojos.",
+      "description": "Pueblo labortano conocido por el Piment d’Espelette y por sus casas tradicionales de fachadas blancas con entramados rojos. En temporada es habitual ver ristras de pimientos secándose en fachadas y balcones.",
       "tips": [
-        "Buena parada para probar cocina local y comprar productos de pimiento de Espelette."
+        "Recorre el centro a pie fijándote en la arquitectura tradicional y las fachadas decoradas con pimientos.",
+        "Es una parada especialmente buena para comprar productos locales y probar cocina vinculada al Piment d’Espelette.",
+        "El entorno del Latsa completa bien la visita si quieres alejarte un poco de las calles principales."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -127,7 +136,7 @@
         },
         {
           "label": "Interés",
-          "value": "Arquitectura vasca · pimiento · tiendas · gastronomía"
+          "value": "Arquitectura vasca · pimiento · productos locales · río Latsa"
         }
       ]
     },
@@ -145,17 +154,22 @@
       "alt": "Tren cremallera de La Rhune ascendiendo por la montaña",
       "description": "Tren cremallera histórico que asciende desde el Col de Saint-Ignace hasta la cima de La Rhune, con amplias vistas sobre la costa y los Pirineos.",
       "tips": [
+        "Reserva con antelación en temporada alta; las plazas son limitadas y los horarios dependen del día.",
         "Consulta la meteorología o la webcam antes de subir: con niebla se pierde buena parte de las vistas.",
-        "Reserva con antelación en temporada alta."
+        "La excursión clásica dura unas 2 h 30 entre subida, estancia en la cima y descenso."
       ],
       "price": {
         "label": "Tarifas 2026 · Clásico ida/vuelta: adulto 26 €, 4–12 años 18 €, familia 82 € · Perro 6,50 € · Privilegio: adulto 31 €, niño 22 €"
       },
       "dogAccess": "conditional",
-      "dogNotes": "La información oficial admite perros en el tren bajo condiciones; deben viajar controlados y conviene revisar la tarifa y normas vigentes antes de comprar.",
-      "officialSourceUrl": "https://www.rhune.com/es/faq-3/",
+      "dogNotes": "Los perros están admitidos en el tren y deben viajar entre las piernas, bajo el banco, para no molestar. En la cima hay ganado y espacio Natura 2000, así que deben ir muy controlados.",
+      "officialSourceUrl": "https://www.rhune.com/fr/faq/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.325038%2C-1.6006769",
       "additionalInfo": [
+        {
+          "label": "Salida",
+          "value": "Gare du Col de Saint-Ignace · Sare"
+        },
         {
           "label": "Tiempo orientativo",
           "value": "Aprox. 2 h 30"
@@ -178,23 +192,25 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Citadelle%20de%20Saint-Jean-Pied-de-Port%20-%20communs.jpg",
       "imageAttribution": "Marianne Casamance · CC BY-SA 4.0",
       "alt": "Edificios de la ciudadela de Saint-Jean-Pied-de-Port",
-      "description": "Ciudadela situada sobre la colina de Mendiguren, dominando el casco histórico y la ruta jacobea de Saint-Jean-Pied-de-Port.",
+      "description": "Ciudadela y casco fortificado de Saint-Jean-Pied-de-Port, última gran etapa francesa del Camino de Santiago antes de cruzar los Pirineos hacia Roncesvalles.",
       "tips": [
-        "Sube hasta la ciudadela aunque no hagas visita guiada: las vistas sobre el pueblo justifican el paseo."
+        "Sube hasta la ciudadela para tener vistas sobre el casco y después baja por Rue de la Citadelle.",
+        "Incluye la Rue d’Espagne, histórica calle de comerciantes y artesanos, y el Pont d’Eyheraberry sobre la Nive.",
+        "La Porte Saint-Jacques forma parte del conjunto del Camino de Santiago reconocido por la UNESCO."
       ],
       "price": null,
       "dogAccess": "conditional",
       "dogNotes": "Los exteriores son compatibles con paseo con perro; para recintos o visitas guiadas, comprueba la norma concreta.",
-      "officialSourceUrl": "https://www.st-jean-pied-de-port.fr/tourisme/visiter-saint-jean-pied-de-port/",
+      "officialSourceUrl": "https://www.en-pays-basque.fr/territoires-et-destinations/le-pays-de-saint-jean-pied-de-port/saint-jean-pied-de-port/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.1620471%2C-1.2332689",
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
-          "value": "1 h 30 – 2 h"
+          "value": "2 – 3 h"
         },
         {
           "label": "Qué ver",
-          "value": "Ciudadela · Porte Saint-Jacques · murallas · casco histórico"
+          "value": "Ciudadela · Porte Saint-Jacques · Rue d’Espagne · Pont d’Eyheraberry · casco histórico"
         }
       ]
     },
@@ -210,10 +226,11 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Passerelle%20d%27Holzart%C3%A9.JPG",
       "imageAttribution": "Cruccone · CC BY 3.0",
       "alt": "Pasarela de Holzarte sobre las gargantas",
-      "description": "Pasarela colgante sobre las gargantas de Olhadubi, suspendida a gran altura y accesible mediante una ruta de senderismo desde Logibar.",
+      "description": "Pasarela colgante sobre las gargantas de Olhadubi, en la Haute-Soule, suspendida a gran altura y accesible mediante una ruta de montaña desde Logibar, cerca de Larrau.",
       "tips": [
         "Lleva buen calzado: el acceso es una ruta de montaña y puede resultar resbaladiza.",
-        "En verano comprueba si hay lanzadera desde Tardets hacia la zona de salida."
+        "El entorno de Larrau y el río Saison/Gave de Larrau merece el desplazamiento aunque finalmente no completes la ruta.",
+        "Si buscas una alternativa de visita en la Haute-Soule, la Grotte de La Verna permite una experiencia completamente distinta y requiere reserva."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -227,7 +244,7 @@
         },
         {
           "label": "Entorno",
-          "value": "Gargantas · bosque · senderismo"
+          "value": "Gargantas · bosque · Larrau · Haute-Soule"
         }
       ]
     },
@@ -275,9 +292,10 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sare_Village.jpg",
       "imageAttribution": "Harrieta171 · CC BY-SA 3.0",
       "alt": "Vista del pueblo vasco de Sare rodeado de paisaje verde",
-      "description": "Pueblo vasco de Xareta, con plaza, casas tradicionales y un paisaje muy ligado a La Rhune y a la frontera.",
+      "description": "Pueblo vasco de Xareta, clasificado entre Les Plus Beaux Villages de France y situado a los pies de La Rhune. Es una buena base para combinar arquitectura tradicional, las Grottes de Sare, Ortillopitz y el tren de La Rhune.",
       "tips": [
-        "Combina especialmente bien con la excursión de La Rhune."
+        "Combínalo especialmente bien con el tren de La Rhune, Ortillopitz y las Grottes de Sare.",
+        "El pueblo merece un paseo corto por la plaza, la iglesia y las casas tradicionales antes de continuar hacia las visitas de los alrededores."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -287,11 +305,11 @@
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
-          "value": "1 – 1 h 30"
+          "value": "1 – 1 h 30 en el pueblo"
         },
         {
           "label": "Interés",
-          "value": "Plaza · iglesia · casas vascas · paisaje"
+          "value": "Plaza · iglesia · casas vascas · La Rhune · Grottes de Sare · Ortillopitz"
         }
       ]
     },
@@ -309,7 +327,8 @@
       "alt": "Calle principal de Ainhoa con sus casas tradicionales vascas",
       "description": "Pequeña villa vasca conocida por su calle principal de casas tradicionales de los siglos XVII y XVIII.",
       "tips": [
-        "Es una parada corta y muy fotogénica; recórrela a pie sin necesidad de dedicarle medio día."
+        "Es una parada corta y muy fotogénica; recorre a pie la calle principal y fíjate en las casas labortanas alineadas.",
+        "Combina muy bien con Sare y Espelette en una ruta por el interior."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -324,6 +343,10 @@
         {
           "label": "Interés",
           "value": "Calle principal · iglesia · cementerio · arquitectura vasca"
+        },
+        {
+          "label": "Combina con",
+          "value": "Sare · Espelette"
         }
       ]
     },
@@ -371,9 +394,10 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Pont%20de%20l%27%C3%A9glise%20de%20Saint-%C3%89tienne-de-Ba%C3%AFgorry.jpg",
       "imageAttribution": "Martin Prunières · CC BY-SA 4.0",
       "alt": "Puente e iglesia de Saint-Étienne-de-Baïgorry",
-      "description": "Pueblo del valle de Baigorri, junto a la Nive des Aldudes y rodeado por viñedos y relieve de montaña.",
+      "description": "Pueblo del valle de Baigorri, junto a la Nive des Aldudes y rodeado por colinas verdes y viñedos de la AOC Irouléguy. Es una buena base para recorrer el paisaje rural del interior.",
       "tips": [
-        "Combínalo con la bodega de Irouléguy y con un paseo por el entorno del río."
+        "Combínalo con la bodega de Irouléguy y con un paseo por el entorno del río.",
+        "Dedica parte del trayecto a las carreteras del valle: el paisaje de viñedos en ladera y colinas es uno de los principales atractivos de esta zona."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -383,11 +407,11 @@
       "additionalInfo": [
         {
           "label": "Tiempo orientativo",
-          "value": "1 – 1 h 30"
+          "value": "1 – 1 h 30 en el pueblo"
         },
         {
           "label": "Interés",
-          "value": "Puente · río · iglesia · viñedos"
+          "value": "Puente · río · iglesia · valle de Baigorri · viñedos de Irouléguy"
         }
       ]
     },
@@ -1142,25 +1166,25 @@
       "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Rocher_de_la_Vierge_(Biarritz).jpg",
       "imageAttribution": "Gzen92 · CC BY-SA 4.0",
       "alt": "Rocher de la Vierge y costa rocosa de Biarritz frente al Atlántico",
-      "description": "Ciudad costera vasco-francesa con un frente marítimo muy variado, desde la Grande Plage y el Hôtel du Palais hasta el Port des Pêcheurs, el Port-Vieux y el Rocher de la Vierge. Se presta especialmente bien a recorrerla a pie.",
+      "description": "Ciudad costera vasco-francesa con un frente marítimo muy variado. Un recorrido a pie permite enlazar la Grande Plage, Les Halles, el Port des Pêcheurs, el Rocher de la Vierge, Port-Vieux y Villa Belza.",
       "tips": [
-        "Haz un recorrido lineal por la costa: Grande Plage, Port des Pêcheurs, Rocher de la Vierge y Côte des Basques.",
-        "En verano buena parte del litoral y el hipercentro se peatonalizan durante amplias franjas horarias, así que conviene aparcar una vez y hacer la visita caminando.",
-        "Si quieres baño, revisa el estado de la mar y la zona vigilada del día: con marea y oleaje cambian las áreas seguras."
+        "Haz un recorrido lineal por la costa: Grande Plage, Port des Pêcheurs, Rocher de la Vierge, Port-Vieux, Villa Belza y Côte des Basques.",
+        "Pasa por Les Halles si te apetece ambiente gastronómico y productos locales; están en pleno centro.",
+        "La Chapelle Impériale es un buen complemento si te interesa la etapa imperial de Biarritz; sus visitas tienen horarios concretos y conviene revisarlos antes."
       ],
       "price": null,
       "dogAccess": "unknown",
       "dogNotes": "No he localizado una norma municipal única y suficientemente clara para todo el recorrido urbano. En exteriores hay espacios de paseo con perros, pero las playas, jardines e interiores tienen reglas propias; revisa la señalización de cada zona.",
-      "officialSourceUrl": "https://www.biarritz.fr/",
+      "officialSourceUrl": "https://www.destination-biarritz.fr/decouvrir/les-incontournables-a-biarritz/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=43.483978%2C-1.566303",
       "additionalInfo": [
         {
           "label": "Interés",
-          "value": "Rocher de la Vierge · Grande Plage · puerto · arquitectura · costa"
+          "value": "Rocher de la Vierge · Port des Pêcheurs · Les Halles · Villa Belza · Chapelle Impériale"
         },
         {
           "label": "Tiempo orientativo",
-          "value": "3 – 5 h"
+          "value": "4 h – día completo"
         },
         {
           "label": "Consejo",
@@ -1477,6 +1501,388 @@
         {
           "label": "Consejo",
           "value": "El centro se presta especialmente bien a recorrerlo a pie"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-hendaye-centre",
+      "tripId": "pais-vasco-frances",
+      "name": "Hendaye / Hendaya · centro",
+      "locality": "Hendaye, Pyrénées-Atlantiques",
+      "categoryId": "city",
+      "latitude": 43.3587,
+      "longitude": -1.77459,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Centro histórico de Hendaya en torno a la Place de la République y la iglesia Saint-Vincent, con el frontón Gaztelu Zahar, restos de las fortificaciones de Vauban, vistas hacia Hondarribia y el antiguo puerto de Caneta.",
+      "tips": [
+        "Recorre el centro a pie y enlaza la iglesia Saint-Vincent, Gaztelu Zahar y el antiguo puerto de Caneta.",
+        "Para completar Hendaya, separa esta visita urbana de Abbadia, la Corniche y la gran playa."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una norma única y oficial para perros que cubra todo el recorrido urbano; revisa señalización e interiores.",
+      "officialSourceUrl": "https://www.tourisme64.com/animation/hendaye/FMAAQU064V5C9ZF5-visite-dhendaye-centre-ville/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Hendaye%20centre%20ville",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 2 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Casco urbano · puerto de Caneta · Gaztelu Zahar · vistas a Hondarribia"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-hendaye-corniche",
+      "tripId": "pais-vasco-frances",
+      "name": "Corniche Basque · Abbadia y Les Deux Jumeaux",
+      "locality": "Hendaye, Pyrénées-Atlantiques",
+      "categoryId": "hiking",
+      "latitude": 43.3772,
+      "longitude": -1.74407,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Tramo de costa protegida entre acantilados, landas y el Domaine d’Abbadia, con panorámicas sobre el Atlántico y los dos roquedos de Les Deux Jumeaux.",
+      "tips": [
+        "Hazlo con calzado cómodo y evita acercarte al borde de los acantilados fuera de los senderos.",
+        "Combina especialmente bien con el Castillo de Abbadia y la playa de Hendaya."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "Es un espacio natural protegido; no he localizado una regla única suficientemente clara para todo el recorrido. Sigue la señalización del tramo y lleva al perro controlado.",
+      "officialSourceUrl": "https://www.hendaye-tourisme.fr/accueil/ITIAQU064FS00041-abbadia-entre-ciel-et-mer/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Corniche%20Basque%20Hendaye%20Deux%20Jumeaux",
+      "additionalInfo": [
+        {
+          "label": "Interés",
+          "value": "Acantilados · flysch · Domaine d’Abbadia · Les Deux Jumeaux"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 3 h según recorrido"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-guethary",
+      "tripId": "pais-vasco-frances",
+      "name": "Guéthary",
+      "locality": "Guéthary, Pyrénées-Atlantiques",
+      "categoryId": "village",
+      "latitude": 43.4252,
+      "longitude": -1.6099,
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Port%20de%20Guethary.jpg?width=1200",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Port_de_Guethary.jpg",
+      "imageAttribution": "Pkayne · CC BY-SA 4.0",
+      "alt": "Puerto de Guéthary y su pequeño frente marítimo",
+      "description": "Pequeño pueblo marinero entre Saint-Jean-de-Luz y Bidart, volcado hacia el océano. Su puerto en seco, el frente marítimo y el entorno de Parlementia concentran buena parte de su encanto.",
+      "tips": [
+        "Haz una parada corta por el puerto y sube hacia el sémaphore para tener perspectiva sobre la costa.",
+        "Parlementia es un spot de surf potente: mejor para observar si no tienes experiencia suficiente.",
+        "No confundas este Guéthary francés con Getaria, en Gipuzkoa: el Monte San Antón pertenece a la localidad española."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "Las playas tienen normas estacionales propias; por ejemplo, Parlementia restringe perros durante el periodo de vigilancia. Revisa la señalización del día.",
+      "officialSourceUrl": "https://www.en-pays-basque.fr/territoires-et-destinations/cote-basque/guethary/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Gu%C3%A9thary%20France",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 2 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Puerto · sémaphore · Parlementia · paseo costero"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-bayonne",
+      "tripId": "pais-vasco-frances",
+      "name": "Bayonne / Bayona",
+      "locality": "Bayonne, Pyrénées-Atlantiques",
+      "categoryId": "city",
+      "latitude": 43.4941,
+      "longitude": -1.47861,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Ciudad histórica en la confluencia del Nive y el Adour. El recorrido urbano combina los muelles del Nive, Grand Bayonne, el Château-Vieux, las murallas y el barrio de Saint-Esprit, hoy muy ligado al street art.",
+      "tips": [
+        "Recorre los quais de la Nive y el casco histórico alrededor de la catedral y Château-Vieux.",
+        "Cruza a Saint-Esprit para ver sus murales; Rue Sainte-Catherine y Rue Ulysse-Darracq concentran varias obras conocidas.",
+        "Bayona se disfruta especialmente bien caminando, alternando patrimonio, mercado y riberas."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "Los recorridos urbanos exteriores son compatibles con perro, pero museos, iglesias, jardines y otros interiores aplican normas propias.",
+      "officialSourceUrl": "https://www.visitbayonne.com/es/descubra/que-ver-y-hacer-en-bayona/visitar-bayona/arte-callejero-en-bayona/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Bayonne%20France",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "3 – 5 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Nive · Château-Vieux · casco histórico · Saint-Esprit · street art"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sare-grottes",
+      "tripId": "pais-vasco-frances",
+      "name": "Grottes de Sare / Sarako Lezea",
+      "locality": "Sare, Pyrénées-Atlantiques",
+      "categoryId": "nature",
+      "latitude": 43.2687,
+      "longitude": -1.57134,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Cuevas prehistóricas de Sare con visita guiada de aproximadamente una hora, museo del sitio y parque megalítico. El interior se mantiene alrededor de 14 °C.",
+      "tips": [
+        "Reserva antes, especialmente en verano y en días de lluvia: el número de visitantes por pase es limitado.",
+        "Llega unos 20 minutos antes y lleva una capa ligera; dentro se mantienen unos 14 °C.",
+        "No se permiten animales, cochecitos ni fotografías o vídeo dentro de la cueva."
+      ],
+      "price": {
+        "label": "Tarifas 2026 · adulto 10 € · 14–17 años y estudiantes 8,50 € · 5–13 años 6 € · familia 32 €"
+      },
+      "dogAccess": "not-allowed",
+      "dogNotes": "Los animales no están admitidos dentro de la cueva.",
+      "officialSourceUrl": "https://www.grottesdesare.fr/es/horaire_tarif_es.php",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Grottes%20de%20Sare",
+      "additionalInfo": [
+        {
+          "label": "Dirección",
+          "value": "2280 Lezeko bidea · 64310 Sare"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 2 h con museo y parque"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sare-ortillopitz",
+      "tripId": "pais-vasco-frances",
+      "name": "Ortillopitz · Maison Basque de Sare",
+      "locality": "Sare, Pyrénées-Atlantiques",
+      "categoryId": "monument",
+      "latitude": 43.3239,
+      "longitude": -1.58837,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Casa labortana del siglo XVII restaurada para explicar la arquitectura, la vida doméstica y la cultura tradicional vasca.",
+      "tips": [
+        "En 2026 abre del 5 de abril al 25 de septiembre y cierra los sábados.",
+        "La visita libre funciona de domingo a viernes de 11:00 a 16:30; las guiadas salen lunes, martes y miércoles a las 10:00 y requieren reserva.",
+        "Está a aproximadamente 1 km de la estación del tren de La Rhune, por lo que ambas visitas combinan bien."
+      ],
+      "price": {
+        "label": "Tarifas 2026 · visita libre 7 € · visita guiada 10 € · menores de 4 años gratis en visita libre"
+      },
+      "dogAccess": "not-allowed",
+      "dogNotes": "Los animales no están admitidos.",
+      "officialSourceUrl": "https://www.ortillopitz.fr/preparez-votre-visite/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ortillopitz%20Sare",
+      "additionalInfo": [
+        {
+          "label": "Dirección",
+          "value": "875 Igeltsutegiko bidea · 64310 Sare"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-la-bastide-clairence",
+      "tripId": "pais-vasco-frances",
+      "name": "La Bastide-Clairence",
+      "locality": "La Bastide-Clairence, Pyrénées-Atlantiques",
+      "categoryId": "village",
+      "latitude": 43.4295,
+      "longitude": -1.25609,
+      "imageUrl": "https://www.tourisme64.com/wp-content/uploads/2024/07/la-bastide-clairence-30-09-23-222-1536x912.jpg",
+      "imageSourceUrl": "https://www.tourisme64.com/nos-destinations/pays-basque/la-bastide-clairence/",
+      "imageAttribution": "Tourisme 64",
+      "alt": "Place des Arceaux y casas tradicionales de La Bastide-Clairence",
+      "description": "Bastida medieval del siglo XIV clasificada entre Les Plus Beaux Villages de France, con trazado en damero, Place des Arceaux, iglesia, arquitectura labortana y navarra y una fuerte tradición artesanal.",
+      "tips": [
+        "Los martes de verano hay mercado de productores en la Place des Arceaux; en 2026 funciona de 9:00 a 13:00 en las fechas publicadas.",
+        "Jungle Canoë propone en julio y agosto un recorrido de unas 2 horas en el entorno de La Bastide-Clairence; fuera del verano opera en la Nive con fórmula guiada.",
+        "Recorre el pueblo a pie y entra en los talleres artesanos que estén abiertos."
+      ],
+      "price": null,
+      "dogAccess": "conditional",
+      "dogNotes": "El pueblo y varias visitas exteriores admiten animales, pero la iglesia y determinados establecimientos pueden restringir el acceso.",
+      "officialSourceUrl": "https://www.tourisme64.com/activites/la-bastide-clairence/PCUAQU064V5BUXNJ-la-bastide-clairence-classe-les-plus-beaux-villages-de-france/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=La%20Bastide-Clairence",
+      "additionalInfo": [
+        {
+          "label": "Mercado",
+          "value": "Martes de verano · 09:00–13:00 · confirmar fecha concreta"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 h 30 – 3 h"
+        },
+        {
+          "label": "Extra",
+          "value": "Jungle Canoë · actividad estacional"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-tardets",
+      "tripId": "pais-vasco-frances",
+      "name": "Tardets-Sorholus / Atharratze-Sorholüze",
+      "locality": "Tardets-Sorholus, Pyrénées-Atlantiques",
+      "categoryId": "village",
+      "latitude": 43.1164,
+      "longitude": -0.8625,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Pequeña bastida de la Haute-Soule situada al pie de las colinas de La Madeleine y bien colocada como base para Holzarte, Larrau, Sainte-Engrâce y La Verna.",
+      "tips": [
+        "Haz una parada por la plaza y el casco antes de continuar hacia la Haute-Soule.",
+        "La chapelle de la Madeleine, accesible desde el entorno de Tardets, ofrece una panorámica de 360° sobre Soule y las montañas del Béarn.",
+        "Es una base práctica para elegir entre la ruta de Holzarte, Erretzü o la Grotte de La Verna."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una norma turística única para todo el pueblo; respeta señalización e interiores.",
+      "officialSourceUrl": "https://www.en-pays-basque.fr/territoires-et-destinations/montagnes-iraty-kakuetta/tardets/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Tardets-Sorholus",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "45 min – 1 h 30"
+        },
+        {
+          "label": "Interés",
+          "value": "Bastida · Haute-Soule · La Madeleine · base para excursiones"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-mauleon-licharre",
+      "tripId": "pais-vasco-frances",
+      "name": "Mauléon-Licharre / Maule-Lextarre",
+      "locality": "Mauléon-Licharre, Pyrénées-Atlantiques",
+      "categoryId": "village",
+      "latitude": 43.2242,
+      "longitude": -0.8869,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Capital histórica de la Soule y ciudad estrechamente vinculada a la fabricación de alpargatas. Es una parada urbana útil antes de internarse en Tardets y la Haute-Soule.",
+      "tips": [
+        "Recorre el centro y aprovecha la parada para conocer la tradición de la espadrille, uno de los rasgos más característicos de Mauléon.",
+        "Combina bien con Tardets en la misma jornada si vas camino de Holzarte o La Verna."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una norma única para todo el casco urbano; revisa interiores y señalización.",
+      "officialSourceUrl": "https://www.tourisme64.com/es/nuestros-destinos/bienvenido-al-pais-vasco/mauleon-licharre/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Maul%C3%A9on-Licharre",
+      "additionalInfo": [
+        {
+          "label": "Tiempo orientativo",
+          "value": "1 – 2 h"
+        },
+        {
+          "label": "Interés",
+          "value": "Soule · tradición de la alpargata · casco urbano"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-tardets-erretzu",
+      "tripId": "pais-vasco-frances",
+      "name": "Erretzü · ruta desde Tardets",
+      "locality": "Tardets-Sorholus, Pyrénées-Atlantiques",
+      "categoryId": "hiking",
+      "latitude": 43.1164,
+      "longitude": -0.8625,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Ruta de media montaña desde Tardets hacia el Erretzü, con bosques, helechales y amplias vistas sobre las montañas del Béarn y la Haute-Soule.",
+      "tips": [
+        "La ruta oficial marca unos 10 km, 4 horas y 500 m de desnivel positivo; nivel medio.",
+        "Lleva agua y calzado de senderismo y evita hacerla con mala visibilidad si tu objetivo principal son las panorámicas."
+      ],
+      "price": null,
+      "dogAccess": "unknown",
+      "dogNotes": "No he localizado una indicación oficial específica sobre perros para todo el itinerario; es zona rural y pastoral, por lo que debe ir controlado y con correa cerca de ganado.",
+      "officialSourceUrl": "https://www.tourisme64.com/itineraire/tardets-sorholus/ITIAQU064V5AYWBF-erretzu/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Erretz%C3%BC%20Tardets",
+      "additionalInfo": [
+        {
+          "label": "Ruta",
+          "value": "10 km · 4 h · +500 m · dificultad media"
+        },
+        {
+          "label": "Interés",
+          "value": "Panorámicas · bosque · helechales · Haute-Soule"
+        }
+      ]
+    },
+    {
+      "id": "fr-pvf-sainte-engrace-verna",
+      "tripId": "pais-vasco-frances",
+      "name": "Grotte de La Verna",
+      "locality": "Sainte-Engrâce, Pyrénées-Atlantiques",
+      "categoryId": "nature",
+      "latitude": 43.0138,
+      "longitude": -0.854034,
+      "imageUrl": "",
+      "imageSourceUrl": "",
+      "imageAttribution": "",
+      "alt": "",
+      "description": "Enorme sala subterránea en el macizo de la Pierre-Saint-Martin, una de las grandes visitas geológicas de la Haute-Soule. Las visitas son guiadas y el interior se mantiene alrededor de 5 °C todo el año.",
+      "tips": [
+        "Reserva antes: las visitas se organizan con horarios y modalidades concretas.",
+        "Lleva ropa de abrigo y calzado cerrado incluso en pleno verano; dentro hay unos 5 °C.",
+        "El punto de acogida está en Sainte-Engrâce y el acceso a la sala se organiza desde allí."
+      ],
+      "price": null,
+      "dogAccess": "not-allowed",
+      "dogNotes": "Los animales no están permitidos en la visita de la cueva.",
+      "officialSourceUrl": "https://www.tourisme64.com/activites/sainte-engrace/PNAAQU064FS0002L-grotte-de-la-verna/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Grotte%20de%20La%20Verna",
+      "additionalInfo": [
+        {
+          "label": "Dirección de acogida",
+          "value": "8250 route de Sainte-Engrâce · 64560 Sainte-Engrâce"
+        },
+        {
+          "label": "Temperatura",
+          "value": "Aprox. 5 °C todo el año"
+        },
+        {
+          "label": "Tiempo orientativo",
+          "value": "2 – 3 h según modalidad y accesos"
         }
       ]
     }
