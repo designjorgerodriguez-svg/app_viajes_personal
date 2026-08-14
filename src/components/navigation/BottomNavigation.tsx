@@ -47,8 +47,8 @@ export function BottomNavigation({
         </span>
       </button>
       <div className="bottom-nav__items" id="main-navigation-items" aria-hidden={collapsed || undefined}>
-        <div className="brand-mark" aria-hidden="true">
-          B
+        <div className="brand-mark" aria-label="Brújula">
+          <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" aria-hidden="true" />
         </div>
         {items.map(({ id, label, icon: Icon }) => {
           const isActive = activeSection === id
@@ -71,6 +71,7 @@ export function BottomNavigation({
                   strokeWidth={isActive ? 2.4 : 1.9}
                 />
               </span>
+              <span className="nav-label">{label}</span>
             </button>
           )
         })}
