@@ -57,14 +57,19 @@ export async function getMeteoblueLocationUrl(
   for (const searchName of getLocalitySearchNames(primaryLocality)) {
     const parameters = new URLSearchParams({
       name: searchName,
-      count: '10',
+      count: '100',
       language: 'es',
       format: 'json',
     })
     const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?${parameters}`, { signal })
     const payload = await response.json() as GeocodingResponse
-    if (response.ok && payload.results?.length) {
-      locations = payload.results
+    const nearbyLocations = payload.results?.filter((result) => (
+      Number.isFinite(result.latitude)
+      && Number.isFinite(result.longitude)
+      && distanceSquared(latitude, longitude, result) <= 0.25
+    )) ?? []
+    if (response.ok && nearbyLocations.length) {
+      locations = nearbyLocations
       break
     }
   }

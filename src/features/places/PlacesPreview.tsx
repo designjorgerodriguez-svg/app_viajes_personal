@@ -7,6 +7,7 @@ import type { PlaceFilters } from '../filters/placeFilters'
 import { PlaceCard } from './PlaceCard'
 
 interface PlacesScreenProps {
+  tripName: string
   filters: PlaceFilters
   places: TripPlace[]
   visibleCount: number
@@ -16,12 +17,12 @@ interface PlacesScreenProps {
   onToggleFavorite: (placeId: string) => void
 }
 
-export function PlacesScreen({ filters, places, visibleCount, getPlaceState, onChangeFilters, onOpenPlace, onToggleFavorite }: PlacesScreenProps) {
+export function PlacesScreen({ tripName, filters, places, visibleCount, getPlaceState, onChangeFilters, onOpenPlace, onToggleFavorite }: PlacesScreenProps) {
   const [filterOpen, setFilterOpen] = useState(false)
   return (
     <section className="content-screen">
       <header className="content-header">
-        <span className="eyebrow">País Vasco francés</span>
+        <span className="eyebrow">{tripName}</span>
         <h1>Lugares</h1>
         <p>{places.length} resultados · {visibleCount} visibles en el mapa actual.</p>
       </header>

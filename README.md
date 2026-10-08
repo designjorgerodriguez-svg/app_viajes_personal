@@ -14,7 +14,7 @@ La aplicación contiene:
 - Favoritos, visitados y borrado lógico persistentes en el dispositivo.
 - Rutas en coche desde la ubicación actual y enlace externo a Google Maps.
 - Previsión meteorológica simplificada de siete días para las coordenadas de cada lugar.
-- Un primer viaje con nueve lugares contrastados en fuentes oficiales.
+- Dos viajes: País Vasco Francés (54 lugares) y Almería - Cabo de Gata (20 lugares para el puente de octubre de 2026).
 - Manifest, service worker y caché de la interfaz para PWA.
 - Aviso de conexión offline.
 
@@ -82,4 +82,5 @@ El contenido vive en JSON versionado. Stadia está aislado mediante adaptadores;
 
 - [Modelo de datos](docs/DATA_MODEL.md)
 - [Flujo de contenido](docs/CONTENT_WORKFLOW.md)
+- [Fuentes y criterios de Almería - Cabo de Gata](docs/ALMERIA_CABO_DE_GATA_SOURCES.md)
 - [Configuración](docs/SETUP.md)

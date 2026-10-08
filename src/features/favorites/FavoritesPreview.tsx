@@ -3,6 +3,7 @@ import type { PlaceUserState, TripPlace } from '../../types/data'
 import { PlaceCard } from '../places/PlaceCard'
 
 interface FavoritesScreenProps {
+  tripName: string
   places: TripPlace[]
   getPlaceState: (placeId: string) => PlaceUserState
   onExplore: () => void
@@ -10,11 +11,11 @@ interface FavoritesScreenProps {
   onToggleFavorite: (placeId: string) => void
 }
 
-export function FavoritesScreen({ places, getPlaceState, onExplore, onOpenPlace, onToggleFavorite }: FavoritesScreenProps) {
+export function FavoritesScreen({ tripName, places, getPlaceState, onExplore, onOpenPlace, onToggleFavorite }: FavoritesScreenProps) {
   return (
     <section className="content-screen content-screen--centerable">
       <header className="content-header">
-        <span className="eyebrow">País Vasco francés</span><h1>Favoritos</h1>
+        <span className="eyebrow">{tripName}</span><h1>Favoritos</h1>
         <p>{places.length ? `${places.length} ${places.length === 1 ? 'lugar guardado' : 'lugares guardados'} para este viaje.` : 'Guarda aquí los lugares que no quieres perderte.'}</p>
       </header>
       {places.length ? (

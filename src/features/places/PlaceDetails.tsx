@@ -190,6 +190,9 @@ export function PlaceDetails({
         {place.imageUrl ? (
           <figure className="place-details__cover">
             <img alt={place.alt} decoding="async" src={place.imageUrl} />
+            <figcaption>
+              <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">{place.imageAttribution}</a>
+            </figcaption>
           </figure>
         ) : null}
         {place.description ? <p className="place-description">{place.description}</p> : null}

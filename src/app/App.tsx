@@ -309,6 +309,8 @@ function App() {
     setSelectedPlaceId(null)
     clearRoute()
     setFilters(EMPTY_FILTERS)
+    setMapBounds(null)
+    setMapError('')
   }
 
   const deletePlace = (placeId: string) => {
@@ -327,6 +329,7 @@ function App() {
       <AppShell activeSection={activeSection} onNavigate={setActiveSection}>
         <div className="app-view" data-active={activeSection === 'map'}>
           <MapScreen
+            key={activeTrip.id}
             active={activeSection === 'map'}
             filters={filters}
             geolocationStatus={geolocation.status}
@@ -361,6 +364,7 @@ function App() {
         </div>
         <div className="app-view" data-active={activeSection === 'places'}>
           <PlacesScreen
+            tripName={activeTrip.name}
             filters={filters}
             getPlaceState={placeStates.getState}
             places={filteredPlaces}
@@ -372,6 +376,7 @@ function App() {
         </div>
         <div className="app-view" data-active={activeSection === 'favorites'}>
           <FavoritesScreen
+            tripName={activeTrip.name}
             getPlaceState={placeStates.getState}
             places={favoritePlaces}
             onExplore={() => setActiveSection('places')}
