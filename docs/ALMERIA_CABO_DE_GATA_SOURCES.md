@@ -30,6 +30,8 @@ Las coordenadas proceden de las fichas oficiales cuando se citan a continuación
 
 Cada foto se comprobó con MediaWiki imageinfo (URL, descripción, autor y licencia), se descargó a public/images/almeria-cabo-de-gata y conserva la página de Commons y atribución en el JSON. La atribución se muestra sobre la foto con el estilo de figcaption ya existente. No se han generado imágenes ni sustituido una fotografía por otra localidad.
 
+Las rutas de imágenes locales se resuelven con la base pública de Vite: funcionan tanto desde la raíz de Sites como desde la subcarpeta de GitHub Pages. Las URL externas mantienen su valor original.
+
 | Lugar | Fuente principal de descripción y visita | Coordenadas | Fotografía y licencia |
 | --- | --- | --- | --- |
 | San José | [Fuente](https://turismonijar.es/descubre/pueblos/san-jose/) | [Coordenadas](https://es.wikipedia.org/wiki/San_Jos%C3%A9_(Almer%C3%ADa)) | [Benreis · CC BY-SA 3.0](https://commons.wikimedia.org/wiki/File:San_Jos%C3%A9,_en_el_municipio_de_N%C3%ADjar_(Almer%C3%ADa,_Espa%C3%B1a).jpg) |
@@ -61,4 +63,5 @@ La topoguía PR-A 269 estima 8,6 km y tres horas sin paradas; su edición es de 
 - `pnpm typecheck` y `pnpm build`: completados correctamente.
 - Los 20 enlaces de Meteoblue se contrastaron con los GeoNames esperados y se comprobó el rechazo de resultados de un homónimo lejano.
 - Revisión en navegador de selección de viaje, mapa de Almería/Guadix, listado de 20 lugares, foto/crédito, previsión de San José, favoritos y diseño móvil a 390 × 844. Los estados temporales usados para la prueba se revirtieron.
+- Compilación con `VITE_BASE_PATH=/app_viajes_personal/` y prueba en navegador de la fotografía de San José: carga desde la subcarpeta con 1280 píxeles de ancho. La publicación automática existente de GitHub Pages completó validación, compilación y despliegue para el primer commit del viaje.
 - `pnpm lint`: no se pudo ejecutar; la política de Control de aplicaciones de Windows bloquea el componente nativo de Oxlint. No se han desactivado protecciones ni cambiado las dependencias del repositorio.

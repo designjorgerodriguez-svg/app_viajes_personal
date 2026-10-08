@@ -1,6 +1,7 @@
 import { Check, Lightbulb, PawPrint, Star } from 'lucide-react'
 import { CategoryIcon } from '../../components/categories/CategoryIcon'
 import { categoryById } from '../../data'
+import { publicAssetUrl } from '../../utils/publicAssetUrl'
 import type { PlaceUserState, TripPlace } from '../../types/data'
 
 interface PlaceCardProps {
@@ -28,7 +29,7 @@ export function PlaceCard({ place, state, onOpen, onToggleFavorite }: PlaceCardP
         type="button"
         aria-label={`Abrir ${place.name} en el mapa`}
       >
-        {place.imageUrl ? <img alt="" decoding="async" loading="lazy" src={place.imageUrl} /> : null}
+        {place.imageUrl ? <img alt="" decoding="async" loading="lazy" src={publicAssetUrl(place.imageUrl)} /> : null}
         <span className="place-card__category" aria-hidden="true">
           <CategoryIcon category={category} size={19} />
         </span>

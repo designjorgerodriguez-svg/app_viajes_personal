@@ -49,7 +49,7 @@ No inventes datos; verifica las fuentes, conserva los ID existentes, valida los 
 
 Los viajes se localizan desde `src/data/trips/index.json` y sus lugares están en `src/data/trips/*.json`. Las categorías disponibles están en `src/data/categories.json`.
 
-El repositorio y la web publicada son dos estados distintos. Subir un cambio a `main` no actualiza automáticamente `brujula-viajes-personal.designjorgerodriguez.chatgpt.site`: después hay que publicar una nueva versión mediante OpenAI Sites. La aplicación no utiliza GitHub Pages actualmente.
+Subir un cambio a `main` activa el flujo de GitHub Actions que valida los datos, compila y publica en [GitHub Pages](https://designjorgerodriguez-svg.github.io/app_viajes_personal/). La versión `brujula-viajes-personal.designjorgerodriguez.chatgpt.site` es independiente: para actualizarla hay que publicar una nueva versión mediante OpenAI Sites.
 
 ## Arquitectura
 

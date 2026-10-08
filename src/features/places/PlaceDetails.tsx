@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { categoryById } from '../../data'
 import { formatDuration } from '../../utils/formatDuration'
+import { publicAssetUrl } from '../../utils/publicAssetUrl'
 import { WeatherForecastCard } from '../weather/WeatherForecastCard'
 import { ConfirmHidePlaceDialog } from './ConfirmHidePlaceDialog'
 import type { PlaceUserState, RouteResult, TripPlace } from '../../types/data'
@@ -189,7 +190,7 @@ export function PlaceDetails({
       <div className="place-details__scroll">
         {place.imageUrl ? (
           <figure className="place-details__cover">
-            <img alt={place.alt} decoding="async" src={place.imageUrl} />
+            <img alt={place.alt} decoding="async" src={publicAssetUrl(place.imageUrl)} />
             <figcaption>
               <a href={place.imageSourceUrl} target="_blank" rel="noreferrer">{place.imageAttribution}</a>
             </figcaption>
