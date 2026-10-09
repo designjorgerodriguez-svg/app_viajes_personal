@@ -1,5 +1,15 @@
 # Almería - Cabo de Gata · fuentes y criterios
 
+## Ampliación del 9 de octubre de 2026: recomendaciones familiares
+
+Se incorporan tres fichas al mismo viaje, sin modificar IDs anteriores. Los tres recintos **no admiten perros**, incluso fuera de la temporada de baño. Las fichas usan enlaces de imagen directos a Wikimedia Commons con atribución y licencia indicada, porque el acceso GitHub actual no permite subir fotografía binaria desde el conector; son recursos externos con necesidad de red.
+
+- **Geoda de Pulpí · Mina Rica**: [coordenadas oficiales](https://geoda.todogeologia.com/contacto/), [visita y duración](https://geoda.todogeologia.com/lavisita/), [normas (perros prohibidos)](https://geoda.todogeologia.com/normas/) y [tarifas / reservas municipales](https://geodapulpi.es/). Foto: [Canals y otros · CC BY 4.0](https://commons.wikimedia.org/wiki/File:Geode_of_Pulp%C3%AD_interior.png). Es un desvío considerable respecto al núcleo de Cabo de Gata; se incluye como excursión opcional.
+- **Refugios de la Guerra Civil de Almería**: [horarios de invierno, tarifa, reserva, prohibición de mascotas y acceso](https://www.almeriaciudad.es/cultura/lugares-de-interes/refugios-de-la-guerra-civil); [coordenadas Junta](https://www.juntadeandalucia.es/cultura/agendaculturaldeandalucia/espacios/almeria-refugios-de-la-guerra-civil). Foto: [Shadowgate · CC BY 2.0](https://commons.wikimedia.org/wiki/File:Civil_War_Shelters_of_Almer%C3%ADa_-_42794187631.jpg). La posible apertura excepcional del 12 de octubre no está verificada.
+- **Los Millares**: corresponde al **Calcolítico / Edad del Cobre**, no a la Edad del Bronce; [horario, visita gratuita, prohibición de perros y coordenadas](https://www.juntadeandalucia.es/aaiicc/enclaves/enclave-arqueologico-de-los-millares). [Actividad especial 9 de octubre de 2026 a las 10:30](https://www.juntadeandalucia.es/cultura/agendaculturaldeandalucia/evento/abierto-por-excavacion-los-millares): reserva obligatoria por correo millares.aaiicc@juntadeandalucia.es; no es la visita general. Foto: [Eamand · CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Enclave_Arqueol%C3%B3gico_de_Los_Millares.jpg).
+- **La Isleta del Moro** ya constaba en el mapa. Se añade advertencia de pernocta basada en la [guía oficial de alojamientos de Níjar de 2025](https://turismonijar.es/wp-content/uploads/2025/02/guia_alojamiento_2025.pdf), que prohíbe la pernocta en camper en los frentes de playa y espacios naturales no urbanos del parque. No se ha añadido un punto de pernocta no verificado.
+
+
 Revisión: 8 de octubre de 2026. Viaje del puente, 9–12 de octubre de 2026. Se añaden 20 lugares sin modificar los ID ni el contenido del País Vasco francés.
 
 ## Patrón de la aplicación
