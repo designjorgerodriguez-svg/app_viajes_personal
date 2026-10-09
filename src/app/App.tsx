@@ -20,7 +20,7 @@ import type { NavigationSection } from '../types/navigation'
 
 function App() {
   const [activeSection, setActiveSection] = useState<NavigationSection>('map')
-  const [activeTripId, setActiveTripId] = useState(trips[0].id)
+  const [activeTripId, setActiveTripId] = useState(() => trips.find((trip) => trip.id === 'almeria-cabo-de-gata')?.id ?? trips[0].id)
   const [filters, setFilters] = useState<PlaceFilters>(EMPTY_FILTERS)
   const [mapBounds, setMapBounds] = useState<MapBoundsValue | null>(null)
   const [mapError, setMapError] = useState('')
