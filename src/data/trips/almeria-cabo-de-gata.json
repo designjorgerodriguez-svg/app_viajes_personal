@@ -186,7 +186,8 @@
       "alt": "Casas y costa de La Isleta del Moro vistas desde el mirador",
       "description": "Pequeño pueblo de tradición pesquera situado junto a un fondeadero natural. Destaca el contraste entre las casas blancas, el mar y los relieves volcánicos.",
       "tips": [
-        "Recorre el pequeño núcleo pesquero y disfruta las vistas; enlaza la visita con Los Escullos y el mirador de La Amatista."
+        "Recorre el pequeño núcleo pesquero y disfruta las vistas; enlaza la visita con Los Escullos y el mirador de La Amatista.",
+        "La guía oficial de alojamientos de Níjar prohíbe pernoctar en vehículos vivienda en los frentes de playa y espacios naturales no urbanos del parque. No deis por válida la recomendación de dormir frente al mar en el aparcamiento: elegid un camping o área camper autorizada y consultad señales locales."
       ],
       "price": null,
       "dogAccess": "conditional",
@@ -486,6 +487,129 @@
       "officialSourceUrl": "https://guadix.es/turismo/barrio-de-cuevas/",
       "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=37.30055556%2C-3.135",
       "additionalInfo": []
+    },
+    {
+      "id": "es-acg-geoda-pulpi",
+      "tripId": "almeria-cabo-de-gata",
+      "name": "Geoda de Pulpí · Mina Rica",
+      "locality": "Pilar de Jaravía (Pulpí)",
+      "categoryId": "nature",
+      "latitude": 37.381922,
+      "longitude": -1.701937,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Geode_of_Pulp%C3%AD_interior.png/1280px-Geode_of_Pulp%C3%AD_interior.png",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Geode_of_Pulp%C3%AD_interior.png",
+      "imageAttribution": "A. Canals, A.E.S. Van Driessche, F. Palero y J.M. García-Ruiz · CC BY 4.0",
+      "alt": "Interior de la Geoda de Pulpí con grandes cristales de yeso",
+      "description": "Geoda de cristales gigantes de yeso dentro de la Mina Rica, en Pilar de Jaravía. La visita recorre las galerías y permite contemplar los cristales desde la abertura, sin entrar al interior de la geoda.",
+      "tips": [
+        "Solo con visita guiada y entrada reservada: consulta las plazas del puente antes de ir. La visita dura aproximadamente dos horas y supone bajar y volver a subir numerosas escaleras.",
+        "Lleva calzado cerrado; no se permiten mochilas ni fotografías personales dentro de la mina. Para ver la geoda se exige mascarilla.",
+        "Está lejos del circuito central de San José y Tabernas: considérala una excursión opcional hacia el extremo nororiental de la provincia, no una parada de paso.",
+        "No admiten perros en la mina. Si vais con Umi, tendríais que organizar su cuidado durante toda la visita; no contéis con dejarla sola en la furgo."
+      ],
+      "price": {
+        "label": "Entrada general 25 € por adulto (consultar disponibilidad y tarifas vigentes)",
+        "amount": 25,
+        "currency": "EUR"
+      },
+      "dogAccess": "not-allowed",
+      "dogNotes": "La normativa oficial de Mina Rica prohíbe el acceso con animales, también fuera de temporada. Umi no puede entrar.",
+      "officialSourceUrl": "https://geoda.todogeologia.com/lavisita/",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=37.381922%2C-1.701937",
+      "additionalInfo": [
+        {
+          "label": "Reservas",
+          "value": "https://geodapulpi.es/"
+        },
+        {
+          "label": "Duración",
+          "value": "Aproximadamente 2 horas"
+        },
+        {
+          "label": "Ubicación",
+          "value": "Calle Sierra de los Filabres, s/n, Pilar de Jaravía (Pulpí)"
+        }
+      ]
+    },
+    {
+      "id": "es-acg-refugios-guerra-civil",
+      "tripId": "almeria-cabo-de-gata",
+      "name": "Refugios de la Guerra Civil",
+      "locality": "Almería",
+      "categoryId": "monument",
+      "latitude": 36.8417437,
+      "longitude": -2.4645383,
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Civil_War_Shelters_of_Almer%C3%ADa_-_42794187631.jpg/1280px-Civil_War_Shelters_of_Almer%C3%ADa_-_42794187631.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Civil_War_Shelters_of_Almer%C3%ADa_-_42794187631.jpg",
+      "imageAttribution": "Shadowgate · CC BY 2.0",
+      "alt": "Habitación recreada en los refugios subterráneos de la Guerra Civil de Almería",
+      "description": "Red de galerías subterráneas construidas para proteger a la población de los bombardeos durante la Guerra Civil. La visita guiada permite conocer sus pasillos e instalaciones históricas.",
+      "tips": [
+        "La visita es guiada y exige entrada. El horario de octubre publicado por el Ayuntamiento es de martes a sábado, con turnos a las 10:30, 12:00, 17:00 y 18:30, y domingos a las 10:30 y 12:00; los lunes cierra habitualmente. Comprobad horarios especiales del puente.",
+        "Compra la entrada con antelación en la web del Ayuntamiento o consulta en el 950 268 696; está en la plaza Manuel Pérez García, en el centro de Almería.",
+        "No se admiten mascotas. Si vais con Umi, organizad el cuidado antes de reservar; no la dejéis sola en la camper."
+      ],
+      "price": {
+        "label": "Entrada general 3 € (reducida 2 €)",
+        "amount": 3,
+        "currency": "EUR"
+      },
+      "dogAccess": "not-allowed",
+      "dogNotes": "El Ayuntamiento de Almería indica expresamente que no se admiten mascotas en la visita guiada.",
+      "officialSourceUrl": "https://www.almeriaciudad.es/cultura/lugares-de-interes/refugios-de-la-guerra-civil",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=36.8417437%2C-2.4645383",
+      "additionalInfo": [
+        {
+          "label": "Reservas",
+          "value": "Online o taquilla; 950 268 696"
+        },
+        {
+          "label": "Acceso",
+          "value": "Plaza Manuel Pérez García, s/n, Almería"
+        },
+        {
+          "label": "Aviso",
+          "value": "Verificar horario específico del lunes festivo"
+        }
+      ]
+    },
+    {
+      "id": "es-acg-los-millares",
+      "tripId": "almeria-cabo-de-gata",
+      "name": "Enclave Arqueológico de Los Millares",
+      "locality": "Santa Fe de Mondújar",
+      "categoryId": "monument",
+      "latitude": 36.96503875,
+      "longitude": -2.5225515296181,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Enclave_Arqueol%C3%B3gico_de_Los_Millares.jpg/1280px-Enclave_Arqueol%C3%B3gico_de_Los_Millares.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Enclave_Arqueol%C3%B3gico_de_Los_Millares.jpg",
+      "imageAttribution": "Eamand · CC BY-SA 4.0",
+      "alt": "Murallas y restos del asentamiento prehistórico de Los Millares",
+      "description": "Gran asentamiento calcolítico (Edad del Cobre, aprox. 3200–2200 a. C.), con murallas, poblado, necrópolis y un área de interpretación. No pertenece a la Edad del Bronce: es anterior.",
+      "tips": [
+        "Horario ordinario publicado: miércoles a domingo de 10:00 a 14:00; entrada gratuita. La visita completa puede durar entre 2,5 y 3 horas. Llévate agua, calzado cómodo y protección solar.",
+        "Para el viernes 9 de octubre de 2026 la Junta ha anunciado una actividad especial «Los Millares al descubierto» a las 10:30 (aprox. 2 h), gratuita, con plazas limitadas y reserva obligatoria en millares.aaiicc@juntadeandalucia.es; no confundas esta actividad con la visita libre habitual.",
+        "Las normas oficiales no permiten animales salvo perros de asistencia. Con Umi no podréis entrar al recinto; no contéis con dejarla sola en la furgo."
+      ],
+      "price": null,
+      "dogAccess": "not-allowed",
+      "dogNotes": "El enclave indica que no se permite entrar con animales, salvo perros de asistencia a personas con discapacidad.",
+      "officialSourceUrl": "https://www.juntadeandalucia.es/aaiicc/enclaves/enclave-arqueologico-de-los-millares",
+      "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=36.96503875%2C-2.5225515296181",
+      "additionalInfo": [
+        {
+          "label": "Visita especial 9 de octubre",
+          "value": "10:30 · reserva: millares.aaiicc@juntadeandalucia.es"
+        },
+        {
+          "label": "Horario habitual",
+          "value": "Miércoles a domingo 10:00–14:00; festivos consultar"
+        },
+        {
+          "label": "Precio",
+          "value": "Entrada gratuita"
+        }
+      ]
     }
   ]
 }
